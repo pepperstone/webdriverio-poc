@@ -1,4 +1,4 @@
-const { config } = require('../../web/wdio.web.shared.conf')
+const { config } = require('../services/chrome.driver.conf')
 
 // =====================================
 // Integration Test Suite for Web

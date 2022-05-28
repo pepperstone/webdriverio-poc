@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "web.integration.test": "wdio run ./config/test-suites/integration-test/web.testsuite.ts",
+    "web.integration.test": "wdio run ./config/test-suites/integration.web.ts",
     "bs.local.test": "wdio run ./config/browserstack/web.conf.ts"
   },
   "keywords": [],

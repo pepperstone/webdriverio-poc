@@ -1,0 +1,13 @@
+pre-trade-web-mobile
+|__config
+|___services
+|___test-suites
+|__doc
+|___gherkins
+|___mind-maps
+|__src
+|__test
+|___page-objects
+|___specs
+|____integration
+|____unit
