@@ -1,0 +1,88 @@
+{
+  "root": true,
+  "extends": [
+    "airbnb-typescript", // React "airbnb-typescript/base" for just js. "airbnb","airbnb/base" for no TypeScript
+    "airbnb/hooks", // React
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "@react-native-community" // React Native only
+  ],
+  "parser": "@typescript-eslint/parser", // TypeScript only
+  "parserOptions": {
+    "project": "./tsconfig.json", // TypeScript only
+    "ecmaFeatures": { "jsx": true }
+  },
+  "plugins": ["import", "@typescript-eslint"],
+  "ignorePatterns": ["*.config.js"],
+  "overrides": [
+    {
+      /** Testing Files Extensions */
+      "files": ["*.{spec,test}.{js,ts,tsx}", "e2e/*.{js,ts,tsx}"],
+      "plugins": ["jest"],
+      "env": { "jest/globals": true },
+      "rules": {
+        "import/no-extraneous-dependencies": 0 // Allow dev-dependency imports
+      }
+    }
+  ],
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "args": "none",
+        "caughtErrors": "none",
+        "ignoreRestSiblings": true,
+        "vars": "all"
+      }
+    ],
+    // resolve "import/extensions"
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "curly": ["error", "multi-line"],
+    "no-void": ["error"], // Allow void as statement in order to ignore promise returns
+    "prettier/prettier": 0, // Disable Prettier
+    "import/no-cycle": 0, // Slows down all linting
+    "react/jsx-props-no-spreading": 0, // Enable Prop Spreading
+    "@typescript-eslint/no-empty-interface": 0, // Allow boilerplate empty interfaces for defining component props explicitly
+    "@typescript-eslint/no-unsafe-assignment": 0,
+    "@typescript-eslint/naming-convention": [
+      2,
+      {
+        "leadingUnderscore": "allow",
+        "format": ["camelCase", "PascalCase", "UPPER_CASE", "snake_case"],
+        "selector": "variable"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": 0, // disabled to avoid using any type
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/restrict-template-expressions": 0,
+    "@typescript-eslint/no-floating-promises": [2, { "ignoreIIFE": true }], // Fixes issue where async await syntax wasn't being recognised.
+    "@typescript-eslint/explicit-function-return-type": [
+      0,
+      { "allowExpressions": false }
+    ],
+    "@typescript-eslint/no-unused-vars": [2, { "varsIgnorePattern": "^_" }],
+
+    // Fixes false-positives for enums in typescript https://github.com/typescript-eslint/typescript-eslint/issues/2484#issuecomment-687257773
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "tabWidth": 2,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreRegExpLiterals": true,
+        "ignoreTemplateLiterals": true
+      }
+    ]
+  }
+}
