@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "web.integration.prod": "wdio run ./config/test-suites/integration.web.ts",
-    "app.integration.android": "wdio run ./config/services/testing/wdio.android.app.conf.fwd.ts",
+    "web.prod.integration": "wdio run ./config/test-suites/web.prod.integration.ts",
+    "app.android.integration": "wdio run ./config/test-suites/app.android.integration.ts",
     "bs.local.test": "wdio run ./config/browserstack/web.conf.ts",
     "generate.report": "allure generate allure-results --clean && allure open"
   },

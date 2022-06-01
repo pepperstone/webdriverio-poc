@@ -26,7 +26,6 @@ describe('My Login application', () => {
         //await $('#MainContent_LoginUser_LoginButton').click()
 
         await LoginPage.login('tomsmith', 'SuperSecretPassword!');
-
     });
 });
 

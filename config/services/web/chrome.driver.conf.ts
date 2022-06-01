@@ -1,4 +1,4 @@
-const { config } = require('../wdio.base.conf')
+const { config } = require('../../wdio.base.conf')
 
 // =====================================
 // Test Runner Services and Capabilities

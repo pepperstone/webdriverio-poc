@@ -7,16 +7,16 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputEmailMobile () {
+    private get inputEmailMobile () {
         return $('input[type="text"]');
     }
 
-    public get inputPassword () {
+    private get inputPassword () {
         return $('input[type="password"]');
     }
 
-    public get btnSubmit () {
-        return $('button[type="submit"]');
+    private get btnSubmit () {
+        return $('#MainContent_LoginUser_LoginButton');
     }
 
     /**
