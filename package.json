@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "web.integration.test": "wdio run ./config/test-suites/integration.web.ts",
-    "app.integration.test": "wdio run ./config/services/testing/wdio.android.app.conf.fwd.ts",
+    "web.integration.prod": "wdio run ./config/test-suites/integration.web.ts",
+    "app.integration.android": "wdio run ./config/services/testing/wdio.android.app.conf.fwd.ts",
     "bs.local.test": "wdio run ./config/browserstack/web.conf.ts"
   },
   "keywords": [],

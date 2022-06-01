@@ -27,6 +27,9 @@ class LoginPage extends Page {
         await this.inputEmailMobile.waitForClickable({timeout: 10000})
         await this.inputEmailMobile.setValue(username);
         await this.inputPassword.setValue(password);
+
+        await browser.pause(3000);
+        
         await this.btnSubmit.click();
     }
 }

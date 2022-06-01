@@ -15,7 +15,7 @@ class HomePage extends Page {
         return $('//body/div[@id="root"]/div[1]/section[1]/div[1]/div[3]/div[1]/div[1]');
     }
     public get linkCustomer () {
-        return $('//body/div[8]/ul[1]/li[1]/a[1]/span[2]');
+        return $('body > div.jss328.jss326.jss83.popper.hasAnimation > ul > li:nth-child(1)');
     }
 
     /**
