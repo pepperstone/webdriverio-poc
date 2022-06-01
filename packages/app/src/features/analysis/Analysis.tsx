@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 import AnalysisScreenProps from './types';
 import stylesCreator from './Styles';
-import useStrings from '../../common/hooks/useStrings';
+import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
 
 const AnalysisScreen: FC<AnalysisScreenProps> = () => {

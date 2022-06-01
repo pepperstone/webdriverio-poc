@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 import { SearchSVG } from 'assets/icons';
 import SearchScreenProps from './types';
 import stylesCreator from './Styles';
-import useStrings from '../../common/hooks/useStrings';
+import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
 
 const SearchScreen: FC<SearchScreenProps> = () => {

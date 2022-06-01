@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 import { WatchlistsSVG } from 'assets/icons';
 import WatchlistsScreenProps from './types';
 import stylesCreator from './Styles';
-import useStrings from '../../common/hooks/useStrings';
+import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
 
 const WatchlistsScreen: FC<WatchlistsScreenProps> = () => {

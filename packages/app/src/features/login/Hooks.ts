@@ -1,12 +1,12 @@
 import { DoLoginProps, FormKeys, UseLoginProps } from './types';
 
 import { LoginScreenNavigationProp } from '../../navigation/Types';
-import { isValidEmail } from '../../../../../shared/helpers/RegexHelpers';
+import { isValidEmail } from '@monorepo/shared/helpers/RegexHelpers';
 import { setIsLoggedIn } from '../../lib/user/slices';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
-import useStrings from '../../common/hooks/useStrings';
+import { useStrings } from '../../common/hooks';
 
 export const useLoginHook = (): UseLoginProps => {
   const initialValues = { username: '', password: '' };
