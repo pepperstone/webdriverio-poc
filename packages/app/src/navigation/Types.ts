@@ -3,12 +3,13 @@ import type { StackNavigationProp, StackScreenProps } from '@react-navigation/st
 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-export type NavigatorParams<P> = { screen?: P; params?: Record<string, undefined> };
+export type NavigatorParams<P> = { screen?: keyof P; params?: Record<string, undefined> };
 
 export type RootStackParamList = {
   Main: NavigatorParams<MainTabParamList>;
   Auth: NavigatorParams<AuthStackParamList>;
   NotFound: undefined;
+  WebView: { title: string, url: string };
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
@@ -33,6 +34,9 @@ export type AuthScreenProps<T extends keyof AuthStackParamList> =
   RootStackScreenProps<keyof RootStackParamList>
   >;
 
+export type DiscoverParamList = {
+  DiscoverScreen: undefined;
+};
 
 export type MainStackParamList = {
   MainStackTabs: NavigatorParams<MainTabParamList>;
@@ -70,6 +74,13 @@ export type MarketsScreen = {
 export type PortfolioScreen = {
   navigation: MainTabScreenProps<'Portfolio'>;
   route: RouteProp<MainTabParamList, 'Portfolio'>;
+};
+
+type RootNavigation = StackNavigationProp<RootStackParamList>;
+
+export type WebViewScreen = {
+  navigation: RootNavigation;
+  route: RouteProp<RootStackParamList, 'WebView'>;
 };
 
 export type LoginScreenNavigationProp = StackNavigationProp<AuthStackParamList, 'Login'>;
