@@ -11,17 +11,19 @@ const SCREEN_HEIGHT = height;
 const SCREEN_WIDTH = width;
 const BORDER_RADIUS = 15;
 
+const fontWeight  = {
+  light: '300',
+  regular: '400',
+  semibold: '600',
+  bold: '700',
+  black: '800',
+} as const;
+
 const CORE_THEME = {
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
   BORDER_RADIUS,
-  fontWeight: {
-    light: '300',
-    regular: '400',
-    semibold: '600',
-    bold: '700',
-    black: '800',
-  },
+  fontWeight,
   fontSize: {
     // WIP: Still Evolving with designs.
     // Heading
@@ -61,6 +63,9 @@ const baseColor = {
   black: '#000000',
   blue: '#0064FA',
   red: '#FF0000',
+  buttons: {
+    secondaryDefault: '#2C2C2C',
+  },
 };
 
 export const LightTheme = {
@@ -98,6 +103,7 @@ export const getTheme = () => {
   return {
     dark: darkMode ? true : false,
     colors: darkMode ? DarkTheme.colors : LightTheme.colors,
+    colorsInvert: !darkMode ? DarkTheme.colors : LightTheme.colors, // the opposite color to darkmode.
     ...CORE_THEME,
   };
 };
