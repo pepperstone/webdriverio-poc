@@ -97,9 +97,6 @@ export const config: Options.Testrunner = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: [['allure', {outputDir: 'allure-results'}]],
-
-
-    
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/

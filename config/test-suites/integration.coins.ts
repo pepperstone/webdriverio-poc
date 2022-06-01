@@ -1,7 +1,7 @@
-const { config } = require('../services/chrome.driver.conf')
+const { config } = require('../services/appium.android.conf')
 
 // =====================================
-// Integration Test Suite for Web
+// Integration Test Suite for Mobile
 // =====================================
 /**
  * this will override the services from wdio base conf
@@ -13,8 +13,7 @@ exports.config = {
     ...{
         specs: [
             // './test/specs/**/*.ts'
-            // './test/specs/integration/example-coinsph.ts'
-            './test/specs/integration/example-web-fwd.ts'
+            './test/specs/integration/example-coinsph.ts'
         ],
         // Patterns to exclude.
         exclude: [

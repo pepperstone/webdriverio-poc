@@ -21,6 +21,6 @@ exports.config = {
                 //headless: true
             }
         }
-      ]
+      ],
     }
 }

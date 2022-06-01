@@ -20,6 +20,9 @@ mindmapDiagram {
   .why {
     BackgroundColor lightblue
   }
+  .text {
+    Color black
+  }
 
 }
 </style>

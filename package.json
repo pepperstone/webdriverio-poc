@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "web.integration.test": "wdio run ./config/test-suites/integration.web.ts",
+    "app.integration.test": "wdio run ./config/services/testing/wdio.android.app.conf.fwd.ts",
     "bs.local.test": "wdio run ./config/browserstack/web.conf.ts"
   },
   "keywords": [],
@@ -12,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@wdio/allure-reporter": "^7.19.7",
+    "@wdio/appium-service": "^7.19.5",
     "@wdio/cli": "^7.19.7",
     "@wdio/local-runner": "^7.19.7",
     "@wdio/mocha-framework": "^7.19.7",

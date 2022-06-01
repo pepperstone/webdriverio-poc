@@ -1,13 +1,16 @@
 pre-trade-web-mobile
+|__apps
 |__config
 |___services
 |___test-suites
 |__doc
+|___assets
 |___gherkins
 |___mind-maps
 |__src
 |__test
 |___page-objects
+|___resources
 |___specs
 |____integration
-|____unit
+|____unit 
