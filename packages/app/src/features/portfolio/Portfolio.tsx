@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 import { PortfolioSVG } from 'assets/icons';
 import PortfolioScreenProps from './types';
 import stylesCreator from './Styles';
-import useStrings from '../../common/hooks/useStrings';
+import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
 
 const PortfolioScreen: FC<PortfolioScreenProps> = () => {

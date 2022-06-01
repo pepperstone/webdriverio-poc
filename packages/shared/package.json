@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "@monorepo/shared",
+  "version": "1.0.0",
+  "description": "shared files for web and mobile app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Nick McComb",
+  "license": "ISC"
+}

@@ -7,15 +7,14 @@ import {
 } from 'react-native';
 import React, { FC, useRef } from 'react';
 
-import FormInput from '../../common/components/inputs/formInput';
+import FormInput from 'src/common/components/inputs/formInput';
 import { LoginScreenProps } from './types';
 import { PepperstoneSVG } from 'assets/logos';
-import { StringsType } from 'assets/Localisation/Languages/types';
-import TextButton from '../../common/components/buttons/textButton';
-import { getCodeSharingMessage } from '../../../../../shared/helpers/CodeSharing';
+import TextButton from 'src/common/components/buttons/textButton';
+import { getCodeSharingMessage } from '@monorepo/shared/helpers/CodeSharing';
 import stylesCreator from './Styles';
 import { useLoginHook } from './Hooks';
-import useStrings from '../../common/hooks/useStrings';
+import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
 
 const LoginScreen: FC<LoginScreenProps> = () => {
@@ -23,7 +22,7 @@ const LoginScreen: FC<LoginScreenProps> = () => {
   const passwordRef = useRef<TextInput>(null);
   const { loading, errors, values, doLogin, doRegister, onChangeText } =
     useLoginHook();
-  const strings: StringsType = useStrings();
+  const strings = useStrings();
   const isSharing = getCodeSharingMessage();
 
   return (
