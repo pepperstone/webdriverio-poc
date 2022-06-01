@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>app</string>
+	<string>LiteTrader</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -66,5 +66,14 @@
 		<string>PlusJakartaSans-MediumItalic.ttf</string>
 		<string>PlusJakartaSans-Regular.ttf</string>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+     <string>fb</string>
+     <string>twitter</string>
+     <string>vnd.youtube</string>
+     <string>linkedin</string>
+     <string>instagram</string>
+		 <string>about</string>
+    </array>
 </dict>
 </plist>
