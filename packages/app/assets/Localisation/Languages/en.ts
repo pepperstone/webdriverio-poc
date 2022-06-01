@@ -38,6 +38,25 @@ const English = {
   DiscoverScreen: {
     Name: 'Discover',
   },
-} as const;
+  Legal: {
+    ContactUs: 'Contact us',
+    CONTACT_US_URL: 'https://pepperstone.com/en-au/contact-us/',
+
+    PrivacyPolicy: 'Privacy policy',
+    PRIVACY_POLICY_URL: 'https://assets.pepperstone.com/legal/APAC_ROW/PrivacyPolicy.pdf',
+
+    TermsAndConditions: 'Terms & conditions',
+    TERMS_AND_CONDITIONS_URL: 'https://files.pepperstone.com/legal/UK_EU/UK-Website-Terms-and-Conditions.pdf',
+
+    WhistleblowerPolicy: 'Whistleblower policy',
+    WHISTLEBLOWER_POLICY_URL: 'https://files.pepperstone.com/legal/APAC_ROW/AU-Whistleblower-Policy.pdf',
+
+    CookiePolicy: 'Cookie Policy',
+    COOKIE_POLICY_URL: 'https://assets.pepperstone.com/legal/UK_EU/Cookie_Policy.pdf',
+
+    CopyWrite: '© 2020 Pepperstone Group Limited',
+    FollowUs: 'Follow us',
+  },
+};
 
 export default English;
