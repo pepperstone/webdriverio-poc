@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Appearance } from 'react-native';
+import { Appearance, StatusBar } from 'react-native';
 import { setDarkMode, setUserDarkModeOveride } from '../lib/theme/slices';
 import { NavigationContainer } from '@react-navigation/native';
 import { navigationRef } from '../navigation/NavigationUtils';
@@ -24,13 +24,19 @@ const NavigatorContainer = () => {
     darkMode,
   ]);
 
+  const barStyle = darkMode ? 'light-content' : 'dark-content';
+  const statusBarColor = getTheme().colors.background;
+  const backgroundColor = statusBarColor;
+
   return (
-    <NavigationContainer ref={navigationRef} theme={getTheme()}>
-      <RootNavigator />
-    </NavigationContainer>
+    <>
+      <StatusBar barStyle={barStyle} backgroundColor={backgroundColor}/>
+      <NavigationContainer ref={navigationRef} theme={getTheme()}>
+        <RootNavigator />
+      </NavigationContainer>
+    </>
   );
 };
 
 export default NavigatorContainer;
-
 
