@@ -6,7 +6,8 @@
   "scripts": {
     "web.integration.prod": "wdio run ./config/test-suites/integration.web.ts",
     "app.integration.android": "wdio run ./config/services/testing/wdio.android.app.conf.fwd.ts",
-    "bs.local.test": "wdio run ./config/browserstack/web.conf.ts"
+    "bs.local.test": "wdio run ./config/browserstack/web.conf.ts",
+    "generate.report": "allure generate allure-results --clean && allure open"
   },
   "keywords": [],
   "author": "",
