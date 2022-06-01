@@ -17,7 +17,7 @@ import RegisterScreen from 'src/features/register';
 import SearchScreen from '../features/search';
 import WatchlistsScreen from '../features/watchlists';
 import WebView from '../common/components/webView';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import stylesCreator from './Styles';
 import { useSelector } from 'react-redux';
@@ -25,20 +25,22 @@ import { useTheme } from '../lib/theme/Theme';
 import DiscoverHeader from 'src/features/discover/components/discoverHeader/DiscoverHeader';
 
 const DiscoverStack = createNativeStackNavigator<DiscoverParamList>();
+const discoverHeader = () => <DiscoverHeader />;
 const DiscoverStackNavigator: FC = () => (
-  <DiscoverStack.Navigator screenOptions={{ header: () => <DiscoverHeader /> }}>
+  <DiscoverStack.Navigator screenOptions={{ header: () => discoverHeader() }}>
     <DiscoverStack.Screen name="DiscoverScreen" component={DiscoverScreen} />
   </DiscoverStack.Navigator>
 );
 
 const MainTabStack = createBottomTabNavigator<MainTabParamList>();
+const bottomTabNavigation = (props: BottomTabBarProps) => <BottomTabNavigationBar {...props} />;
 const MainTabNavigation: FC = () => (
   <MainTabStack.Navigator
     screenOptions={{
       headerShown: false,
     }}
     initialRouteName="Discover"
-    tabBar={props => <BottomTabNavigationBar {...props} />}
+    tabBar={props => bottomTabNavigation(props)}
   >
     <MainTabStack.Screen name="Discover" component={DiscoverStackNavigator} />
     <MainTabStack.Screen name="Watchlists" component={WatchlistsScreen} />
