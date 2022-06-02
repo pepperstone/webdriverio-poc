@@ -1,6 +1,6 @@
 import { moderateScale, scale } from 'react-native-size-matters';
 
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import { Style } from '../types/StyleTypes';
 import { useTheme as reactNavigationTheme } from '@react-navigation/native';
 import store from '../../app/store';
@@ -11,13 +11,25 @@ const SCREEN_HEIGHT = height;
 const SCREEN_WIDTH = width;
 const BORDER_RADIUS = 15;
 
-const fontWeight  = {
+const fontWeightAndroid = {
+  light: '400',
+  regular: '500',
+  semibold: '700',
+  bold: '800',
+  black: '900',
+} as const;
+
+const fontWeightIOS = {
   light: '300',
   regular: '400',
   semibold: '600',
   bold: '700',
   black: '800',
 } as const;
+
+const fontWeight = Platform.OS === 'ios'
+  ? fontWeightIOS
+  : fontWeightAndroid;
 
 const CORE_THEME = {
   SCREEN_HEIGHT,
@@ -81,7 +93,7 @@ export const LightTheme = {
   },
 };
 
-export const DarkTheme = {
+export const DarkTheme  = {
   dark: true,
   colors: {
     ...baseColor,
