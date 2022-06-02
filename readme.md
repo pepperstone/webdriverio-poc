@@ -6,7 +6,7 @@ if you want to run this on your local machine
 3. for running the mobile/app test, follow first the appium installations here https://pepperstone.atlassian.net/wiki/spaces/X2/pages/2640609441/Installations+and+Configurations
 4. Update the capabilities section under config->services->app->wdio.android.app.ts based from your device created in Android Studio
 5. Start your virtual device in Android Studio.
-6. Then enter web.prod.integration app.android.integration
+6. Then enter app.android.integration
 
 for browser stack
 1. type npm i
