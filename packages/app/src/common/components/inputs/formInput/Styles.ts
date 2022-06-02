@@ -12,6 +12,7 @@ const stylesCreator: StylesCreator = (theme) => StyleSheet.create({
     borderBottomColor: theme.colors.border,
     borderRightColor: theme.colors.border,
     borderWidth: 1,
+    color: theme.colors.text,
   },
   errorInput: {
     borderTopColor: theme.colors.red,
