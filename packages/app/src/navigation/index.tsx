@@ -3,13 +3,11 @@ import {
   MainStackParamList,
   MainTabParamList,
   RootStackParamList,
-  DiscoverParamList,
 } from './Types';
 import React, { FC, useCallback } from 'react';
 
 import { AppState } from '../app/types';
 import { BottomTabNavigationBar } from '../common/components';
-import DiscoverScreen from '../features/discover';
 import LoginScreen from '../features/login';
 import MarketsScreen from '../features/markets';
 import PortfolioScreen from '../features/portfolio';
@@ -22,23 +20,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import stylesCreator from './Styles';
 import { useSelector } from 'react-redux';
 import { useTheme } from '../lib/theme/Theme';
-import DiscoverHeader from 'src/features/discover/components/discoverHeader/DiscoverHeader';
-
-const DiscoverStack = createNativeStackNavigator<DiscoverParamList>();
-const discoverHeader = () => <DiscoverHeader />;
-const DiscoverStackNavigator: FC = () => (
-  <DiscoverStack.Navigator screenOptions={{ header: () => discoverHeader() }}>
-    <DiscoverStack.Screen name="DiscoverScreen" component={DiscoverScreen} />
-  </DiscoverStack.Navigator>
-);
+import DiscoverStackNavigator from './stacks/discoverStack';
 
 const MainTabStack = createBottomTabNavigator<MainTabParamList>();
 const bottomTabNavigation = (props: BottomTabBarProps) => <BottomTabNavigationBar {...props} />;
 const MainTabNavigation: FC = () => (
   <MainTabStack.Navigator
-    screenOptions={{
-      headerShown: false,
-    }}
+    screenOptions={{ headerShown: false }}
     initialRouteName="Discover"
     tabBar={props => bottomTabNavigation(props)}
   >
