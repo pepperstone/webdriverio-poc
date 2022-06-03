@@ -1,26 +1,11 @@
 import { config } from '../app/wdio.shared.conf';
 
-// ============
-// Specs
-// ============
-config.specs = [
-    './test/specs/integration/example-web-fwd.ts',
-];
-config.exclude = [
-    // Exclude this one because the test can only be executed on emulators/simulators
-    //'./test/specs/integration/example-app-fwd.ts',
-];
-
 // =============================
 // Browserstack specific config
 // =============================
 // User configuration
-//config.user = process.env.BROWSERSTACK_USER;
-//config.key = process.env.BROWSERSTACK_ACCESS_KEY;
-config.user = process.env.BROWSERSTACK_USER || 'pepperstonedevel1';
-config.key = process.env.BROWSERSTACK_ACCESS_KEY || 'sjHXJqLy6qsFsJyN2LiK';
-//config.user = process.env.BROWSERSTACK_USER || 'BROWSERSTACK_USER';
-//config.key = process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY';
+config.user = process.env.BROWSERSTACK_USERNAME;
+config.key = process.env.BROWSERSTACK_ACCESS_KEY;
 // Use browserstack service
 config.services = ['browserstack'];
 

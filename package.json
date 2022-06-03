@@ -6,8 +6,8 @@
   "scripts": {
     "web.prod.integration": "wdio run ./config/test-suites/web.prod.integration.ts",
     "app.android.integration": "wdio run ./config/test-suites/app.android.integration.ts",
-    "bs.app.test": "wdio run ./config/services/browserstack/bs.app.android.conf.ts",
-    "bs.web.test": "wdio run ./config/services/browserstack/bs.web.conf.ts",
+    "bs.app.test": "wdio run ./config/test-suites/bs.app.android.integration.ts",
+    "bs.web.test": "wdio run ./config/test-suites/bs.web.integration.ts",
     "generate.report": "allure generate allure-results --clean && allure open"
   },
   "keywords": [],

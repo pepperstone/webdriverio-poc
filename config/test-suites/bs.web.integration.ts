@@ -1,4 +1,4 @@
-const { config } = require('../services/app/wdio.android.app.conf')
+const { config } = require('../services/browserstack/bs.web.conf')
 
 // =====================================
 // Integration Test Suite for Mobile
@@ -12,7 +12,7 @@ const { config } = require('../services/app/wdio.android.app.conf')
 // Specs
 // ============
 config.specs = [
-    './test/specs/integration/example-app-fwd.ts',
+    './test/specs/integration/example-web-fwd.ts',
 ];
 
 exports.config = config;

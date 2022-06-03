@@ -1,4 +1,4 @@
-const { config } = require('../services/app/wdio.android.app.conf')
+const { config } = require('../services/browserstack/bs.app.android.conf')
 
 // =====================================
 // Integration Test Suite for Mobile

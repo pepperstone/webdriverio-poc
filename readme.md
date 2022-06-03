@@ -10,6 +10,7 @@ if you want to run this on your local machine
 
 for browser stack
 1. type npm i
-2. credentials are being passed from its config files. This should allow us to run a test in browserstack butit will need access right if we need  to check the result
+2. credentials are being passed from local env. 
+    Please go to this link for more info https://pepperstone.atlassian.net/wiki/spaces/X2/pages/2667872357/Access+key
 3. for web just enter bs.web.test
 4. for app just enter bs.app.test
