@@ -1,3 +1,5 @@
-interface FeedScreenProps {}
+interface DiscoverFeedScreenProps {}
 
-export default FeedScreenProps;
+export type {
+  DiscoverFeedScreenProps,
+};

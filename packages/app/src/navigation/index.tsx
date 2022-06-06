@@ -20,7 +20,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import stylesCreator from './Styles';
 import { useSelector } from 'react-redux';
 import { useTheme } from '../lib/theme/Theme';
-import DiscoverStackNavigator from './stacks/discoverStack';
+import DiscoverStackNavigator from './stacks/discover';
 
 const MainTabStack = createBottomTabNavigator<MainTabParamList>();
 const bottomTabNavigation = (props: BottomTabBarProps) => <BottomTabNavigationBar {...props} />;
