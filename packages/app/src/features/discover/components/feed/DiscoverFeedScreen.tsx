@@ -14,7 +14,7 @@ const DiscoverFeedScreen: FC<DiscoverFeedScreenProps> = () => {
   const { loading, doLogout } = useDiscoverHook();
 
   return (
-    <View style={styles.background}>
+    <View style={styles.mainContainer}>
       <ScrollView
         horizontal
         contentContainerStyle={styles.scrollView}

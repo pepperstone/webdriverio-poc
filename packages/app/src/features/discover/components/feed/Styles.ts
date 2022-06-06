@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from '../../../../lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
-  background: {
+  mainContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -13,6 +13,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   },
   form: {
     width: '90%',
+    marginBottom: 15,
   },
 });
 
