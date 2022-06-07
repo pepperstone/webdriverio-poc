@@ -34,10 +34,6 @@ export type AuthScreenProps<T extends keyof AuthStackParamList> =
   RootStackScreenProps<keyof RootStackParamList>
   >;
 
-export type DiscoverParamList = {
-  DiscoverScreen: undefined;
-};
-
 export type MainStackParamList = {
   MainStackTabs: NavigatorParams<MainTabParamList>;
 };
@@ -55,10 +51,6 @@ declare global {
   }
 }
 
-export type DiscoverScreen = {
-  navigation: MainTabScreenProps<'Discover'>;
-  route: RouteProp<MainTabParamList, 'Discover'>;
-};
 export type WatchlistsScreen = {
   navigation: MainTabScreenProps<'Watchlists'>;
   route: RouteProp<MainTabParamList, 'Watchlists'>;

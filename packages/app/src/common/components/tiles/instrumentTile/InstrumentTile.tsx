@@ -1,5 +1,4 @@
-import { ActivityIndicator, Text, View } from 'react-native';
-
+import { ActivityIndicator, Text, View, TouchableOpacity } from 'react-native';
 import { InstrumentTileProps } from './types';
 import { LineChart } from 'react-native-svg-charts';
 import React from 'react';
@@ -12,7 +11,7 @@ const InstrumentTile = ({ id }: InstrumentTileProps) => {
   const { loading, values } = useInstrumentTileHook({ id });
 
   return (
-    <View style={styles.background}>
+    <TouchableOpacity style={styles.background}>
       <Text style={styles.title}>{values.title.replace('/', '')}</Text>
       <Text style={styles.text}>{values.title}</Text>
 
@@ -37,7 +36,7 @@ const InstrumentTile = ({ id }: InstrumentTileProps) => {
           />
         </>
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 
