@@ -126,7 +126,7 @@ export type StylesCreator = (
 	theme: Theme,
 	scale: (size: number) => number,
 	moderateScale: (size: number, factor?: number) => number,
-	props?: any
+	props?: any,
 ) => { [key: string]: Style };
 
 /**
@@ -137,12 +137,12 @@ export type StylesCreator = (
  */
 export const useTheme = (
 	stylesCreator?: StylesCreator,
-	props?: any
+	props?: any,
 ): [
 	ReturnType<StylesCreator>,
 	ThemeType,
 	(size: number) => number,
-	(size: number, factor?: number) => number
+	(size: number, factor?: number) => number,
 ] => {
 	const theme = reactNavigationTheme() as ThemeType;
 	const styles = stylesCreator
