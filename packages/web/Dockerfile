@@ -5,11 +5,9 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-RUN npm i -g pnpm
-
 COPY . .
-RUN pnpm install
-RUN pnpm build
+RUN yarn install
+RUN yarn build
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -21,4 +19,4 @@ USER nextjs
 
 EXPOSE 3000
 
-CMD ["pnpm", "start"]
+CMD ["yarn", "start"]

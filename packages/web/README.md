@@ -3,15 +3,15 @@
 ## Prerequisites
 
 1. Install [Node.js](https://nodejs.org/en/)
-2. Install PNPM: `npm install -g pnpm`
+2. Install YARN: `npm install -g yarn`
 
 ## Installation
 
-1. Run: `pnpm install`
+1. Run: `yarn install`
 
 ## Development
 
-1. Run: `pnpm run dev`
+1. Run: `yarn run dev`
 
 ## Docker
 
