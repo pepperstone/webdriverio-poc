@@ -1,12 +1,11 @@
-import React, { FC } from 'react';
 import { Text, View } from 'react-native';
 
-import AnalysisScreenProps from './types';
+import React from 'react';
 import stylesCreator from './Styles';
 import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
 
-const AnalysisScreen: FC<AnalysisScreenProps> = () => {
+const AnalysisScreen = () => {
   const [styles] = useTheme(stylesCreator);
   const strings = useStrings();
 

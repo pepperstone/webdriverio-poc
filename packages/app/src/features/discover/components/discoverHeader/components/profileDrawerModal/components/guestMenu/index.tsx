@@ -10,10 +10,10 @@ import {
   PEPPERSTONE_TWITTER_LINKS,
   PEPPERSTONE_YOUTUBE_LINKS,
 } from 'src/lib/constants/Links';
-import React, { FC } from 'react';
 import { Text, View } from 'react-native';
 
 import { GuestMenuProps } from './types';
+import React from 'react';
 import SvgButton from 'src/common/components/buttons/svgButton';
 import TextButton from 'src/common/components/buttons/textButton';
 import TextTouchable from 'src/common/components/buttons/textTouchable';
@@ -24,7 +24,7 @@ import { useDiscoverHook } from 'src/features/discover/Hooks';
 import useStrings from 'src/common/hooks/useStrings';
 import { useTheme } from 'src/lib/theme/Theme';
 
-const GuestMenu: FC<GuestMenuProps> = ({ handleLogin, handleSignup }) => {
+const GuestMenu = ({ handleLogin, handleSignup }: GuestMenuProps) => {
   const [styles, theme] = useTheme(stylesCreator);
   const { loading } = useDiscoverHook();
   const { onLinkPressed } = UseGuestMenuHook();

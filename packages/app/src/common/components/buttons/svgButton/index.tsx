@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
-import { TouchableOpacity } from 'react-native';
+import React from 'react';
 import { SvgButtonProps } from './types';
+import { TouchableOpacity } from 'react-native';
 
-const SvgButton: FC<SvgButtonProps> = ({
+const SvgButton = ({
   onPress,
   buttonStyles,
   Svg,
   fill,
   fillSecondary,
-}) => (
+}: SvgButtonProps) => (
   <TouchableOpacity style={buttonStyles} onPress={onPress}>
-    <Svg fill={fill} fillSecondary={fillSecondary}/>
+    <Svg fill={fill} fillSecondary={fillSecondary} />
   </TouchableOpacity>
 );
 

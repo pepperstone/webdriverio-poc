@@ -1,14 +1,12 @@
-import React, { FC, useCallback, useRef, useState } from 'react';
-
 import { ActivityIndicator, Platform } from 'react-native';
-import { WebView } from 'react-native-webview';
+import React, { useCallback, useRef, useState } from 'react';
 
+import { WebView } from 'react-native-webview';
+import { WebViewProps } from './types';
+import stylesCreator from './Styles';
 import { useTheme } from '../../../lib/theme/Theme';
 
-import stylesCreator from './Styles';
-import { WebViewProps } from './types';
-
-const WebViewScreen: FC<WebViewProps> = ({ route }) => {
+const WebViewScreen = ({ route }: WebViewProps) => {
   const [styles, theme] = useTheme(stylesCreator);
   const ref = useRef<WebView>(null);
   const [visible, setVisible] = useState(false);
@@ -18,13 +16,16 @@ const WebViewScreen: FC<WebViewProps> = ({ route }) => {
     setVisible(true);
   }, []);
 
-  const renderActivityIndicator = useCallback(() => (
-    <ActivityIndicator
-      style={styles.activityIndicator}
-      color={theme.colors.black}
-      size="small"
-    />
-  ), [styles, theme]);
+  const renderActivityIndicator = useCallback(
+    () => (
+      <ActivityIndicator
+        style={styles.activityIndicator}
+        color={theme.colors.black}
+        size="small"
+      />
+    ),
+    [styles, theme],
+  );
 
   return (
     <>
@@ -42,7 +43,7 @@ const WebViewScreen: FC<WebViewProps> = ({ route }) => {
         }}
       />
       {visible && renderActivityIndicator()}
-  </>
+    </>
   );
 };
 

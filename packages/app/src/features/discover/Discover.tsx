@@ -1,14 +1,13 @@
-import React, { FC } from 'react';
 import { ScrollView, View } from 'react-native';
 
-import { DiscoverScreenProps } from './types';
 import InstrumentTile from '../../common/components/tiles/instrumentTile';
+import React from 'react';
 import TextButton from 'src/common/components/buttons/textButton/index';
 import stylesCreator from './Styles';
 import { useDiscoverHook } from './Hooks';
 import { useTheme } from '../../lib/theme/Theme';
 
-const DiscoverScreen: FC<DiscoverScreenProps> = () => {
+const DiscoverScreen = () => {
   const [styles] = useTheme(stylesCreator);
   const { loading, doLogout } = useDiscoverHook();
 

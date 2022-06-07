@@ -1,13 +1,12 @@
-import React, { FC } from 'react';
 import { Text, View } from 'react-native';
 
 import { MarketsSVG } from 'assets/icons';
-import MarketsScreenProps from './types';
+import React from 'react';
 import stylesCreator from './Styles';
 import useStrings from '../../common/hooks/useStrings';
 import { useTheme } from '../../lib/theme/Theme';
 
-const MarketsScreen: FC<MarketsScreenProps> = () => {
+const MarketsScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);
   const strings = useStrings();
 

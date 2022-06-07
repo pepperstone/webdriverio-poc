@@ -1,16 +1,11 @@
-import React, { FC } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
-import { useTheme } from '../../../../lib/theme/Theme';
-import stylesCreator from './Styles';
+import React from 'react';
 import TabProps from './types';
+import stylesCreator from './Styles';
+import { useTheme } from '../../../../lib/theme/Theme';
 
-const Tab: FC<TabProps> = ({
-  name,
-  tabIcon,
-  onTabPress,
-  textColor,
-}) => {
+const Tab = ({ name, tabIcon, onTabPress, textColor }: TabProps) => {
   const [styles] = useTheme(stylesCreator, { textColor });
   return (
     <TouchableOpacity
