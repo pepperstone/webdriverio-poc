@@ -1,3 +1,3 @@
-interface DiscoverEventScreenProps {}
-
-export default DiscoverEventScreenProps;
+export interface DiscoverEventScreenProps {
+	// TODO
+}

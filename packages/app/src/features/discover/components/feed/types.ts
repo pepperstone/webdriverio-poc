@@ -1,5 +1,3 @@
-interface DiscoverFeedScreenProps {}
-
-export type {
-  DiscoverFeedScreenProps,
-};
+export interface DiscoverFeedScreenProps {
+	// TODO
+}

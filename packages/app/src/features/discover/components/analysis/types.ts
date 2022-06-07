@@ -1,3 +1,3 @@
-interface DiscoverAnalysisScreenProps {}
-
-export default DiscoverAnalysisScreenProps;
+export interface DiscoverAnalysisScreenProps {
+	// TODO
+}
