@@ -24,11 +24,10 @@ export default async function handler(
 }
 
 async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req.query.categories);
-
   // Set the default category search to "all".
   const categories: string = (req.query.categories as string) || "All";
 
+  // The Trending Instruments API requiers a '+' delimited list.
   const asset_classes = categories.split(",").join("+");
 
   // Get all the Symbols meta data.
@@ -47,10 +46,18 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
         (symbol: string) => symbol === trendingSymbol
       );
 
-      if (symbol_index === 0) {
-        symbol_index = symbolInfo.symbol.findIndex(
-          (symbol: string) => symbol === trendingSymbol.split(".")[0]
-        );
+      if (symbol_index === -1) {
+        // Sometimes the symbol has a .(a-z) on the end.  eg. GBPAUD.r
+        symbol_index = symbolInfo.symbol.findIndex((symbol: string) => {
+          return symbol === trendingSymbol.split(".")[0];
+        });
+      }
+
+      if (symbol_index === -1) {
+        // Sometimes the symbol has a _(a-z) on the end.  eg. EURJPY_SB
+        symbol_index = symbolInfo.symbol.findIndex((symbol: string) => {
+          return symbol === trendingSymbol.split("_")[0];
+        });
       }
 
       return {
