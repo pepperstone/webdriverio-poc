@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
-import { ActivityIndicator, TouchableOpacity, Text } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 
+import React from 'react';
 import { TextButtonProps } from './types';
 import stylesCreator from './Styles';
 import { useTheme } from '../../../../lib/theme/Theme';
 
-const TextButton: FC<TextButtonProps> = ({
+const TextButton = ({
   onPress,
   text,
   loading = false,
   buttonStyles,
-}) => {
+}: TextButtonProps) => {
   const [styles, theme] = useTheme(stylesCreator);
 
   return (

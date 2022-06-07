@@ -5,7 +5,7 @@ import {
   SearchSVG,
   WatchlistsSVG,
 } from 'assets/icons';
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import Tab from './tab';
@@ -13,10 +13,7 @@ import { View } from 'react-native';
 import stylesCreator from './Styles';
 import { useTheme } from '../../../lib/theme/Theme';
 
-const BottomTabNavigationBar: FC<BottomTabBarProps> = ({
-  navigation,
-  state,
-}) => {
+const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {
   const [styles, theme] = useTheme(stylesCreator);
   const handleTabPress = useCallback(
     (name: string) => {

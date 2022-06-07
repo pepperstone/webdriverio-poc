@@ -1,7 +1,3 @@
-import { LoginScreenNavigationProp } from '../../navigation/Types';
-
-interface LoginScreenProps extends LoginScreenNavigationProp {}
-
 interface DoLoginProps {
   username: string;
   password: string;
@@ -19,7 +15,6 @@ interface UseLoginProps {
 type FormKeys = keyof DoLoginProps;
 
 export type {
-  LoginScreenProps,
   DoLoginProps,
   UseLoginProps,
   FormKeys,

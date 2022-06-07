@@ -1,13 +1,12 @@
-import React, { FC } from 'react';
 import { ActivityIndicator, Text, View, TouchableOpacity } from 'react-native';
-
 import { InstrumentTileProps } from './types';
 import { LineChart } from 'react-native-svg-charts';
+import React from 'react';
 import stylesCreator from './Styles';
 import { useInstrumentTileHook } from './Hooks';
 import { useTheme } from '../../../../lib/theme/Theme';
 
-const InstrumentTile: FC<InstrumentTileProps> = ({ id }) => {
+const InstrumentTile = ({ id }: InstrumentTileProps) => {
   const [styles, theme] = useTheme(stylesCreator);
   const { loading, values } = useInstrumentTileHook({ id });
 

@@ -1,13 +1,12 @@
-import React, { FC } from 'react';
 import { Text, View } from 'react-native';
 
 import { PortfolioSVG } from 'assets/icons';
-import PortfolioScreenProps from './types';
+import React from 'react';
 import stylesCreator from './Styles';
 import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
 
-const PortfolioScreen: FC<PortfolioScreenProps> = () => {
+const PortfolioScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);
   const strings = useStrings();
 

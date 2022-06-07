@@ -1,13 +1,12 @@
-import React, { FC } from 'react';
 import { Text, View } from 'react-native';
 
+import React from 'react';
 import { WatchlistsSVG } from 'assets/icons';
-import WatchlistsScreenProps from './types';
 import stylesCreator from './Styles';
 import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
 
-const WatchlistsScreen: FC<WatchlistsScreenProps> = () => {
+const WatchlistsScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);
   const strings = useStrings();
 

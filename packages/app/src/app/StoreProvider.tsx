@@ -1,11 +1,9 @@
-import React, { FC } from 'react';
-import { Provider } from 'react-redux';
-
 import App from './App';
-
+import { Provider } from 'react-redux';
+import React from 'react';
 import store from './store';
 
-const StoreProvider: FC = () => (
+const StoreProvider = () => (
   <Provider store={store}>
     <App />
   </Provider>

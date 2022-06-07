@@ -1,22 +1,20 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 
-import { useSelector } from 'react-redux';
 import { AppState } from 'src/app/types';
-
-import Modal from 'react-native-modal';
-import GuestMenu from './components/guestMenu';
 import { CloseIconSVG } from 'src/../assets/icons';
-
-import { useTheme } from 'src/lib/theme/Theme';
+import GuestMenu from './components/guestMenu';
+import Modal from 'react-native-modal';
+import { ProfileDrawerModalProps } from './types';
 import stylesCreator from './Styles';
 import { useDiscoverHook } from 'src/features/discover/Hooks';
-import { ProfileDrawerModalProps } from './types';
+import { useSelector } from 'react-redux';
+import { useTheme } from 'src/lib/theme/Theme';
 
-const ProfileDrawerModal: FC<ProfileDrawerModalProps> = ({
+const ProfileDrawerModal = ({
   handleLogin,
   handleSignup,
-}) => {
+}: ProfileDrawerModalProps) => {
   const [styles, theme] = useTheme(stylesCreator);
   const { isSideMenuOpen } = useSelector((state: AppState) => state.discover);
   const [isGuestUser] = useState(true);
@@ -37,9 +35,14 @@ const ProfileDrawerModal: FC<ProfileDrawerModalProps> = ({
     >
       <SafeAreaView style={styles.safeAreaView}>
         <TouchableOpacity style={styles.closeButton} onPress={toggleSideMenu}>
-          <CloseIconSVG fill={theme.colorsInvert.card} fillSecondary={theme.colorsInvert.text} />
+          <CloseIconSVG
+            fill={theme.colorsInvert.card}
+            fillSecondary={theme.colorsInvert.text}
+          />
         </TouchableOpacity>
-        {isGuestUser && <GuestMenu handleLogin={handleLogin} handleSignup={handleSignup} />}
+        {isGuestUser && (
+          <GuestMenu handleLogin={handleLogin} handleSignup={handleSignup} />
+        )}
       </SafeAreaView>
     </Modal>
   );

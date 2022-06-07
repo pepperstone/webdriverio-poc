@@ -1,7 +1,3 @@
-import { DiscoverScreen } from '../../navigation/Types';
-
-interface DiscoverScreenProps extends DiscoverScreen {}
-
 interface UseDiscoverProps {
   doLogout: () => void;
   handleLogin: () => void,
@@ -10,6 +6,5 @@ interface UseDiscoverProps {
 }
 
 export type {
-  DiscoverScreenProps,
   UseDiscoverProps,
 };
