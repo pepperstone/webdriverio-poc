@@ -12,7 +12,7 @@ const stylesCreator: StylesCreator = (theme, scale, moderateScale, props: TabPro
   text: {
     marginTop: scale(5),
     color: props.textColor,
-    fontSize: theme.fontSize.s1,
+    fontSize: scale(theme.fontSize.s1),
     fontFamily: theme.font.regular,
     fontWeight: theme.fontWeight.semibold,
   },

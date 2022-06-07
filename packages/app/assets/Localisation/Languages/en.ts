@@ -37,6 +37,17 @@ const English = {
   },
   DiscoverScreen: {
     Name: 'Discover',
+    Tabs: {
+      Feed: {
+        Name: 'Feed',
+      },
+      Analysis: {
+        Name: 'Analysis',
+      },
+      Events: {
+        Name: 'Events',
+      },
+    },
   },
   Legal: {
     ContactUs: 'Contact us',

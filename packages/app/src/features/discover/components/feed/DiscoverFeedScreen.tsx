@@ -1,18 +1,19 @@
+import React from 'react';
 import { ScrollView, View } from 'react-native';
 
-import InstrumentTile from '../../common/components/tiles/instrumentTile';
-import React from 'react';
+import InstrumentTile from '../../../../common/components/tiles/instrumentTile';
 import TextButton from 'src/common/components/buttons/textButton/index';
 import stylesCreator from './Styles';
-import { useDiscoverHook } from './Hooks';
-import { useTheme } from '../../lib/theme/Theme';
+import { useDiscoverHook } from '../../Hooks';
+import { useTheme } from '../../../../lib/theme/Theme';
 
-const DiscoverScreen = () => {
+const DiscoverFeedScreen = () => {
   const [styles] = useTheme(stylesCreator);
+
   const { loading, doLogout } = useDiscoverHook();
 
   return (
-    <View style={styles.background}>
+    <View style={styles.mainContainer}>
       <ScrollView
         horizontal
         contentContainerStyle={styles.scrollView}
@@ -30,4 +31,4 @@ const DiscoverScreen = () => {
   );
 };
 
-export default DiscoverScreen;
+export default DiscoverFeedScreen;
