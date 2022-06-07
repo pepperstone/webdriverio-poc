@@ -1,21 +1,25 @@
-import { configureStore } from '@reduxjs/toolkit';
-import MMKVStorage from 'react-native-mmkv-storage';
 import {
-  persistStore, persistReducer, PersistConfig,
-  FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER,
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  PersistConfig,
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
 } from 'redux-persist';
 
+import { configureStore } from '@reduxjs/toolkit';
 import createDebugger from 'redux-flipper';
-
+import { reduxStorage } from './storage';
 import rootReducer from './rootReducer';
 
 export type AppState = ReturnType<typeof rootReducer>;
 
-const storage = new MMKVStorage.Loader().initialize();
-
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: reduxStorage,
 } as PersistConfig<AppState>;
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -31,7 +35,7 @@ const store = configureStore({
   reducer: persistedReducer,
   devTools: __DEV__ ? true : false,
   middleware: (getDefaultMiddleware) => {
-    if (__DEV__) return getDefaultMiddleware(middlewares).concat(createDebugger());
+    if (__DEV__ && !process.env.JEST_WORKER_ID) return getDefaultMiddleware(middlewares).concat(createDebugger());
     return getDefaultMiddleware(middlewares);
   },
 });
