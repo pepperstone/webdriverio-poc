@@ -1,5 +1,5 @@
-
 # _Pepperstone Lite Trader Mobile Application_
+
 https://pepperstone.com/en-au/why-pepperstone/about/
 
 &nbsp;
@@ -25,33 +25,44 @@ https://pepperstone.com/en-au/why-pepperstone/about/
 - Theme provider: - `React-Navigation useTheme` - https://reactnavigation.org/docs/use-theme/
 
 - Styles: - `StyleSheet with custom Theme Hook` - src/lib/theme/Theme
-&nbsp;
+  &nbsp;
 
 # How to use?
 
-* Setup [React Native Environment](https://reactnative.dev/docs/environment-setup)
-* Create local `.env` file in root of project to match keys in `.default.env`
+- Setup [React Native Environment](https://reactnative.dev/docs/environment-setup)
+- Create local `.env` file in root of project to match keys in `.default.env`
 
 ## Install Dependencies
-`npm install`
+
+- At repo root, run
+  - `yarn`
+
+&nbsp;
 
 ## Install Cocoapods Dependencies IOS
-    cd ios/
+
+    cd packages/app/ios/
     pod install
     cd ..
 
+&nbsp;
+
 ## Run Application
-* IOS
-    * `npm run ios`
-* Android
-    * `npm run android`
+
+- IOS
+  - `yarn ios`
+- Android
+  - `yarn android`
 
 &nbsp;
 
 # Test lint
-* Be sure to have eslint installed on your machine globally eg. `brew install eslint`.
+
+- Be sure to have eslint installed on your machine globally eg. `brew install eslint`.
+
 ### _Run_
-* `npm run lint`
+
+- `yarn lint`
 
 &nbsp;
 
@@ -64,18 +75,20 @@ _Prerequisite_
 &nbsp;
 
 # Environment Variables
-* Adding a new environment variable requires 2 steps:
-    * Add new key to `.default.env` (as well as your local `.env`)
-    * Add new type to `/typings/react-native-dotenv.d.ts`, then reinstall node_modules
+
+- Adding a new environment variable requires 2 steps:
+  - Add new key to `.default.env` (as well as your local `.env`)
+  - Add new type to `/typings/react-native-dotenv.d.ts`, then reinstall node_modules
 
 &nbsp;
 
 # Folder Structure
-* Feature folder structure design pattern.
-* Taking parts from or mimicing Redux Feature-Folder design pattern.
-    * Read more at: [React Feature-Folder pattern](https://redux.js.org/style-guide/style-guide#structure-files-as-feature-folders-or-ducks)
-* Other reading:
-    * [A Feature Based approach](https://ryanlanciaux.com/blog/2017/08/20/a-feature-based-approach-to-react-development/)
+
+- Feature folder structure design pattern.
+- Taking parts from or mimicing Redux Feature-Folder design pattern.
+  - Read more at: [React Feature-Folder pattern](https://redux.js.org/style-guide/style-guide#structure-files-as-feature-folders-or-ducks)
+- Other reading:
+  - [A Feature Based approach](https://ryanlanciaux.com/blog/2017/08/20/a-feature-based-approach-to-react-development/)
 
 ```
 Example Feature-Folder structure.
@@ -86,19 +99,22 @@ Example Feature-Folder structure.
             |_button/
                 |_Button.ts
                 |_Styles.ts
+                |_types.ts
             |_index.ts
         |_hooks
             |_useDebounce.ts
-    |_features/ < feature specific components. 
+    |_features/ < feature specific components.
         |_profile/
             |_components/ < used only within parent feature, else it's a common.
                 |_profileHeader/
                     |_ProfileHeader.ts
                     |_Styles.ts
+                    |_types.ts
             |_screens/
                 |_profile/
                     |_Profile.ts
                     |_Styles.ts
+                    |_types.ts
             |_index.ts
             |_types.ts
     |_otherFeature
@@ -107,40 +123,46 @@ Example Feature-Folder structure.
 `Note: will update structure once Global state management has been discussed and established.`
 
 &nbsp;
+
 # Commit conventions.
+
 `git commit -m "<type>[(optional scope)]: <description>"`
- 
+
 _Types_
 
-* build(): Build related changes (eg: npm related/ adding external dependencies).
-* chore(): A code change that external user won't see (eg: change to .gitignore file or .prettierrc file).
-* ci(): Continuous integration related.
-* docs(): Documentation related changes.
-* feat(api): A new feature.
-* fix(): A bug fix.
-* perf(): A code that improves performance.
-* refactor(): A code that neither fix bug nor adds a feature. (eg: You can use this when there is semantic changes like renaming a variable/ function name).
-* revert(): Reverts a previous commit.
-* style(): A code that is related to styling.
-* test(): Adding new test or making changes to existing test.
+- build(): Build related changes (eg: yarn related/ adding external dependencies).
+- chore(): A code change that external user won't see (eg: change to .gitignore file or .prettierrc file).
+- ci(): Continuous integration related.
+- docs(): Documentation related changes.
+- feat(api): A new feature.
+- fix(): A bug fix.
+- perf(): A code that improves performance.
+- refactor(): A code that neither fix bug nor adds a feature. (eg: You can use this when there is semantic changes like renaming a variable/ function name).
+- revert(): Reverts a previous commit.
+- style(): A code that is related to styling.
+- test(): Adding new test or making changes to existing test.
 
 &nbsp;
 
 ### Commit Breaking changes
+
 `git commit -m "<type>[(optional scope)]!: <BREAKING CHANGE: description>"`
 
-* _Use "!" to draw attention for breaking changes. eg `chore(scope)!` or `chore!`_
+- _Use "!" to draw attention for breaking changes. eg `chore(scope)!` or `chore!`_
 
-* _`BREAKING CHANGE:` describe in detail what the change is and how it will effect the project._
-    * If more description space is required. proceed with Multi-line Commits
+- _`BREAKING CHANGE:` describe in detail what the change is and how it will effect the project._
+  - If more description space is required. proceed with Multi-line Commits
 
 &nbsp;
 
 ### Multi-line Commit:
+
 _Commit wisely with multiLine_
-* `git commit -m "<type>[(optional scope)]: <Short description>" -m "Detailed Gory Description."`
+
+- `git commit -m "<type>[(optional scope)]: <Short description>" -m "Detailed Gory Description."`
 
 ##### For further information https://www.conventionalcommits.org/en/v1.0.0/
+
 &nbsp;
 
 # Who can I talk to?
