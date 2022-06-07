@@ -1,7 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const api_url =
-  "https://morgdenn.github.io/nextjs-blog/trending-instruments-full.json";
+type Instrument = {
+  trendingSymbol_DEL: string;
+  ticker: string;
+  description: string;
+  volume_change_pct: string;
+  yesterday_closing_price: string;
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,7 +14,7 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "GET":
-      GET_handler(req, res);
+      await handler_GET(req, res);
       break;
 
     default:
@@ -18,9 +23,77 @@ export default async function handler(
   }
 }
 
-async function GET_handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
+  console.log(req.query.categories);
+
   // Set the default category search to "all".
-  const asset_classes: string = (req.query.category as string) || "all";
+  const categories: string = (req.query.categories as string) || "All";
+
+  const asset_classes = categories.split(",").join("+");
+
+  // Get all the Symbols meta data.
+  const symbolInfo = await getSymbolInfo();
+
+  // Get the Trending instruments.
+  const trendingInstruments = await getTrendingInstruments(asset_classes);
+
+  // TEMP var for testing.
+  const missingSymbols: string[] = [];
+
+  const instruments = trendingInstruments.top_instruments
+    .map((trendingSymbol: string, index: number) => {
+      // Find the real ticker symbol.
+      let symbol_index = symbolInfo.symbol.findIndex(
+        (symbol: string) => symbol === trendingSymbol
+      );
+
+      if (symbol_index === 0) {
+        symbol_index = symbolInfo.symbol.findIndex(
+          (symbol: string) => symbol === trendingSymbol.split(".")[0]
+        );
+      }
+
+      return {
+        trendingSymbol_DEL: trendingSymbol,
+        ticker: symbolInfo.ticker[symbol_index],
+        name: symbolInfo.description[symbol_index],
+        volume_change_pct: trendingInstruments.top_instruments_values[index],
+      };
+    })
+    // Remove any instruments with out a ticker match.
+    .filter((instrument: Instrument) => {
+      if (instrument.ticker !== undefined) {
+        return true;
+      } else {
+        missingSymbols.push(instrument.trendingSymbol_DEL);
+        return false;
+      }
+    })
+    .map(async (instrument: Instrument) => {
+      // Get the symbols history
+      const symbolHistory = await getSymbolHistory(instrument.ticker);
+
+      if (symbolHistory.s === "no_data") {
+        instrument.yesterday_closing_price = "no_data";
+      }
+
+      if (symbolHistory.s === "ok" && symbolHistory.c.length >= 1) {
+        instrument.yesterday_closing_price = symbolHistory.c[0];
+      }
+
+      return instrument;
+    });
+
+  const returnInstruments: Instrument[] = await Promise.all(instruments);
+
+  return res
+    .status(200)
+    .json({ instruments: returnInstruments, missingSymbols: missingSymbols });
+}
+
+async function getTrendingInstruments(asset_classes: string) {
+  const API_URL =
+    "https://trending-instruments.dev.ai.pepperstone.com/trending";
 
   // Setup the search parameters.
   const paramsObj = {
@@ -33,16 +106,74 @@ async function GET_handler(req: NextApiRequest, res: NextApiResponse) {
   const searchParams = new URLSearchParams(paramsObj);
 
   // Get the Treding Instruments data.
-  const trendingData_res = await fetch(api_url + "?" + searchParams.toString());
+  const trendingData_res = await fetch(API_URL + "?" + searchParams.toString());
 
   // Is it ok?
   if (!trendingData_res.ok) {
-    res.status(500).json({ error: trendingData_res.status });
-    return;
+    console.log(trendingData_res);
+    throw Error(trendingData_res.statusText);
   }
 
-  const trendingData_json = await trendingData_res.json();
+  return await trendingData_res.json();
+}
 
-  // Just return the instruments names.
-  res.status(200).json({ instruments: trendingData_json.top_instruments });
+async function getSymbolInfo() {
+  const API_URL =
+    "https://ctrader-tradingview-api.pepperstone.com/api/symbol_info";
+
+  const symbolInfo_res = await fetch(API_URL);
+
+  // Is it ok?
+  if (!symbolInfo_res.ok) {
+    console.log(symbolInfo_res);
+    throw Error(symbolInfo_res.statusText);
+  }
+
+  const symbolInfo_json = await symbolInfo_res.json();
+
+  if (symbolInfo_json.s === "error") {
+    console.log(symbolInfo_json);
+    throw Error(symbolInfo_json.errmsg);
+  }
+
+  return symbolInfo_json;
+}
+
+async function getSymbolHistory(symbol: string) {
+  const API_URL =
+    "https://ctrader-tradingview-api-staging.pepperstone.com/api/history";
+
+  const today = new Date();
+  today.setMilliseconds(0);
+  today.setSeconds(0);
+  today.setMinutes(0);
+  today.setHours(0);
+
+  var from_to = Math.round(today.getTime() / 1000).toString();
+
+  // Setup the search parameters.
+  const paramsObj = {
+    from: from_to,
+    to: from_to,
+    resolution: "D",
+    symbol: symbol,
+  };
+  const searchParams = new URLSearchParams(paramsObj);
+
+  const symbolHist_res = await fetch(API_URL + "?" + searchParams.toString());
+
+  // Is it ok?
+  if (!symbolHist_res.ok) {
+    console.log(symbolHist_res);
+    throw Error(symbolHist_res.statusText);
+  }
+
+  const symbolHist_json = await symbolHist_res.json();
+
+  if (symbolHist_json.s === "error") {
+    console.log(symbolHist_json);
+    throw Error(symbolHist_json.errmsg);
+  }
+
+  return symbolHist_json;
 }

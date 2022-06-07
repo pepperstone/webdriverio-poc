@@ -1,33 +1,34 @@
-import Layout, { siteTitle } from '../components/layout';
-
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
-import { getCodeSharingMessage } from '@monorepo/shared/helpers/CodeSharing';
-import styles from '../styles/Home.module.css';
+import { GetServerSideProps } from "next";
+import Head from "next/head";
+import Link from "next/link";
+import Layout, { siteTitle } from "../components/layout";
 
 export default function home({ heading }: { heading: string }) {
-  const isWorking = getCodeSharingMessage();
-
   return (
     <Layout>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section>
-        <h2>{heading}</h2>
+        <h1>{heading}</h1>
 
-        <p>
-          <Link href="/api/instruments/trending">
-            <a>Trending Instruments</a>
-          </Link>
-        </p>
+        <hr />
+
+        <h2>API</h2>
+
+        <ul>
+          <li>
+            <Link href="/api/instruments/trending?categories=All">
+              <a>Trending Instruments - All</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/api/instruments/trending?categories=FX,Commodity">
+              <a>Trending Instruments - FX, Commodity</a>
+            </Link>
+          </li>
+        </ul>
       </section>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Shared code <a href="https://nextjs.org">{isWorking}</a>
-        </h1>
-      </main>
     </Layout>
   );
 }
