@@ -1,5 +1,122 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
+const fakedata = [
+  {
+    ticker: "XAUGBP",
+    name: "Gold vs Great Britain Pound",
+    volume_change_pct: 266.6865,
+    yesterday_closing_price: 1469.52,
+  },
+  {
+    ticker: "XAUCHF",
+    name: "Gold vs Swiss Franc",
+    volume_change_pct: 163.7235,
+    yesterday_closing_price: 1801.38,
+  },
+  {
+    ticker: "XAGUSD",
+    name: "Silver vs US Dollar",
+    volume_change_pct: 20.5302,
+    yesterday_closing_price: 22.229,
+  },
+  {
+    ticker: "US30",
+    name: "US Wall Street 30 Index",
+    volume_change_pct: 507.046,
+    yesterday_closing_price: 33114.7,
+  },
+  {
+    ticker: "LINKUSD",
+    name: "Chainlink vs US Dollar",
+    volume_change_pct: 859.2892,
+    yesterday_closing_price: 8.623,
+  },
+  {
+    ticker: "USDCAD",
+    name: "US Dollar vs Canadian",
+    volume_change_pct: 6090.3908,
+    yesterday_closing_price: 1.25799,
+  },
+  {
+    ticker: "AUDNZD",
+    name: "Australian vs New Zealand Dollar",
+    volume_change_pct: 1194.9063,
+    yesterday_closing_price: 1.10833,
+  },
+  {
+    ticker: "AUDNZD",
+    name: "Australian vs New Zealand Dollar",
+    volume_change_pct: 765.0909,
+    yesterday_closing_price: 1.10833,
+  },
+  {
+    ticker: "EURAUD",
+    name: "Euro vs Australian Dollar",
+    volume_change_pct: 591.2557,
+    yesterday_closing_price: 1.48683,
+  },
+  {
+    ticker: "NZDCAD",
+    name: "New Zealand Dollar vs Canadian Dollar",
+    volume_change_pct: 531.9913,
+    yesterday_closing_price: 0.81624,
+  },
+  {
+    ticker: "EURAUD",
+    name: "Euro vs Australian Dollar",
+    volume_change_pct: 352.9586,
+    yesterday_closing_price: 1.48683,
+  },
+  {
+    ticker: "AUDNZD",
+    name: "Australian vs New Zealand Dollar",
+    volume_change_pct: 332.6448,
+    yesterday_closing_price: 1.10833,
+  },
+  {
+    ticker: "CADJPY",
+    name: "Canadian Dollar vs Japanese Yen",
+    volume_change_pct: 306.503,
+    yesterday_closing_price: 104.829,
+  },
+  {
+    ticker: "UK100",
+    name: "UK 100 Index",
+    volume_change_pct: 291.1945,
+    yesterday_closing_price: 7603,
+  },
+  {
+    ticker: "CHFJPY",
+    name: "Swiss Franc vs Japanese Yen",
+    volume_change_pct: 254.7469,
+    yesterday_closing_price: 135.835,
+  },
+  {
+    ticker: "EURJPY",
+    name: "Euro vs Japanese Yen",
+    volume_change_pct: 235.1945,
+    yesterday_closing_price: 141.063,
+  },
+  {
+    ticker: "GBPCAD",
+    name: "British Pound vs Canadian Dollar",
+    volume_change_pct: 226.407,
+    yesterday_closing_price: 1.57609,
+  },
+  {
+    ticker: "US500",
+    name: "US 500 Index",
+    volume_change_pct: 209.7507,
+    yesterday_closing_price: 4121.6,
+  },
+  {
+    ticker: "TSLA",
+    name: "Tesla Inc",
+    volume_change_pct: 658.716,
+    yesterday_closing_price: 715.76,
+  },
+];
+
 type Instrument = {
   trendingSymbol_DEL: string;
   ticker: string;
@@ -24,6 +141,28 @@ export default async function handler(
 }
 
 async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
+  // Do not cache the fake data anywhere ever never at all.
+  res.setHeader(
+    "Cache-Control",
+    "no-cache, no-store, max-age=0, must-revalidate"
+  );
+
+  // between 0 and 14
+  const randomLength = Math.floor(Math.random() * 15);
+
+  // Randomize the fake data.
+  const randomData = fakedata
+    .sort(() => Math.random() - 0.5)
+    .slice(0, randomLength);
+
+  // Return Fake Data
+  return res.status(200).json({
+    fake_data: true,
+    instruments: randomData,
+  });
+
+  // --------------------------------------------
+
   // Set the default category search to "all".
   const categories: string = (req.query.categories as string) || "All";
 
@@ -93,7 +232,10 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
 
   const returnInstruments: Instrument[] = await Promise.all(instruments);
 
-  return res
+  // Cache the response for 10 sec.
+  res.setHeader("Cache-Control", "max-age=10, stale-while-revalidate=10");
+
+  res
     .status(200)
     .json({ instruments: returnInstruments, missingSymbols: missingSymbols });
 }
