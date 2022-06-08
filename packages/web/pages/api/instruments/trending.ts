@@ -141,6 +141,12 @@ export default async function handler(
 }
 
 async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
+  // Do not cache the fake data anywhere ever never at all.
+  res.setHeader(
+    "Cache-Control",
+    "no-cache, no-store, max-age=0, must-revalidate"
+  );
+
   // between 0 and 14
   const randomLength = Math.floor(Math.random() * 15);
 
@@ -226,7 +232,10 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
 
   const returnInstruments: Instrument[] = await Promise.all(instruments);
 
-  return res
+  // Cache the response for 10 sec.
+  res.setHeader("Cache-Control", "max-age=10, stale-while-revalidate=10");
+
+  res
     .status(200)
     .json({ instruments: returnInstruments, missingSymbols: missingSymbols });
 }
