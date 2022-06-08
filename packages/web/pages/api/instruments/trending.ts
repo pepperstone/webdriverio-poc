@@ -1,5 +1,86 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
+const fakedata = [
+  {
+    ticker: "USDCAD",
+    name: "US Dollar vs Canadian",
+    volume_change_pct: 6090.3908,
+    yesterday_closing_price: 1.25799,
+  },
+  {
+    ticker: "AUDNZD",
+    name: "Australian vs New Zealand Dollar",
+    volume_change_pct: 1194.9063,
+    yesterday_closing_price: 1.10833,
+  },
+  {
+    ticker: "AUDNZD",
+    name: "Australian vs New Zealand Dollar",
+    volume_change_pct: 765.0909,
+    yesterday_closing_price: 1.10833,
+  },
+  {
+    ticker: "EURAUD",
+    name: "Euro vs Australian Dollar",
+    volume_change_pct: 591.2557,
+    yesterday_closing_price: 1.48683,
+  },
+  {
+    ticker: "NZDCAD",
+    name: "New Zealand Dollar vs Canadian Dollar",
+    volume_change_pct: 531.9913,
+    yesterday_closing_price: 0.81624,
+  },
+  {
+    ticker: "EURAUD",
+    name: "Euro vs Australian Dollar",
+    volume_change_pct: 352.9586,
+    yesterday_closing_price: 1.48683,
+  },
+  {
+    ticker: "AUDNZD",
+    name: "Australian vs New Zealand Dollar",
+    volume_change_pct: 332.6448,
+    yesterday_closing_price: 1.10833,
+  },
+  {
+    ticker: "CADJPY",
+    name: "Canadian Dollar vs Japanese Yen",
+    volume_change_pct: 306.503,
+    yesterday_closing_price: 104.829,
+  },
+  {
+    ticker: "UK100",
+    name: "UK 100 Index",
+    volume_change_pct: 291.1945,
+    yesterday_closing_price: 7603,
+  },
+  {
+    ticker: "CHFJPY",
+    name: "Swiss Franc vs Japanese Yen",
+    volume_change_pct: 254.7469,
+    yesterday_closing_price: 135.835,
+  },
+  {
+    ticker: "EURJPY",
+    name: "Euro vs Japanese Yen",
+    volume_change_pct: 235.1945,
+    yesterday_closing_price: 141.063,
+  },
+  {
+    ticker: "GBPCAD",
+    name: "British Pound vs Canadian Dollar",
+    volume_change_pct: 226.407,
+    yesterday_closing_price: 1.57609,
+  },
+  {
+    ticker: "US500",
+    name: "US 500 Index",
+    volume_change_pct: 209.7507,
+    yesterday_closing_price: 4121.6,
+  },
+];
+
 type Instrument = {
   trendingSymbol_DEL: string;
   ticker: string;
@@ -24,6 +105,14 @@ export default async function handler(
 }
 
 async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
+  // Randomize the fake data.
+  const randomData = fakedata.sort(() => Math.random() - 0.5);
+
+  // Return Fake Data
+  return res.status(200).json({ instruments: randomData });
+
+  // --------------------------------------------
+
   // Set the default category search to "all".
   const categories: string = (req.query.categories as string) || "All";
 
