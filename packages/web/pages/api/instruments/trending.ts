@@ -2,6 +2,36 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const fakedata = [
   {
+    ticker: "XAUGBP",
+    name: "Gold vs Great Britain Pound",
+    volume_change_pct: 266.6865,
+    yesterday_closing_price: 1469.52,
+  },
+  {
+    ticker: "XAUCHF",
+    name: "Gold vs Swiss Franc",
+    volume_change_pct: 163.7235,
+    yesterday_closing_price: 1801.38,
+  },
+  {
+    ticker: "XAGUSD",
+    name: "Silver vs US Dollar",
+    volume_change_pct: 20.5302,
+    yesterday_closing_price: 22.229,
+  },
+  {
+    ticker: "US30",
+    name: "US Wall Street 30 Index",
+    volume_change_pct: 507.046,
+    yesterday_closing_price: 33114.7,
+  },
+  {
+    ticker: "LINKUSD",
+    name: "Chainlink vs US Dollar",
+    volume_change_pct: 859.2892,
+    yesterday_closing_price: 8.623,
+  },
+  {
     ticker: "USDCAD",
     name: "US Dollar vs Canadian",
     volume_change_pct: 6090.3908,
@@ -79,6 +109,12 @@ const fakedata = [
     volume_change_pct: 209.7507,
     yesterday_closing_price: 4121.6,
   },
+  {
+    ticker: "TSLA",
+    name: "Tesla Inc",
+    volume_change_pct: 658.716,
+    yesterday_closing_price: 715.76,
+  },
 ];
 
 type Instrument = {
@@ -105,11 +141,19 @@ export default async function handler(
 }
 
 async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
+  // between 0 and 14
+  const randomLength = Math.floor(Math.random() * 15);
+
   // Randomize the fake data.
-  const randomData = fakedata.sort(() => Math.random() - 0.5);
+  const randomData = fakedata
+    .sort(() => Math.random() - 0.5)
+    .slice(0, randomLength);
 
   // Return Fake Data
-  return res.status(200).json({ instruments: randomData });
+  return res.status(200).json({
+    fake_data: true,
+    instruments: randomData,
+  });
 
   // --------------------------------------------
 
