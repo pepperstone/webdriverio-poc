@@ -10,8 +10,10 @@ const run = (login: Login) => {
     });
 }
 
-if (process.env.RUN_TYPE === 'WEB') {
+const runType = process.env.RUN_TYPE;
+
+if (runType === 'WEB') {
     run(LoginPage);
-} else {
+} else if (runType === 'ANDROID' || runType === 'IOS') {
     run(LoginScreen);
 }
