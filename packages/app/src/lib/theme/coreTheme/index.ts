@@ -1,17 +1,16 @@
-import fontSize from './fontSize';
-import fontFamily from './fontFamily';
-import fontWeight from './fontWeight';
-import basePalette from './basePalette';
-import darkThemePalette from './darkThemePalette';
-import lightThemePalette from './lightThemePalette';
+import { baseTheme, darkTheme, lightTheme } from '@monorepo/shared/theme/colors';
+
 import dimensions from './dimensions';
+import fontFamily from './fontFamily';
+import fontSize from './fontSize';
+import fontWeight from './fontWeight';
 
 export {
   fontSize,
   fontFamily,
   fontWeight,
-  basePalette,
-  darkThemePalette,
-  lightThemePalette,
+  baseTheme,
+  darkTheme,
+  lightTheme,
   dimensions,
 };

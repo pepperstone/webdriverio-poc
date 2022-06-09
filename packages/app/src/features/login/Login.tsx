@@ -10,7 +10,6 @@ import React, { useRef } from 'react';
 import FormInput from 'src/common/components/inputs/formInput';
 import { PepperstoneSVG } from 'assets/logos';
 import TextButton from 'src/common/components/buttons/textButton';
-import { getCodeSharingMessage } from '@monorepo/shared/helpers/CodeSharing';
 import stylesCreator from './Styles';
 import { useLoginHook } from './Hooks';
 import { useStrings } from '../../common/hooks';
@@ -22,18 +21,12 @@ const LoginScreen = () => {
   const { loading, errors, values, doLogin, doRegister, onChangeText } =
     useLoginHook();
   const strings = useStrings();
-  const isSharing = getCodeSharingMessage();
 
   return (
     <KeyboardAvoidingView
       style={styles.background}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      <View style={styles.codeSharing}>
-        <Text style={styles.text}>Code sharing </Text>
-        <Text style={styles.codeWorking}>{isSharing}</Text>
-      </View>
-
       <PepperstoneSVG
         fill={theme.colors.blue}
         fillSecondary={theme.colors.background}

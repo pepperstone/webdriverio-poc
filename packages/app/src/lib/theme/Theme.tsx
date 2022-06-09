@@ -1,37 +1,38 @@
-import { moderateScale, scale } from 'react-native-size-matters';
-import { useTheme as reactNavigationTheme } from '@react-navigation/native';
 import {
-	fontSize,
-	fontFamily,
-	fontWeight,
-	basePalette,
-	darkThemePalette,
-	lightThemePalette,
-	dimensions,
+  baseTheme,
+  darkTheme,
+  dimensions,
+  fontFamily,
+  fontSize,
+  fontWeight,
+  lightTheme,
 } from './coreTheme';
-import store from '../../app/store';
+import { moderateScale, scale } from 'react-native-size-matters';
+
 import { Style } from '../types/StyleTypes';
+import { useTheme as reactNavigationTheme } from '@react-navigation/native';
+import store from '../../app/store';
 
 /**
  * Get theme depending on darkmode settings.
  */
 export const getTheme = () => {
-	const darkMode = store.getState().theme.darkMode;
+  const darkMode = store.getState().theme.darkMode;
 
-	const themePalette = darkMode ? darkThemePalette : lightThemePalette;
-	const themePaletteInverted = !darkMode ? darkThemePalette : lightThemePalette;
+  const themePalette = darkMode ? darkTheme : lightTheme;
+  const themePaletteInverted = !darkMode ? darkTheme : lightTheme;
 
-	const colors = { ...themePalette, ...basePalette };
+  const colors = { ...themePalette, ...baseTheme };
 
-	return {
-		dark: darkMode,
-		colors,
-		colorsInvert: themePaletteInverted, // the opposite color to darkmode.
-		fontWeight,
-		fontSize,
-		font: fontFamily,
-		...dimensions,
-	};
+  return {
+    dark: darkMode,
+    colors,
+    colorsInvert: themePaletteInverted, // the opposite color to darkmode.
+    fontWeight,
+    fontSize,
+    font: fontFamily,
+    ...dimensions,
+  };
 };
 
 const defaultTheme = getTheme();
@@ -39,10 +40,10 @@ type ThemeType = typeof defaultTheme;
 export interface Theme extends ThemeType {}
 
 export type StylesCreator = (
-	theme: Theme,
-	scale: (size: number) => number,
-	moderateScale: (size: number, factor?: number) => number,
-	props?: any,
+  theme: Theme,
+  scale: (size: number) => number,
+  moderateScale: (size: number, factor?: number) => number,
+  props?: any,
 ) => { [key: string]: Style };
 
 /**
@@ -52,18 +53,18 @@ export type StylesCreator = (
  * @param props Any props to use within the Stylesheet object.
  */
 export const useTheme = (
-	stylesCreator?: StylesCreator,
-	props?: any,
+  stylesCreator?: StylesCreator,
+  props?: any,
 ): [
-	ReturnType<StylesCreator>,
-	ThemeType,
-	(size: number) => number,
-	(size: number, factor?: number) => number,
+  ReturnType<StylesCreator>,
+  ThemeType,
+  (size: number) => number,
+  (size: number, factor?: number) => number,
 ] => {
-	const theme = reactNavigationTheme() as ThemeType;
-	const styles = stylesCreator
-		? stylesCreator(theme, scale, moderateScale, props || {})
-		: {};
+  const theme = reactNavigationTheme() as ThemeType;
+  const styles = stylesCreator
+    ? stylesCreator(theme, scale, moderateScale, props || {})
+    : {};
 
-	return [styles, theme, scale, moderateScale];
+  return [styles, theme, scale, moderateScale];
 };
