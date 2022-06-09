@@ -1,129 +1,62 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import cacheData from "memory-cache";
 
-const fakedata = [
-  {
-    ticker: "XAUGBP",
-    name: "Gold vs Great Britain Pound",
-    volume_change_pct: 266.6865,
-    yesterday_closing_price: 1469.52,
-  },
-  {
-    ticker: "XAUCHF",
-    name: "Gold vs Swiss Franc",
-    volume_change_pct: 163.7235,
-    yesterday_closing_price: 1801.38,
-  },
-  {
-    ticker: "XAGUSD",
-    name: "Silver vs US Dollar",
-    volume_change_pct: 20.5302,
-    yesterday_closing_price: 22.229,
-  },
-  {
-    ticker: "US30",
-    name: "US Wall Street 30 Index",
-    volume_change_pct: 507.046,
-    yesterday_closing_price: 33114.7,
-  },
-  {
-    ticker: "LINKUSD",
-    name: "Chainlink vs US Dollar",
-    volume_change_pct: 859.2892,
-    yesterday_closing_price: 8.623,
-  },
-  {
-    ticker: "USDCAD",
-    name: "US Dollar vs Canadian",
-    volume_change_pct: 6090.3908,
-    yesterday_closing_price: 1.25799,
-  },
-  {
-    ticker: "AUDNZD",
-    name: "Australian vs New Zealand Dollar",
-    volume_change_pct: 1194.9063,
-    yesterday_closing_price: 1.10833,
-  },
-  {
-    ticker: "AUDNZD",
-    name: "Australian vs New Zealand Dollar",
-    volume_change_pct: 765.0909,
-    yesterday_closing_price: 1.10833,
-  },
-  {
-    ticker: "EURAUD",
-    name: "Euro vs Australian Dollar",
-    volume_change_pct: 591.2557,
-    yesterday_closing_price: 1.48683,
-  },
-  {
-    ticker: "NZDCAD",
-    name: "New Zealand Dollar vs Canadian Dollar",
-    volume_change_pct: 531.9913,
-    yesterday_closing_price: 0.81624,
-  },
-  {
-    ticker: "EURAUD",
-    name: "Euro vs Australian Dollar",
-    volume_change_pct: 352.9586,
-    yesterday_closing_price: 1.48683,
-  },
-  {
-    ticker: "AUDNZD",
-    name: "Australian vs New Zealand Dollar",
-    volume_change_pct: 332.6448,
-    yesterday_closing_price: 1.10833,
-  },
-  {
-    ticker: "CADJPY",
-    name: "Canadian Dollar vs Japanese Yen",
-    volume_change_pct: 306.503,
-    yesterday_closing_price: 104.829,
-  },
-  {
-    ticker: "UK100",
-    name: "UK 100 Index",
-    volume_change_pct: 291.1945,
-    yesterday_closing_price: 7603,
-  },
-  {
-    ticker: "CHFJPY",
-    name: "Swiss Franc vs Japanese Yen",
-    volume_change_pct: 254.7469,
-    yesterday_closing_price: 135.835,
-  },
-  {
-    ticker: "EURJPY",
-    name: "Euro vs Japanese Yen",
-    volume_change_pct: 235.1945,
-    yesterday_closing_price: 141.063,
-  },
-  {
-    ticker: "GBPCAD",
-    name: "British Pound vs Canadian Dollar",
-    volume_change_pct: 226.407,
-    yesterday_closing_price: 1.57609,
-  },
-  {
-    ticker: "US500",
-    name: "US 500 Index",
-    volume_change_pct: 209.7507,
-    yesterday_closing_price: 4121.6,
-  },
-  {
-    ticker: "TSLA",
-    name: "Tesla Inc",
-    volume_change_pct: 658.716,
-    yesterday_closing_price: 715.76,
-  },
-];
+/* FAKE DATA */
+const fake_data = {
+  asset_classes: ["All"],
+  rank_by: "volume_change",
+  period: "from_market_open",
+  level: "symbol",
+  num_instruments: 14,
+  version: "1.0.0",
+  uid: "1a26f870-ce8a-46ac-8637-d8ad698e33fa",
+  timestamp: "2022-06-09T04:42:20",
+  top_instruments_symbols: [
+    "US2000.a",
+    "USDCAD_SB",
+    "XAUGBP",
+    "LINKUSD",
+    "US30_SB",
+    "CADCHF.a",
+    "USDCAD",
+    "GBPCHF.r",
+    "EURCAD.r",
+    "EURJPY",
+    "AUDNZD.p",
+    "EURCAD.a",
+    "SpotCrude",
+    "GBPJPY.r",
+  ],
+  top_instruments_tickers: [
+    "US2000",
+    "USDCAD",
+    "XAUGBP",
+    "LINKUSD",
+    "US30",
+    "CADCHF",
+    "USDCAD",
+    "GBPCHF",
+    "EURCAD",
+    "EURJPY",
+    "AUDNZD",
+    "EURCAD",
+    "SpotCrude",
+    "GBPJPY",
+  ],
+  top_instruments_values: [
+    4357.1054, 613.8333, 593.586, 498.5863, 454.5162, 399.4866, 397.6424,
+    366.9019, 311.9639, 309.3079, 293.5196, 286.5202, 278.3744, 270.9389,
+  ],
+  top_instruments_scores: [
+    0.46, 0.07, 0.06, 0.05, 0.05, 0.04, 0.04, 0.04, 0.03, 0.03, 0.03, 0.03,
+    0.03, 0.03,
+  ],
+};
 
 type Instrument = {
-  trendingSymbol_DEL: string;
+  symbol: string;
   ticker: string;
   description: string;
-  volume_change_pct: string;
-  yesterday_closing_price: string;
 };
 
 export default async function handler(
@@ -148,103 +81,43 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
   // The Trending Instruments API requiers a '+' delimited list.
   const asset_classes = categories.split(",").join("+");
 
-  // Get all the Symbols meta data.
-  const symbolInfo = await getSymbolInfo();
-
-  // --------------------------------------------
-
-  // Do not cache the fake data anywhere ever never at all.
-  res.setHeader(
-    "Cache-Control",
-    "no-cache, no-store, max-age=0, must-revalidate"
-  );
-
-  // between 0 and 14
-  const randomLength = Math.floor(Math.random() * 15);
-
-  // Randomize the fake data.
-  const randomData = fakedata
-    .sort(() => Math.random() - 0.5)
-    .slice(0, randomLength);
-
-  // Return Fake Data
-  return res.status(200).json({
-    fake_data: true,
-    instruments: randomData,
-  });
-
-  // --------------------------------------------
-
   // Get the Trending instruments.
   const trendingInstruments = await getTrendingInstruments(asset_classes);
 
-  // TEMP var for testing.
-  const missingSymbols: string[] = [];
+  const instruments = trendingInstruments.top_instruments_symbols.map(
+    async (trendingSymbol: string, index: number) => {
+      const ticker = trendingInstruments.top_instruments_tickers[index];
 
-  const instruments = trendingInstruments.top_instruments
-    .map((trendingSymbol: string, index: number) => {
-      // Find the real ticker symbol.
-      let symbol_index = symbolInfo.symbol.findIndex(
-        (symbol: string) => symbol === trendingSymbol
+      // Get the Symbols meta data.
+      const symbolInfo = await getSymbolInfo(ticker);
+
+      console.log(
+        index,
+        trendingSymbol,
+        trendingInstruments.top_instruments_tickers[index],
+        symbolInfo
       );
 
-      if (symbol_index === -1) {
-        // Sometimes the symbol has a .(a-z) on the end.  eg. GBPAUD.r
-        symbol_index = symbolInfo.symbol.findIndex((symbol: string) => {
-          return symbol === trendingSymbol.split(".")[0];
-        });
-      }
-
-      if (symbol_index === -1) {
-        // Sometimes the symbol has a _(a-z) on the end.  eg. EURJPY_SB
-        symbol_index = symbolInfo.symbol.findIndex((symbol: string) => {
-          return symbol === trendingSymbol.split("_")[0];
-        });
-      }
-
       return {
-        trendingSymbol_DEL: trendingSymbol,
-        ticker: symbolInfo.ticker[symbol_index],
-        name: symbolInfo.description[symbol_index],
-        volume_change_pct: trendingInstruments.top_instruments_values[index],
+        symbol: trendingSymbol,
+        ticker: ticker,
+        description: symbolInfo[ticker].Description,
       };
-    })
-    // Remove any instruments with out a ticker match.
-    .filter((instrument: Instrument) => {
-      if (instrument.ticker !== undefined) {
-        return true;
-      } else {
-        missingSymbols.push(instrument.trendingSymbol_DEL);
-        return false;
-      }
-    })
-    .map(async (instrument: Instrument) => {
-      // Get the symbols history
-      const symbolHistory = await getSymbolHistory(instrument.ticker);
-
-      if (symbolHistory.s === "no_data") {
-        instrument.yesterday_closing_price = "no_data";
-      }
-
-      if (symbolHistory.s === "ok" && symbolHistory.c.length >= 1) {
-        instrument.yesterday_closing_price = symbolHistory.c[0];
-      }
-
-      return instrument;
-    });
+    }
+  );
 
   const returnInstruments: Instrument[] = await Promise.all(instruments);
 
   // Cache the response for 10 sec.
   res.setHeader("Cache-Control", "max-age=10, stale-while-revalidate=10");
 
-  res
-    .status(200)
-    .json({ instruments: returnInstruments, missingSymbols: missingSymbols });
+  res.status(200).json({ instruments: randomizeFakeData(returnInstruments) });
 }
 
 async function getTrendingInstruments(asset_classes: string) {
-  const API_URL =
+  return fake_data;
+
+  const API_URI =
     "https://trending-instruments.dev.ai.pepperstone.com/trending";
 
   // Setup the search parameters.
@@ -257,8 +130,10 @@ async function getTrendingInstruments(asset_classes: string) {
   };
   const searchParams = new URLSearchParams(paramsObj);
 
+  console.log(API_URI + "?" + searchParams.toString());
+
   // Get the Treding Instruments data.
-  const trendingData_res = await fetch(API_URL + "?" + searchParams.toString());
+  const trendingData_res = await fetch(API_URI + "?" + searchParams.toString());
 
   // Is it ok?
   if (!trendingData_res.ok) {
@@ -269,18 +144,20 @@ async function getTrendingInstruments(asset_classes: string) {
   return await trendingData_res.json();
 }
 
-async function getSymbolInfo() {
-  const API_URL =
-    "https://ctrader-tradingview-api.pepperstone.com/api/symbol_info";
+async function getSymbolInfo(symbol: string) {
+  const API_URI = "https://live-pricing.pepperstone.com/symbols";
   const CACHE_TIME = 60 * 1000; // 1 minute.
 
+  const api_url = API_URI + "?names=" + symbol;
+
   // Chech the cache first.
-  const cacheValue = cacheData.get(API_URL);
+  const cacheValue = cacheData.get(api_url);
   if (cacheValue) {
     return cacheValue;
   }
 
-  const symbolInfo_res = await fetch(API_URL);
+  // Get the data.
+  const symbolInfo_res = await fetch(api_url);
 
   // Is it ok?
   if (!symbolInfo_res.ok) {
@@ -296,46 +173,19 @@ async function getSymbolInfo() {
   }
 
   // Cache the results.
-  cacheData.put(API_URL, symbolInfo_json, CACHE_TIME);
+  cacheData.put(api_url, symbolInfo_json, CACHE_TIME);
 
   return symbolInfo_json;
 }
 
-async function getSymbolHistory(symbol: string) {
-  const API_URL =
-    "https://ctrader-tradingview-api-staging.pepperstone.com/api/history";
+function randomizeFakeData(fake_data: Instrument[]) {
+  // between 0 and 14
+  const randomLength = Math.floor(Math.random() * 15);
 
-  const today = new Date();
-  today.setMilliseconds(0);
-  today.setSeconds(0);
-  today.setMinutes(0);
-  today.setHours(0);
+  // Randomize the fake data.
+  const randomData = fake_data
+    .sort(() => Math.random() - 0.5)
+    .slice(0, randomLength);
 
-  var from_to = Math.round(today.getTime() / 1000).toString();
-
-  // Setup the search parameters.
-  const paramsObj = {
-    from: from_to,
-    to: from_to,
-    resolution: "D",
-    symbol: symbol,
-  };
-  const searchParams = new URLSearchParams(paramsObj);
-
-  const symbolHist_res = await fetch(API_URL + "?" + searchParams.toString());
-
-  // Is it ok?
-  if (!symbolHist_res.ok) {
-    console.log(symbolHist_res);
-    throw Error(symbolHist_res.statusText);
-  }
-
-  const symbolHist_json = await symbolHist_res.json();
-
-  if (symbolHist_json.s === "error") {
-    console.log(symbolHist_json);
-    throw Error(symbolHist_json.errmsg);
-  }
-
-  return symbolHist_json;
+  return randomData;
 }
