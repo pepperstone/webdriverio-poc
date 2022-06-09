@@ -1,26 +1,35 @@
-const { config } = require('../../wdio.base.conf')
-
-// =====================================
-// Test Runner Services and Capabilities
-// =====================================
+// =======================================================
+// Test Runner Services and Capabilities for Chrome Driver
+// =======================================================
+//
 /**
- * this will override the services from wdio base conf
- * since most of us are using chrome, this driver was used
+ * imports shared conf and includes only this service
  */
-
-exports.config = {
-    ...config,
-    ...{
-      services: ['chromedriver'],
-      capabilities: [
-          {        
-            maxInstances: 5,
-            browserName: 'chrome',
-            acceptInsecureCerts: true,
-            'goog:chromeOptions': {
-                //headless: true
-            }
-        }
-      ],
+import { config } from '../../wdio.shared.conf';
+//
+// uses chromedriver service
+config.services = ['chromedriver'];
+//
+// ========================
+// Sets driver capabilities
+// ========================
+//
+config.capabilities = [
+  {
+    maxInstances: 5,
+    browserName: 'chrome',
+    acceptInsecureCerts: true,
+    'goog:chromeOptions': {
+      // args: [
+      //   'headless',
+      //   // Use --disable-gpu to avoid an error from a missing Mesa
+      //   // library, as per
+      //   // https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
+      //   'disable-gpu',
+      // ]
     }
-}
+  },
+];
+
+//exports.config = config;
+export default config

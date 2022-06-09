@@ -19,7 +19,7 @@ import config from '../services/web/chrome.driver.conf';
  */
 config.specs = [
     //for now this is just an example
-    './test/specs/integration/example-web-fwd.ts'
+    './test/specs/integration/example-web-mobile.ts'
 ];
 //
 /**

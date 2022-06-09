@@ -1,14 +1,5 @@
-import { config } from '../app/wdio.shared.conf';
-
-// =============================
-// Browserstack specific config
-// =============================
-// User configuration
-config.user = process.env.BROWSERSTACK_USERNAME;
-config.key = process.env.BROWSERSTACK_ACCESS_KEY;
-// Use browserstack service
-config.services = ['browserstack'];
-
+import config  from './bs.shared.conf';
+//
 // ============
 // Capabilities
 // ============

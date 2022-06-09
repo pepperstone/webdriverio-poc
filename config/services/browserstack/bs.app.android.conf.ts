@@ -1,4 +1,5 @@
-import { config } from '../app/wdio.shared.conf';
+import { config } from '../../wdio.shared.conf';
+
 // =============================
 // Browserstack specific config
 // =============================

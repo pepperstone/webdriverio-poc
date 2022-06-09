@@ -1,13 +1,6 @@
 import { join } from 'path';
 import config from './wdio.shared.local.appium.conf';
 
-// // ============
-// // Specs
-// // ============
-// config.specs = [
-//     './test/specs/integration/example-app-fwd.ts',
-// ];
-
 // ============
 // Capabilities
 // ============
@@ -33,4 +26,5 @@ config.capabilities = [
     },
 ];
 
-exports.config = config;
+//exports.config = config;
+export default config

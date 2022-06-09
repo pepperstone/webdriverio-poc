@@ -1,7 +1,7 @@
-const { config } = require('../services/browserstack/bs.web.conf')
+import config from '../services/app/android.app.conf'
 
 // =====================================
-// Integration Test Suite for Browserstack Web
+// Integration Test Suite for Mobile
 // =====================================
 /**
  * this will override the services from wdio base conf
@@ -12,7 +12,7 @@ const { config } = require('../services/browserstack/bs.web.conf')
 // Specs
 // ============
 config.specs = [
-    './test/specs/integration/example-web-fwd.ts',
+    './test/specs/integration/example-web-mobile.ts'
 ];
 
 exports.config = config;

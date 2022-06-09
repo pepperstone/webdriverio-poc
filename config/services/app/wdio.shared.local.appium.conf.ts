@@ -1,4 +1,4 @@
-import { config } from './wdio.shared.conf';
+import { config } from '../../wdio.shared.conf';
 
 //
 // ======
@@ -30,3 +30,4 @@ config.port = 4723;
 config.path = '/wd/hub'
 
 export default config;
+//exports.config = config;

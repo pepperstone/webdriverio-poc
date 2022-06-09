@@ -1,4 +1,4 @@
-const { config } = require('../services/app/wdio.android.app.conf')
+import config from '../services/app/android.app.conf'
 
 // =====================================
 // Integration Test Suite for Mobile

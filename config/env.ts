@@ -3,7 +3,7 @@ module.exports = {
     dev:'',
     staging:'',
     preview:'',
-    prod:''
+    prod:'',
+    web:'web',
+    mobile:'mobile'
 }
-mobile
-web
