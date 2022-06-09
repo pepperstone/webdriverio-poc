@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import cacheData from "memory-cache";
 
 const fakedata = [
   {
@@ -141,6 +142,17 @@ export default async function handler(
 }
 
 async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
+  // Set the default category search to "all".
+  const categories: string = (req.query.categories as string) || "All";
+
+  // The Trending Instruments API requiers a '+' delimited list.
+  const asset_classes = categories.split(",").join("+");
+
+  // Get all the Symbols meta data.
+  const symbolInfo = await getSymbolInfo();
+
+  // --------------------------------------------
+
   // Do not cache the fake data anywhere ever never at all.
   res.setHeader(
     "Cache-Control",
@@ -162,15 +174,6 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
   });
 
   // --------------------------------------------
-
-  // Set the default category search to "all".
-  const categories: string = (req.query.categories as string) || "All";
-
-  // The Trending Instruments API requiers a '+' delimited list.
-  const asset_classes = categories.split(",").join("+");
-
-  // Get all the Symbols meta data.
-  const symbolInfo = await getSymbolInfo();
 
   // Get the Trending instruments.
   const trendingInstruments = await getTrendingInstruments(asset_classes);
@@ -269,6 +272,13 @@ async function getTrendingInstruments(asset_classes: string) {
 async function getSymbolInfo() {
   const API_URL =
     "https://ctrader-tradingview-api.pepperstone.com/api/symbol_info";
+  const CACHE_TIME = 60 * 1000; // 1 minute.
+
+  // Chech the cache first.
+  const cacheValue = cacheData.get(API_URL);
+  if (cacheValue) {
+    return cacheValue;
+  }
 
   const symbolInfo_res = await fetch(API_URL);
 
@@ -284,6 +294,9 @@ async function getSymbolInfo() {
     console.log(symbolInfo_json);
     throw Error(symbolInfo_json.errmsg);
   }
+
+  // Cache the results.
+  cacheData.put(API_URL, symbolInfo_json, CACHE_TIME);
 
   return symbolInfo_json;
 }
