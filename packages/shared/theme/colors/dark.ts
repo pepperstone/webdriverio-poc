@@ -1,6 +1,6 @@
 export default {
 	primary: '#000000',
-	background: '#000000',
+	background: '#000B1C',
 	card: '#000000',
 	text: '#FFFFFF',
 	border: '#CCCCCC',
@@ -13,7 +13,7 @@ export default {
 		},
 		background: {
 			primaryBase: '#457AFF',
-			primarySecondary: '#E6E6E6',
+			primarySecondary: 'rgba(255, 255, 255, 0.05)',
 			secondary: '#03142E',
 			base: '#000B1C',
 		},
@@ -23,16 +23,16 @@ export default {
 				hover: '#668EFF',
 			},
 			secondary: {
-				default: '#E8E8E8',
-				hover: '#E8E8E8',
+				default: 'rgba(255, 255, 255, 0.1)',
+				hover: 'rgba(247, 247, 247, 0.15)',
 			},
 			primaryOnBlue: {
 				default: '#FFFFFF',
 				hover: '#F7F7F7',
 			},
 			secondaryOnBlue: {
-				default: '#E8E8E8',
-				hover: '#E8E8E8',
+				default: 'rgba(255, 255, 255, 0.1)',
+				hover: 'rgba(247, 247, 247, 0.15)',
 			},
 			success: {
 				default: '#3DC931',
@@ -82,7 +82,7 @@ export default {
 				error: '#FF6F65',
 			},
 			bg: {
-				default: '#E8E8E8',
+				default: 'rgba(255, 255, 255, 0.1)',
 			},
 		},
 	},
