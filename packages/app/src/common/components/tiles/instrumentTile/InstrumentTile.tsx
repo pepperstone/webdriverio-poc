@@ -1,10 +1,10 @@
-import { ActivityIndicator, Text, View, TouchableOpacity } from 'react-native';
-import { InstrumentTileProps } from './types';
-import { LineChart } from 'react-native-svg-charts';
 import React from 'react';
-import stylesCreator from './Styles';
-import { useInstrumentTileHook } from './Hooks';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
+import { LineChart } from 'react-native-svg-charts';
 import { useTheme } from '../../../../lib/theme/Theme';
+import { useInstrumentTileHook } from './Hooks';
+import stylesCreator from './Styles';
+import { InstrumentTileProps } from './types';
 
 const InstrumentTile = ({ id }: InstrumentTileProps) => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -19,7 +19,7 @@ const InstrumentTile = ({ id }: InstrumentTileProps) => {
         <ActivityIndicator
           size="small"
           style={styles.loading}
-          color={theme.colors.blue}
+          color={theme.colors.common.blue}
         />
       ) : (
         <>
@@ -31,7 +31,7 @@ const InstrumentTile = ({ id }: InstrumentTileProps) => {
           <LineChart
             style={styles.chart}
             data={values.data}
-            svg={{ stroke: theme.colors.blue }}
+            svg={{ stroke: theme.colors.product.brand.primary }}
             contentInset={styles.lineChartInset}
           />
         </>

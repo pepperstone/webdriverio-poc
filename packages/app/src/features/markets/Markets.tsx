@@ -1,10 +1,9 @@
-import { Text, View } from 'react-native';
-
 import { MarketsSVG } from 'assets/icons';
 import React from 'react';
-import stylesCreator from './Styles';
+import { Text, View } from 'react-native';
 import useStrings from '../../common/hooks/useStrings';
 import { useTheme } from '../../lib/theme/Theme';
+import stylesCreator from './Styles';
 
 const MarketsScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -12,8 +11,10 @@ const MarketsScreen = () => {
 
   return (
     <View style={styles.background}>
-      <View style={styles.box} />
-      <MarketsSVG fill={theme.colors.card} fillSecondary={theme.colors.text} />
+      <MarketsSVG
+        fill={theme.colors.product.background.base}
+        fillSecondary={theme.colors.product.text.strong}
+      />
       <Text style={styles.text}>{strings.MarketsScreen.Name}</Text>
     </View>
   );

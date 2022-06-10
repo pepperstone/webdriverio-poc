@@ -1,3 +1,5 @@
+import { PepperstoneSVG } from 'assets/logos';
+import React, { useRef } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -5,15 +7,12 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, { useRef } from 'react';
-
-import FormInput from 'src/common/components/inputs/formInput';
-import { PepperstoneSVG } from 'assets/logos';
 import TextButton from 'src/common/components/buttons/textButton';
-import stylesCreator from './Styles';
-import { useLoginHook } from './Hooks';
+import FormInput from 'src/common/components/inputs/formInput';
 import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
+import { useLoginHook } from './Hooks';
+import stylesCreator from './Styles';
 
 const LoginScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -28,8 +27,8 @@ const LoginScreen = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <PepperstoneSVG
-        fill={theme.colors.blue}
-        fillSecondary={theme.colors.background}
+        fill={theme.colors.common.blue}
+        fillSecondary={theme.colors.product.background.base}
         width={140}
         height={300}
       />

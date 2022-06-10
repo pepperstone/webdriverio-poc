@@ -1,3 +1,7 @@
+import { useTheme as reactNavigationTheme } from '@react-navigation/native';
+import { moderateScale, scale } from 'react-native-size-matters';
+import store from '../../app/store';
+import { Style } from '../types/StyleTypes';
 import {
   baseTheme,
   darkTheme,
@@ -7,11 +11,6 @@ import {
   fontWeight,
   lightTheme,
 } from './coreTheme';
-import { moderateScale, scale } from 'react-native-size-matters';
-
-import { Style } from '../types/StyleTypes';
-import { useTheme as reactNavigationTheme } from '@react-navigation/native';
-import store from '../../app/store';
 
 /**
  * Get theme depending on darkmode settings.
@@ -22,7 +21,10 @@ export const getTheme = () => {
   const themePalette = darkMode ? darkTheme : lightTheme;
   const themePaletteInverted = !darkMode ? darkTheme : lightTheme;
 
-  const colors = { ...themePalette, ...baseTheme };
+  const colors = {
+    ...themePalette,
+    common: baseTheme,
+  };
 
   return {
     dark: darkMode,

@@ -1,10 +1,9 @@
-import { Text, View } from 'react-native';
-
 import { PortfolioSVG } from 'assets/icons';
 import React from 'react';
-import stylesCreator from './Styles';
+import { Text, View } from 'react-native';
 import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
+import stylesCreator from './Styles';
 
 const PortfolioScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -12,10 +11,9 @@ const PortfolioScreen = () => {
 
   return (
     <View style={styles.background}>
-      <View style={styles.box} />
       <PortfolioSVG
-        fill={theme.colors.card}
-        fillSecondary={theme.colors.text}
+        fill={theme.colors.product.background.base}
+        fillSecondary={theme.colors.product.text.strong}
       />
       <Text style={styles.text}>{strings.PortfolioScreen.Name}</Text>
     </View>

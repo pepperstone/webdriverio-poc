@@ -11,7 +11,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   },
   text: {
     fontSize: scale(theme.fontSize.h4),
-    color: theme.colors.text,
+    color: theme.colors.product.text.strong,
   },
   centeredText: {
     marginTop: 12,
@@ -19,11 +19,6 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   },
   codeSharing: {
     marginTop: 30,
-  },
-  codeWorking: {
-    fontWeight: 'bold',
-    fontSize: theme.fontSize.h2,
-    color: theme.colors.blue,
   },
 });
 

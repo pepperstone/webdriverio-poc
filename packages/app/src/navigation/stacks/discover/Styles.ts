@@ -7,7 +7,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
     textTransform: 'none',
     fontFamily: theme.font.regular,
     fontWeight: theme.fontWeight.semibold,
-    color: theme.colors.text,
+    color: theme.colors.product.text.strong,
   },
   tabBarItemStyle: {
     width: 80,
@@ -17,12 +17,12 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   tabBarStyle: {
     padding: 0,
     paddingTop: 25,
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.product.background.base,
     borderRightColor: 'red',
     zIndex: 0,
   },
   tabBarIndicatorStyle: {
-    backgroundColor: theme.colors.blue,
+    backgroundColor: theme.colors.product.brand.primary,
     marginLeft: theme.SCREEN_WIDTH / 25,
     width: '20%',
   },

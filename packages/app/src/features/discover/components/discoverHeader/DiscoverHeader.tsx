@@ -1,13 +1,12 @@
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
-
-import DarkModeSwitch from 'src/common/components/darkModeSwitch';
-import ProfileDrawerModal from './components/profileDrawerModal';
 import React from 'react';
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { UserIconSVG } from 'src/../assets/icons';
-import stylesCreator from './Styles';
-import { useDiscoverHook } from '../../Hooks';
+import DarkModeSwitch from 'src/common/components/darkModeSwitch';
 import useStrings from 'src/common/hooks/useStrings';
 import { useTheme } from 'src/lib/theme/Theme';
+import { useDiscoverHook } from '../../Hooks';
+import ProfileDrawerModal from './components/profileDrawerModal';
+import stylesCreator from './Styles';
 
 const DiscoverHeader = () => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -23,8 +22,8 @@ const DiscoverHeader = () => {
             <DarkModeSwitch />
             <TouchableOpacity onPress={toggleSideMenu}>
               <UserIconSVG
-                fill={theme.colors.background}
-                fillSecondary={theme.colors.text}
+                fill={theme.colors.product.background.base}
+                fillSecondary={theme.colors.product.text.strong}
               />
             </TouchableOpacity>
           </View>

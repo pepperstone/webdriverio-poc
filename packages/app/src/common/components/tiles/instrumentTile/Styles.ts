@@ -7,7 +7,7 @@ const stylesCreator: StylesCreator = (theme) => StyleSheet.create({
     marginLeft: 12,
     minWidth: 140,
     padding: 12,
-    backgroundColor: theme.colors.card,
+    backgroundColor: theme.colors.product.background.secondary,
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
     borderBottomLeftRadius: 12,
@@ -17,16 +17,16 @@ const stylesCreator: StylesCreator = (theme) => StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 12,
-    color: theme.colors.text,
+    color: theme.colors.product.text.strong,
   },
   text: {
     fontSize: 10,
-    color: theme.colors.text,
+    color: theme.colors.product.text.strong,
     marginTop: 4,
   },
   increase: {
     fontSize: 10,
-    color: theme.colors.blue,
+    color: theme.colors.product.brand.primary,
     marginLeft: 6,
     marginTop: 4,
   },

@@ -1,5 +1,4 @@
 import { baseTheme, darkTheme, lightTheme } from '@monorepo/shared/theme/colors';
-
 import dimensions from './dimensions';
 import fontFamily from './fontFamily';
 import fontSize from './fontSize';

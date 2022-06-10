@@ -5,15 +5,11 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   background: {
     flex: 1,
     alignItems: 'center',
-  },
-  box: {
-    height: theme.SCREEN_HEIGHT / 3,
-    width: theme.SCREEN_WIDTH / 2,
-    backgroundColor: theme.colors.primary,
+    justifyContent: 'center',
   },
   text: {
     fontSize: scale(theme.fontSize.h1),
-    color: theme.colors.text,
+    color: theme.colors.product.text.strong,
   },
 });
 

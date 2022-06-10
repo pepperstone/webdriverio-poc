@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { StylesCreator } from 'src/lib/theme/Theme';
+import { StylesCreator } from '../../../../../../lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme) => StyleSheet.create({
   safeAreaView: {
     width: '100%',
     flex: 1,
-    backgroundColor: theme.colorsInvert.background,
+    backgroundColor: theme.colors.common.darkGrey,
   },
   modal: {
     margin: 0,
