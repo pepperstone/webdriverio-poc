@@ -21,7 +21,9 @@
     "scripts": {
         "web": "dotenv -e .env.web wdio run config/web.conf.ts",
         "android": "dotenv -e .env.android wdio run config/android.conf.ts",
-        "ios": "dotenv -e .env.ios wdio run config/android.conf.ts"
+        "ios": "dotenv -e .env.ios wdio run config/android.conf.ts",
+        "bs.web": "dotenv -e .env.web wdio run config/browserstack/common.bs.web.integration.ts",
+        "bs.app": "dotenv -e .env.android wdio run config/browserstack/common.bs.app.integration.ts"
     },
     "dependencies": {
         "dotenv-cli": "^5.1.0"
