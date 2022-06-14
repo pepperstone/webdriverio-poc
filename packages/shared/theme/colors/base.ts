@@ -7,7 +7,7 @@ export default {
 	darkGrey: '#151515',
 	buttons: {
 		secondary: {
-			default: 'rgba(255, 255, 255, 0.1)',
+			default: '#FFFFFF1A',
 		},
 	},
 };
