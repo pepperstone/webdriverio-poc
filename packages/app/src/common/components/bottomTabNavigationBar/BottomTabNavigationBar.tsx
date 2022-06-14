@@ -1,3 +1,4 @@
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import {
   DiscoverSVG,
   MarketsSVG,
@@ -6,12 +7,10 @@ import {
   WatchlistsSVG,
 } from 'assets/icons';
 import React, { useCallback, useMemo } from 'react';
-
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import Tab from './tab';
 import { View } from 'react-native';
-import stylesCreator from './Styles';
 import { useTheme } from '../../../lib/theme/Theme';
+import stylesCreator from './Styles';
+import Tab from './tab';
 
 const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -25,7 +24,9 @@ const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {
   const activeTab = useMemo(() => state.routes[state.index].name, [state]);
 
   const activeColor = (name: string) =>
-    activeTab === name ? theme.colors.blue : theme.colors.text;
+    activeTab === name
+      ? theme.colorsInvert.product.brand.primary
+      : theme.colors.product.text.strong;
 
   return (
     <View style={styles.tabWrapper}>
@@ -35,7 +36,7 @@ const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {
         textColor={activeColor('Discover')}
         tabIcon={
           <DiscoverSVG
-            fill={theme.colors.card}
+            fill={theme.colors.product.background.base}
             fillSecondary={activeColor('Discover')}
           />
         }
@@ -46,7 +47,7 @@ const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {
         textColor={activeColor('Watchlists')}
         tabIcon={
           <WatchlistsSVG
-            fill={theme.colors.card}
+            fill={theme.colors.product.background.base}
             fillSecondary={activeColor('Watchlists')}
           />
         }
@@ -57,7 +58,7 @@ const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {
         textColor={activeColor('Search')}
         tabIcon={
           <SearchSVG
-            fill={theme.colors.card}
+            fill={theme.colors.product.background.base}
             fillSecondary={activeColor('Search')}
           />
         }
@@ -68,7 +69,7 @@ const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {
         textColor={activeColor('Markets')}
         tabIcon={
           <MarketsSVG
-            fill={theme.colors.card}
+            fill={theme.colors.product.background.base}
             fillSecondary={activeColor('Markets')}
           />
         }
@@ -79,7 +80,7 @@ const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {
         textColor={activeColor('Portfolio')}
         tabIcon={
           <PortfolioSVG
-            fill={theme.colors.card}
+            fill={theme.colors.product.background.base}
             fillSecondary={activeColor('Portfolio')}
           />
         }

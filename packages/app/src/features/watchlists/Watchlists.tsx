@@ -1,10 +1,9 @@
-import { Text, View } from 'react-native';
-
-import React from 'react';
 import { WatchlistsSVG } from 'assets/icons';
-import stylesCreator from './Styles';
+import React from 'react';
+import { Text, View } from 'react-native';
 import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
+import stylesCreator from './Styles';
 
 const WatchlistsScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -12,10 +11,9 @@ const WatchlistsScreen = () => {
 
   return (
     <View style={styles.background}>
-      <View style={styles.box} />
       <WatchlistsSVG
-        fill={theme.colors.card}
-        fillSecondary={theme.colors.text}
+        fill={theme.colors.product.background.base}
+        fillSecondary={theme.colors.product.text.strong}
       />
       <Text style={styles.text}>{strings.WatchlistsScreen.Name}</Text>
     </View>

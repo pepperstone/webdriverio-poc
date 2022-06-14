@@ -9,7 +9,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   },
   text: {
     fontSize: scale(theme.fontSize.h1),
-    color: theme.colors.text,
+    color: theme.colors.product.text.strong,
   },
   form: {
     width: '90%',

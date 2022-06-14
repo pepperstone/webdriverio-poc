@@ -12,7 +12,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
     width: '48%',
   },
   loginButton: {
-    backgroundColor: theme.colors.buttons.secondaryDefault,
+    backgroundColor: theme.colors.common.buttons.secondary.default,
     borderRadius: 4,
   },
   signUpButton: {
@@ -29,7 +29,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
     fontSize: scale(theme.fontSize.h5),
     fontFamily: theme.font.regular,
     fontWeight: theme.fontWeight.bold,
-    color: theme.colorsInvert.text,
+    color: theme.colors.common.white,
   },
   followUsText: {
     marginTop: 150,
@@ -37,7 +37,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
     fontFamily: theme.font.regular,
     fontWeight: theme.fontWeight.bold,
     fontSize: scale(theme.fontSize.h4),
-    color: theme.colorsInvert.text,
+    color: theme.colors.common.lightGrey,
   },
   socialIconsContainer: {
     marginTop: 18,
@@ -54,7 +54,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
     fontSize: scale(theme.fontSize.h6),
     fontFamily: theme.font.regular,
     fontWeight: theme.fontWeight.regular,
-    color: theme.colorsInvert.text,
+    color: theme.colors.common.white,
   },
 });
 

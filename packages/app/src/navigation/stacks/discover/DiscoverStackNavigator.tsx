@@ -1,15 +1,12 @@
-import React from 'react';
-
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import DiscoverEventScreen from 'src/features/discover/components/events';
-import DiscoverFeedScreen from 'src/features/discover/components/feed';
+import React from 'react';
 import DiscoverAnalysisScreen from 'src/features/discover/components/analysis';
 import DiscoverHeader from 'src/features/discover/components/discoverHeader/DiscoverHeader';
-
-import stylesCreator from './Styles';
+import DiscoverEventScreen from 'src/features/discover/components/events';
+import DiscoverFeedScreen from 'src/features/discover/components/feed';
 import { useTheme } from 'src/lib/theme/Theme';
+import stylesCreator from './Styles';
 import { DiscoverParamList, DiscoverTabStackParamList } from './types';
 
 const DiscoverTabsStack =
@@ -21,7 +18,7 @@ const DiscoverTabsNavigator = () => {
     ...styles,
     swipeEnabled: false,
     tabBarShowIcon: false,
-    tabBarPressColor: theme.colors.background,
+    tabBarPressColor: theme.colors.product.background.base,
   };
 
   return (

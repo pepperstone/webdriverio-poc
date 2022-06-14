@@ -1,10 +1,9 @@
-import { Text, View } from 'react-native';
-
-import React from 'react';
 import { SearchSVG } from 'assets/icons';
-import stylesCreator from './Styles';
+import React from 'react';
+import { Text, View } from 'react-native';
 import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
+import stylesCreator from './Styles';
 
 const SearchScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -12,8 +11,10 @@ const SearchScreen = () => {
 
   return (
     <View style={styles.background}>
-      <View style={styles.box} />
-      <SearchSVG fill={theme.colors.card} fillSecondary={theme.colors.text} />
+      <SearchSVG
+        fill={theme.colors.product.background.base}
+        fillSecondary={theme.colors.product.text.strong}
+      />
       <Text style={styles.text}>{strings.SearchScreen.Name}</Text>
     </View>
   );

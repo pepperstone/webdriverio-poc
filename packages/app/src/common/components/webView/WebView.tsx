@@ -1,10 +1,9 @@
-import { ActivityIndicator, Platform } from 'react-native';
 import React, { useCallback, useRef, useState } from 'react';
-
+import { ActivityIndicator, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { WebViewProps } from './types';
-import stylesCreator from './Styles';
 import { useTheme } from '../../../lib/theme/Theme';
+import stylesCreator from './Styles';
+import { WebViewProps } from './types';
 
 const WebViewScreen = ({ route }: WebViewProps) => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -20,7 +19,7 @@ const WebViewScreen = ({ route }: WebViewProps) => {
     () => (
       <ActivityIndicator
         style={styles.activityIndicator}
-        color={theme.colors.black}
+        color={theme.colors.common.black}
         size="small"
       />
     ),

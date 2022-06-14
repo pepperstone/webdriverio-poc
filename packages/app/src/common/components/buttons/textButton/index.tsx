@@ -1,9 +1,8 @@
-import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
-
 import React from 'react';
-import { TextButtonProps } from './types';
-import stylesCreator from './Styles';
+import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '../../../../lib/theme/Theme';
+import stylesCreator from './Styles';
+import { TextButtonProps } from './types';
 
 const TextButton = ({
   onPress,
@@ -16,7 +15,7 @@ const TextButton = ({
   return (
     <TouchableOpacity style={[styles.button, buttonStyles]} onPress={onPress}>
       {loading ? (
-        <ActivityIndicator color={theme.colors.white} />
+        <ActivityIndicator color={theme.colors.common.white} />
       ) : (
         <Text style={styles.buttonText}>{text}</Text>
       )}

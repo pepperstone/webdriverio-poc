@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
-
-import { AppState } from 'src/app/types';
-import { CloseIconSVG } from 'src/../assets/icons';
-import GuestMenu from './components/guestMenu';
 import Modal from 'react-native-modal';
-import { ProfileDrawerModalProps } from './types';
-import stylesCreator from './Styles';
-import { useDiscoverHook } from 'src/features/discover/Hooks';
 import { useSelector } from 'react-redux';
+import { CloseIconSVG } from 'src/../assets/icons';
+import { AppState } from 'src/app/types';
+import { useDiscoverHook } from 'src/features/discover/Hooks';
 import { useTheme } from 'src/lib/theme/Theme';
+import GuestMenu from './components/guestMenu';
+import stylesCreator from './Styles';
+import { ProfileDrawerModalProps } from './types';
 
 const ProfileDrawerModal = ({
   handleLogin,
@@ -36,8 +35,8 @@ const ProfileDrawerModal = ({
       <SafeAreaView style={styles.safeAreaView}>
         <TouchableOpacity style={styles.closeButton} onPress={toggleSideMenu}>
           <CloseIconSVG
-            fill={theme.colorsInvert.card}
-            fillSecondary={theme.colorsInvert.text}
+            fill={theme.colors.common.darkGrey}
+            fillSecondary={theme.colors.common.white}
           />
         </TouchableOpacity>
         {isGuestUser && (

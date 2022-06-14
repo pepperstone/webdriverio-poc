@@ -14,7 +14,7 @@ export default {
 		},
 		background: {
 			primaryBase: '#0064FA',
-			primarySecondary: '#DADADA',
+			primarySecondary: '#1515150D',
 			secondary: '#F7F7F7',
 			base: '#FFFFFF',
 		},
@@ -24,16 +24,16 @@ export default {
 				hover: '#0054E6',
 			},
 			secondary: {
-				default: '#DADADA',
-				hover: '#CFCFCF',
+				default: '#1515150D',
+				hover: '#0000001A',
 			},
 			primaryOnBlue: {
 				default: '#FFFFFF',
 				hover: '#F7F7F7',
 			},
 			secondaryOnBlue: {
-				default: '#E8E8E8',
-				hover: '#E8E8E8',
+				default: '#FFFFFF1A',
+				hover: '#F7F7F726',
 			},
 			success: {
 				default: '#008500',
@@ -83,7 +83,7 @@ export default {
 				error: '#DF1D2C',
 			},
 			bg: {
-				default: '#E0E0E0',
+				default: '#15151505',
 			},
 		},
 	},

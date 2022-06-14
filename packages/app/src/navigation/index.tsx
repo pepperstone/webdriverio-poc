@@ -1,29 +1,28 @@
 import {
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import RegisterScreen from 'src/features/register';
+import { AppState } from '../app/types';
+import { BottomTabNavigationBar } from '../common/components';
+import WebView from '../common/components/webView';
+import LoginScreen from '../features/login';
+import MarketsScreen from '../features/markets';
+import PortfolioScreen from '../features/portfolio';
+import SearchScreen from '../features/search';
+import WatchlistsScreen from '../features/watchlists';
+import { useTheme } from '../lib/theme/Theme';
+import DiscoverStackNavigator from './stacks/discover';
+import stylesCreator from './Styles';
+import {
   AuthStackParamList,
   MainStackParamList,
   MainTabParamList,
   RootStackParamList,
 } from './Types';
-import {
-  BottomTabBarProps,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
-import React, { useCallback } from 'react';
-
-import { AppState } from '../app/types';
-import { BottomTabNavigationBar } from '../common/components';
-import LoginScreen from '../features/login';
-import MarketsScreen from '../features/markets';
-import PortfolioScreen from '../features/portfolio';
-import RegisterScreen from 'src/features/register';
-import SearchScreen from '../features/search';
-import WatchlistsScreen from '../features/watchlists';
-import WebView from '../common/components/webView';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import stylesCreator from './Styles';
-import { useSelector } from 'react-redux';
-import { useTheme } from '../lib/theme/Theme';
-import DiscoverStackNavigator from './stacks/discover';
 
 const MainTabStack = createBottomTabNavigator<MainTabParamList>();
 const bottomTabNavigation = (props: BottomTabBarProps) => (
@@ -53,13 +52,26 @@ const MainNavigation = () => (
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 const AuthNavigation = () => {
   const [, theme] = useTheme(stylesCreator);
+  const screenOptions = {
+    headerShown: true,
+    headerTintColor: theme.colors.product.text.strong,
+    headerStyle: {
+      backgroundColor: theme.colors.product.background.base,
+    },
+  };
 
   return (
-    <AuthStack.Navigator
-      screenOptions={{ headerTintColor: theme.colors.black }}
-    >
-      <AuthStack.Screen name="Login" component={LoginScreen} />
-      <AuthStack.Screen name="Register" component={RegisterScreen} />
+    <AuthStack.Navigator>
+      <AuthStack.Screen
+        options={screenOptions}
+        name="Login"
+        component={LoginScreen}
+      />
+      <AuthStack.Screen
+        options={screenOptions}
+        name="Register"
+        component={RegisterScreen}
+      />
     </AuthStack.Navigator>
   );
 };
@@ -84,7 +96,10 @@ const RootNavigation = () => {
         options={({ route }) => ({
           title: route.params.title,
           headerShown: true,
-          headerTintColor: theme.colors.text,
+          headerTintColor: theme.colors.product.text.strong,
+          headerStyle: {
+            backgroundColor: theme.colors.product.background.base,
+          },
         })}
       />
     </RootStack.Navigator>

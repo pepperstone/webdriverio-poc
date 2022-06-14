@@ -3,7 +3,11 @@ export default {
 	black: '#000000',
 	blue: '#0064FA',
 	red: '#FF0000',
+	lightGrey: '#B3B3B3',
+	darkGrey: '#151515',
 	buttons: {
-		secondaryDefault: '#2C2C2C',
+		secondary: {
+			default: '#FFFFFF1A',
+		},
 	},
 };
