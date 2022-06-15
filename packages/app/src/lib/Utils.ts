@@ -16,3 +16,8 @@ export const openSocialLink = (link: socialLinkProps ) => {
     .then((supported) => Linking.openURL(supported ? link.scheme : link.url))
     .catch((err) => console.error('An error occurred', err));
 };
+
+/** generate uuid */
+export const uuid = () : string => {
+  return '_' + Math.random().toString(36);
+};

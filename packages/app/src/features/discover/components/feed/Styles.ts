@@ -5,7 +5,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   text: {
     fontSize: scale(theme.fontSize.h1),
@@ -15,6 +15,9 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
     width: '90%',
     marginBottom: 15,
   },
+  content: {
+    flex: 1 
+  }
 });
 
 export default stylesCreator;

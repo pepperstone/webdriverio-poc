@@ -4,11 +4,24 @@ import { setIsSideMenuOpen } from './slices';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { AppState } from 'src/app/types';
+import { PillSwitchEntryType } from '../../common/components/pillswitch/Types';
+import {uuid} from '../../lib/Utils'
+
+const entries : PillSwitchEntryType<String>[] = 
+  ["All", "Forex", "Shares", "Crypto", "Indices"].map((entry) => {
+    return {
+      id    : uuid(),
+      name  : entry,
+      value : entry
+    }
+  })
 
 export const useDiscoverHook = (): UseDiscoverProps => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const { isSideMenuOpen } = useSelector((state: AppState) => state.discover);
+  const [filter, setFilter] = useState<PillSwitchEntryType<String>>(entries[0])
+  const _entries = useState<PillSwitchEntryType<String>[]>(entries)
 
   const doLogout = (): void => {
     setLoading(true);
@@ -31,5 +44,8 @@ export const useDiscoverHook = (): UseDiscoverProps => {
     doLogout,
     handleLogin,
     toggleSideMenu,
+    filter,
+    setFilter,
+    entries : _entries[0]
   };
 };
