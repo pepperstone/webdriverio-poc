@@ -6,7 +6,7 @@ import TextButton from 'src/common/components/buttons/textButton/index';
 import stylesCreator from './Styles';
 import { useDiscoverHook } from '../../Hooks';
 import { useTheme } from '../../../../lib/theme/Theme';
-import PillSwitch from 'src/common/components/pillswitch';
+import PillSwitch from 'src/common/components/filterbuttongroup';
 
 const DiscoverFeedScreen = () => {
   const [styles] = useTheme(stylesCreator);
@@ -24,7 +24,6 @@ const DiscoverFeedScreen = () => {
         selectedEntry={filter}
         onSelectedEntry={setFilter}
         style={{
-          minHeight   : 50,
           flexGrow    : 0
         }}
       />

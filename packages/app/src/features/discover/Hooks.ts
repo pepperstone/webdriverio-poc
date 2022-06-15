@@ -1,27 +1,39 @@
 import { UseDiscoverProps } from './types';
 import { setIsLoggedIn } from '../../lib/user/slices';
-import { setIsSideMenuOpen } from './slices';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { setIsSideMenuOpen,setFilter,setFilters } from './slices';
+import { useDispatch,useSelector } from 'react-redux';
+import { useEffect,useState } from 'react';
 import { AppState } from 'src/app/types';
-import { PillSwitchEntryType } from '../../common/components/pillswitch/Types';
-import {uuid} from '../../lib/Utils'
+import { FilterButtonEntryType } from '../../common/components/pillswitch/Types';
+import { generateRandomID } from 'src/lib/Utils';
 
-const entries : PillSwitchEntryType<String>[] = 
-  ["All", "Forex", "Shares", "Crypto", "Indices"].map((entry) => {
-    return {
-      id    : uuid(),
-      name  : entry,
-      value : entry
-    }
-  })
+
 
 export const useDiscoverHook = (): UseDiscoverProps => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState<boolean>(false);
-  const { isSideMenuOpen } = useSelector((state: AppState) => state.discover);
-  const [filter, setFilter] = useState<PillSwitchEntryType<String>>(entries[0])
-  const _entries = useState<PillSwitchEntryType<String>[]>(entries)
+  const [loading, setLoading] = useState < boolean > (false);
+  const {
+    isSideMenuOpen,
+    filters,
+    selectedFilter
+  } = useSelector((state: AppState) => state.discover);
+
+  useEffect(() => {
+
+    const entries: FilterButtonEntryType<string>[] = ["All", "Forex", "Shares", "Crypto", "Indices"].map((entry) => {
+      return {
+        id: generateRandomID(),
+        name: entry,
+        value: entry
+      }
+    })
+
+    dispatch(setFilters({
+      entries,
+      selected: entries[0]
+    }))
+    
+  }, [])
 
   const doLogout = (): void => {
     setLoading(true);
@@ -37,6 +49,10 @@ export const useDiscoverHook = (): UseDiscoverProps => {
     setTimeout(() => dispatch(setIsLoggedIn(false)), 500);
   };
 
+  const onSetFilter = (arg: FilterButtonEntryType<string> ) => {
+    dispatch(setFilter(arg))
+  }
+
   const toggleSideMenu = () => dispatch(setIsSideMenuOpen(!isSideMenuOpen));
 
   return {
@@ -44,8 +60,8 @@ export const useDiscoverHook = (): UseDiscoverProps => {
     doLogout,
     handleLogin,
     toggleSideMenu,
-    filter,
-    setFilter,
-    entries : _entries[0]
+    filter: selectedFilter,
+    setFilter: onSetFilter,
+    entries: filters
   };
 };

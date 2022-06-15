@@ -1,13 +1,14 @@
-import { PillSwitchEntryType } from "../../common/components/pillswitch/Types";
+import { FilterButtonEntryType } from "src/common/components/filterbuttongroup/Types";
+
 
 interface UseDiscoverProps {
   doLogout: () => void;
   handleLogin: () => void,
   toggleSideMenu: () => void;
   loading: boolean;
-  filter    : PillSwitchEntryType<String>;
-  setFilter : (arg: PillSwitchEntryType<String>) => void;
-  entries   : PillSwitchEntryType<String>[];
+  filter    : FilterButtonEntryType<string> | undefined;
+  setFilter : (arg: FilterButtonEntryType<string>) => void;
+  entries   : FilterButtonEntryType<string>[];
 }
 
 export type {

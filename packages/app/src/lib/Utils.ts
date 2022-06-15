@@ -17,7 +17,9 @@ export const openSocialLink = (link: socialLinkProps ) => {
     .catch((err) => console.error('An error occurred', err));
 };
 
-/** generate uuid */
-export const uuid = () : string => {
-  return '_' + Math.random().toString(36);
+/** generate random id
+ * @param: prefix - string value added before the random id
+ */
+export const generateRandomID = (prefix: string = "") : string => {
+  return  prefix + '_' + Math.random().toString(36);
 };

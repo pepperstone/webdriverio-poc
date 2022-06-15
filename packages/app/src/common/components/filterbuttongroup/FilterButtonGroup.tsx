@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react"
 import { Text, TouchableOpacity } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
-import { PillSwitchEntryProps, PillSwitchEntryType, PillSwitchProps } from "./Types"
+
 import styleCreator from './Styles'
 import { useTheme } from "src/lib/theme/Theme"
+import { FilterButtonGroupProps, FilterButtonProps } from "./Types"
 
 /**
  * a component used to display a selection of entries in a horizontal axis
  * @param props - `PillSwitchProps`
  * ```
- * [option1] [option2] [option3]
+ * component 
+ * 
+ * [ option1 ] [ option2 ] [ option3 ] ...etc
+ * 
  * ```
  */
-const PillSwitch = <Type, >(props: PillSwitchProps<Type>) => {
+const FilterButtonGroup = <Type, >(props: FilterButtonGroupProps<Type>) => {
     
     const [styles, theme] = useTheme(styleCreator)
+
     return (
       <ScrollView
         horizontal={true}
@@ -26,15 +31,15 @@ const PillSwitch = <Type, >(props: PillSwitchProps<Type>) => {
         ]}
       >
         {
-          props.entries.map((entry) => {
-
-            console.log("is selected %o vs %o == %o", 
-              entry.id, props.selectedEntry?.id, entry.id == props.selectedEntry?.id)
-
+          (props.entries || []).map((entry) => {
             return (
-              <PillSwitchEntry 
+              <FilterButton 
                 entry={entry}
-                onPress={props.onSelectedEntry}
+                onPress={ (selected) => {
+                  if (selected.id != props.selectedEntry?.id && props.onSelectedEntry) {
+                    props.onSelectedEntry(selected)
+                  }
+                }}
                 style={props.entryStyle}
                 isSelected={entry.id === props.selectedEntry?.id}
               />
@@ -43,13 +48,22 @@ const PillSwitch = <Type, >(props: PillSwitchProps<Type>) => {
         }
       </ScrollView>
     )
-}//PillSwitch
+}
+
+export default FilterButtonGroup
+
 
 /**
  * a component used to display a single entry of an option inside a `PillSwitch`
  * @param props - `PillSwitchEntryProps<Type>`
+ * ```
+ * component: 
+ * 
+ * [ option ]
+ * 
+ * ```
  */
-const PillSwitchEntry = <Type, >(props: PillSwitchEntryProps<Type>) => {
+const FilterButton = <Type, >(props: FilterButtonProps<Type>) => {
 
   const [styles, theme] = useTheme(styleCreator)
 
@@ -69,6 +83,5 @@ const PillSwitchEntry = <Type, >(props: PillSwitchEntryProps<Type>) => {
       ]}>{props.entry.name}</Text>
     </TouchableOpacity>
   )
-}//PillSwitchEntry
+}
 
-export default PillSwitch
