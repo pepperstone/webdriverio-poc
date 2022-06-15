@@ -16,9 +16,6 @@ jobs:
   ios-build:
     name: IOS Build
     runs-on: macOS-latest
-    defaults:
-      run:
-        working-directory: ios
 
     steps:
       - name: Cancel Previous Runs

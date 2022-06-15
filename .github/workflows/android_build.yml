@@ -18,6 +18,9 @@ jobs:
     runs-on: ubuntu-latest # using ubuntu latest version / or you can use a specific version
 
     steps:
+      - name: Create directory for release build
+        run: mkdir -p android/app/build/outputs/apk/release
+
       - name: Check out Git repository # checkout repository
         uses: actions/checkout@v2
 
