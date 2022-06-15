@@ -4,7 +4,7 @@ import { setIsSideMenuOpen,setFilter,setFilters } from './slices';
 import { useDispatch,useSelector } from 'react-redux';
 import { useEffect,useState } from 'react';
 import { AppState } from 'src/app/types';
-import { FilterButtonEntryType } from '../../common/components/pillswitch/Types';
+import { FilterButtonEntry } from '../../common/components/filterbuttongroup/Types';
 import { generateRandomID } from 'src/lib/Utils';
 
 
@@ -20,7 +20,7 @@ export const useDiscoverHook = (): UseDiscoverProps => {
 
   useEffect(() => {
 
-    const entries: FilterButtonEntryType<string>[] = ["All", "Forex", "Shares", "Crypto", "Indices"].map((entry) => {
+    const entries: FilterButtonEntry<string>[] = ["All", "Forex", "Shares", "Crypto", "Indices"].map((entry) => {
       return {
         id: generateRandomID(),
         name: entry,
@@ -49,7 +49,7 @@ export const useDiscoverHook = (): UseDiscoverProps => {
     setTimeout(() => dispatch(setIsLoggedIn(false)), 500);
   };
 
-  const onSetFilter = (arg: FilterButtonEntryType<string> ) => {
+  const onSetFilter = (arg: FilterButtonEntry<string> ) => {
     dispatch(setFilter(arg))
   }
 

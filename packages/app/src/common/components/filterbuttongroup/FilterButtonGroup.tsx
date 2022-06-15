@@ -19,6 +19,8 @@ import { FilterButtonGroupProps, FilterButtonProps } from "./Types"
 const FilterButtonGroup = <Type, >(props: FilterButtonGroupProps<Type>) => {
     
     const [styles, theme] = useTheme(styleCreator)
+    const {onSelectedEntry, selectedEntry, entryStyle, style} = props
+    
 
     return (
       <ScrollView
@@ -27,7 +29,7 @@ const FilterButtonGroup = <Type, >(props: FilterButtonGroupProps<Type>) => {
         bounces={false}
         style={[
           styles.pillswitch,
-          props.style
+          style
         ]}
       >
         {
@@ -36,12 +38,12 @@ const FilterButtonGroup = <Type, >(props: FilterButtonGroupProps<Type>) => {
               <FilterButton 
                 entry={entry}
                 onPress={ (selected) => {
-                  if (selected.id != props.selectedEntry?.id && props.onSelectedEntry) {
-                    props.onSelectedEntry(selected)
+                  if (selected.id != selectedEntry?.id && onSelectedEntry) {
+                    onSelectedEntry(selected)
                   }
                 }}
-                style={props.entryStyle}
-                isSelected={entry.id === props.selectedEntry?.id}
+                style={entryStyle}
+                isSelected={entry.id === selectedEntry?.id}
               />
             )
           })
@@ -66,21 +68,22 @@ export default FilterButtonGroup
 const FilterButton = <Type, >(props: FilterButtonProps<Type>) => {
 
   const [styles, theme] = useTheme(styleCreator)
+  const {onPress, isSelected, style, entry} = props
 
   return (
     <TouchableOpacity 
-      key={props.entry.id}
-      onPress={() => props.onPress ? props.onPress(props.entry) : undefined}
+      key={entry.id}
+      onPress={() => onPress ? onPress(entry) : undefined}
       style={[
         styles.pillSwitchEntry,
-        props.isSelected ? styles.pillSwitchEntrySelected : {},
-        props.style
+        isSelected ? styles.pillSwitchEntrySelected : {},
+        style
       ]}
     >
       <Text style={[
         styles.pillSwitchEntryText,
-        props.isSelected ? styles.pillSwitchEntrySelectedText : {}
-      ]}>{props.entry.name}</Text>
+        isSelected ? styles.pillSwitchEntrySelectedText : {}
+      ]}>{entry.name}</Text>
     </TouchableOpacity>
   )
 }

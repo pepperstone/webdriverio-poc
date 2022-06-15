@@ -1,4 +1,4 @@
-import { FilterButtonEntryType } from "src/common/components/filterbuttongroup/Types";
+import { FilterButtonEntry } from "src/common/components/filterbuttongroup/Types";
 
 
 interface UseDiscoverProps {
@@ -6,9 +6,9 @@ interface UseDiscoverProps {
   handleLogin: () => void,
   toggleSideMenu: () => void;
   loading: boolean;
-  filter    : FilterButtonEntryType<string> | undefined;
-  setFilter : (arg: FilterButtonEntryType<string>) => void;
-  entries   : FilterButtonEntryType<string>[];
+  filter    : FilterButtonEntry<string> | undefined;
+  setFilter : (arg: FilterButtonEntry<string>) => void;
+  entries   : FilterButtonEntry<string>[];
 }
 
 export type {

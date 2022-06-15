@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { FilterButtonEntryType } from 'src/common/components/pillswitch/Types';
+import { FilterButtonEntry } from 'src/common/components/filterbuttongroup/Types';
 
 interface DiscoverState {
   isSideMenuOpen  : boolean;
-  filters         : FilterButtonEntryType<string>[]
-  selectedFilter? : FilterButtonEntryType<string>
+  filters         : FilterButtonEntry<string>[]
+  selectedFilter? : FilterButtonEntry<string>
 }
 
 const initialState: DiscoverState = {
@@ -20,12 +20,12 @@ const discoverSlice = createSlice({
       ...state,
       isSideMenuOpen: action.payload,
     }),
-    setFilters: (state: DiscoverState, action: PayloadAction<{ entries: FilterButtonEntryType<string>[], selected?: FilterButtonEntryType<string>}>) => ({
+    setFilters: (state: DiscoverState, action: PayloadAction<{ entries: FilterButtonEntry<string>[], selected?: FilterButtonEntry<string>}>) => ({
       ...state,
       filters       : action.payload.entries,
       selectedFilter: action.payload.selected
     }),
-    setFilter: (state: DiscoverState, action: PayloadAction<FilterButtonEntryType<string>>) => ({
+    setFilter: (state: DiscoverState, action: PayloadAction<FilterButtonEntry<string>>) => ({
       ...state,
       selectedFilter: action.payload
     })
