@@ -2,18 +2,18 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from '../../../../lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
+  form: {
+    marginBottom: 15,
+    width: '90%',
+  },
   mainContainer: {
-    flex: 1,
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
   },
   text: {
-    fontSize: scale(theme.fontSize.h1),
     color: theme.colors.product.text.strong,
-  },
-  form: {
-    width: '90%',
-    marginBottom: 15,
+    fontSize: scale(theme.fontSize.h1),
   },
 });
 

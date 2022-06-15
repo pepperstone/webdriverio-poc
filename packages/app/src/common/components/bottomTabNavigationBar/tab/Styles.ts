@@ -1,20 +1,19 @@
-
 import { StyleSheet } from 'react-native';
 import { StylesCreator } from '../../../../lib/theme/Theme';
 import TabProps from './types';
 
 const stylesCreator: StylesCreator = (theme, scale, moderateScale, props: TabProps ) => StyleSheet.create({
   tab: {
+    alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   text: {
-    marginTop: scale(5),
     color: props.textColor,
-    fontSize: scale(theme.fontSize.s1),
     fontFamily: theme.font.regular,
+    fontSize: scale(theme.fontSize.s1),
     fontWeight: theme.fontWeight.semibold,
+    marginTop: scale(5),
   },
 });
 

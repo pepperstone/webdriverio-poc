@@ -3,18 +3,18 @@ import { StylesCreator } from '../../../../lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   button: {
-    marginTop: 12,
     backgroundColor: theme.colors.common.blue,
-    padding: 16,
     borderRadius: 12,
+    marginTop: 12,
     minHeight: 56,
+    padding: 16,
     width: '100%',
   },
   buttonText: {
-    fontSize: scale(theme.fontSize.h4),
-    fontFamily: theme.font.bold,
-    color: theme.colors.common.white,
     alignSelf: 'center',
+    color: theme.colors.common.white,
+    fontFamily: theme.font.bold,
+    fontSize: scale(theme.fontSize.h4),
   },
 });
 

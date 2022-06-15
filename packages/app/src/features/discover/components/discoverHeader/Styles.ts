@@ -2,23 +2,23 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from '../../../../lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
-  mainContainer: {
-    width: '100%',
-    height: 40,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  headerRightContainer: {
     alignItems: 'center',
-    paddingHorizontal: 15,
+    flexDirection: 'row',
   },
   headerTitle: {
-    fontSize: scale(theme.fontSize.h2),
     color: theme.colors.product.text.strong,
     fontFamily: theme.font.regular,
+    fontSize: scale(theme.fontSize.h2),
     fontWeight: theme.fontWeight.bold,
   },
-  headerRightContainer: {
-    flexDirection: 'row',
+  mainContainer: {
     alignItems: 'center',
+    flexDirection: 'row',
+    height: 40,
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    width: '100%',
   },
 });
 

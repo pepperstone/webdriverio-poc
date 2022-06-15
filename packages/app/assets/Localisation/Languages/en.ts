@@ -1,4 +1,4 @@
-const English = {
+export default {
   LoginScreen: {
     Name: 'Login',
     Message: 'Enter your details',
@@ -69,5 +69,3 @@ const English = {
     FollowUs: 'Follow us',
   },
 };
-
-export default English;

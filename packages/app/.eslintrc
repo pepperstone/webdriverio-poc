@@ -5,7 +5,7 @@
     "airbnb/hooks", // React
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:react-native/all",
     "@react-native-community" // React Native only
   ],
   "parser": "@typescript-eslint/parser", // TypeScript only
@@ -13,7 +13,12 @@
     "project": "./tsconfig.json", // TypeScript only
     "ecmaFeatures": { "jsx": true }
   },
-  "plugins": ["import", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "react-native",
+    "import", 
+    "@typescript-eslint"
+  ],
   "ignorePatterns": ["*.config.js"],
   "overrides": [
     {
@@ -27,6 +32,8 @@
     }
   ],
   "rules": {
+    "no-console": "warn",
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
     "no-unused-vars": [
       "error",
       {

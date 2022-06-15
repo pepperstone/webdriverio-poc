@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
-import Modal from 'react-native-modal';
-import { useSelector } from 'react-redux';
-import { CloseIconSVG } from 'src/../assets/icons';
+
 import { AppState } from 'src/app/types';
-import { useDiscoverHook } from 'src/features/discover/Hooks';
-import { useTheme } from 'src/lib/theme/Theme';
+import { CloseIconSVG } from 'assets/icons';
 import GuestMenu from './components/guestMenu';
-import stylesCreator from './Styles';
+import Modal from 'react-native-modal';
 import { ProfileDrawerModalProps } from './types';
+import stylesCreator from './Styles';
+import { useDiscoverHook } from 'src/features/discover/Hooks';
+import { useSelector } from 'react-redux';
+import { useTheme } from 'src/lib/theme/Theme';
 
 const ProfileDrawerModal = ({
   handleLogin,

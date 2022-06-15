@@ -1,12 +1,13 @@
-import React from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
-import { UserIconSVG } from 'src/../assets/icons';
+
 import DarkModeSwitch from 'src/common/components/darkModeSwitch';
+import ProfileDrawerModal from './components/profileDrawerModal';
+import React from 'react';
+import { UserIconSVG } from 'assets/icons';
+import stylesCreator from './Styles';
+import { useDiscoverHook } from '../../Hooks';
 import useStrings from 'src/common/hooks/useStrings';
 import { useTheme } from 'src/lib/theme/Theme';
-import { useDiscoverHook } from '../../Hooks';
-import ProfileDrawerModal from './components/profileDrawerModal';
-import stylesCreator from './Styles';
 
 const DiscoverHeader = () => {
   const [styles, theme] = useTheme(stylesCreator);
