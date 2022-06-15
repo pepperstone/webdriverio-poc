@@ -24,7 +24,7 @@ jobs:
       - name: Set up our JDK environment # setup JDK environment: mandatory as we need to build an android project
         uses: actions/setup-java@v1.4.3
         with:
-          java-version: 1.8
+          java-version: 11
 
       - name: Set up Node.js ## setup node and yarn with cache
         uses: actions/setup-node@v2
