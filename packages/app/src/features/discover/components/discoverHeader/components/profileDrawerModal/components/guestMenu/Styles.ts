@@ -2,14 +2,29 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from 'src/lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
-  signinContainer: {
-    marginTop: 80,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 16,
+  copyWrite: {
+    color: theme.colors.common.white,
+    fontFamily: theme.font.regular,
+    fontSize: scale(theme.fontSize.h6),
+    fontWeight: theme.fontWeight.regular,
+    marginBottom: 19,
+    marginLeft: 24,
+    marginTop: 66,
   },
-  signinWrapper: {
-    width: '48%',
+  followUsText: {
+    color: theme.colors.common.lightGrey,
+    fontFamily: theme.font.regular,
+    fontSize: scale(theme.fontSize.h4),
+    fontWeight: theme.fontWeight.bold,
+    marginLeft: 24,
+    marginTop: 150,
+  },
+  linkText: {
+    color: theme.colors.common.white,
+    fontFamily: theme.font.regular,
+    fontSize: scale(theme.fontSize.h5),
+    fontWeight: theme.fontWeight.bold,
+    marginTop: 15,
   },
   loginButton: {
     backgroundColor: theme.colors.common.buttons.secondary.default,
@@ -18,43 +33,28 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   signUpButton: {
     borderRadius: 4,
   },
-  textContainer: {
-    flex: 1,
-    marginLeft: 24,
-    marginTop: 60,
+  signinContainer: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
+    marginHorizontal: 16,
+    marginTop: 80,
   },
-  linkText: {
-    marginTop: 15,
-    fontSize: scale(theme.fontSize.h5),
-    fontFamily: theme.font.regular,
-    fontWeight: theme.fontWeight.bold,
-    color: theme.colors.common.white,
-  },
-  followUsText: {
-    marginTop: 150,
-    marginLeft: 24,
-    fontFamily: theme.font.regular,
-    fontWeight: theme.fontWeight.bold,
-    fontSize: scale(theme.fontSize.h4),
-    color: theme.colors.common.lightGrey,
+  signinWrapper: {
+    width: '48%',
   },
   socialIconsContainer: {
-    marginTop: 18,
-    marginLeft: 24,
-    width: '60%',
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  copyWrite: {
-    marginTop: 66,
-    marginBottom: 19,
     marginLeft: 24,
-    fontSize: scale(theme.fontSize.h6),
-    fontFamily: theme.font.regular,
-    fontWeight: theme.fontWeight.regular,
-    color: theme.colors.common.white,
+    marginTop: 18,
+    width: '60%',
+  },
+  textContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    marginLeft: 24,
+    marginTop: 60,
   },
 });
 

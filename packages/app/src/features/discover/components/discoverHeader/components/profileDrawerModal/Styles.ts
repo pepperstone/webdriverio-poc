@@ -2,19 +2,19 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from '../../../../../../lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme) => StyleSheet.create({
-  safeAreaView: {
-    width: '100%',
-    flex: 1,
-    backgroundColor: theme.colors.common.darkGrey,
+  closeButton: {
+    marginLeft: 30,
+    marginTop: 10,
   },
   modal: {
     margin: 0,
-    width: theme.SCREEN_WIDTH * 0.85,
     marginLeft: theme.SCREEN_WIDTH * 0.15,
+    width: theme.SCREEN_WIDTH * 0.85,
   },
-  closeButton: {
-    marginTop: 10,
-    marginLeft: 30,
+  safeAreaView: {
+    backgroundColor: theme.colors.common.darkGrey,
+    flex: 1,
+    width: '100%',
   },
 });
 

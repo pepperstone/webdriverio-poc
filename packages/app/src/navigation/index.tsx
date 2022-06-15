@@ -1,28 +1,29 @@
 import {
-  BottomTabBarProps,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import RegisterScreen from 'src/features/register';
-import { AppState } from '../app/types';
-import { BottomTabNavigationBar } from '../common/components';
-import WebView from '../common/components/webView';
-import LoginScreen from '../features/login';
-import MarketsScreen from '../features/markets';
-import PortfolioScreen from '../features/portfolio';
-import SearchScreen from '../features/search';
-import WatchlistsScreen from '../features/watchlists';
-import { useTheme } from '../lib/theme/Theme';
-import DiscoverStackNavigator from './stacks/discover';
-import stylesCreator from './Styles';
-import {
   AuthStackParamList,
   MainStackParamList,
   MainTabParamList,
   RootStackParamList,
 } from './Types';
+import {
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
+import React, { useCallback } from 'react';
+
+import { AppState } from '../app/types';
+import { BottomTabNavigationBar } from '../common/components';
+import DiscoverStackNavigator from './stacks/discover';
+import LoginScreen from '../features/login';
+import MarketsScreen from '../features/markets';
+import PortfolioScreen from '../features/portfolio';
+import RegisterScreen from 'src/features/register';
+import SearchScreen from '../features/search';
+import WatchlistsScreen from '../features/watchlists';
+import WebView from '../common/components/webView';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import stylesCreator from './Styles';
+import { useSelector } from 'react-redux';
+import { useTheme } from '../lib/theme/Theme';
 
 const MainTabStack = createBottomTabNavigator<MainTabParamList>();
 const bottomTabNavigation = (props: BottomTabBarProps) => (

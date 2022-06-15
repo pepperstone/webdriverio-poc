@@ -3,47 +3,47 @@ import { StylesCreator } from '../../../../lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme) => StyleSheet.create({
   background: {
-    marginTop: 12,
-    marginLeft: 12,
-    minWidth: 140,
-    padding: 12,
     backgroundColor: theme.colors.product.background.secondary,
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
     height: 112,
+    marginLeft: 12,
+    marginTop: 12,
+    minWidth: 140,
+    padding: 12,
   },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 12,
-    color: theme.colors.product.text.strong,
-  },
-  text: {
-    fontSize: 10,
-    color: theme.colors.product.text.strong,
-    marginTop: 4,
-  },
-  increase: {
-    fontSize: 10,
-    color: theme.colors.product.brand.primary,
-    marginLeft: 6,
-    marginTop: 4,
+  chart: {
+    height: 20,
+    marginTop: 8,
   },
   horiztonal: {
     alignItems: 'center',
     flexDirection: 'row',
   },
-  chart: {
-    marginTop: 8,
-    height: 20,
+  increase: {
+    color: theme.colors.product.brand.primary,
+    fontSize: 10,
+    marginLeft: 6,
+    marginTop: 4,
+  },
+  lineChartInset: {
+    bottom: 20,
+    top: 20,
   },
   loading: {
     marginTop: 20,
   },
-  lineChartInset: {
-    top: 20,
-    bottom: 20,
+  text: {
+    color: theme.colors.product.text.strong,
+    fontSize: 10,
+    marginTop: 4,
+  },
+  title: {
+    color: theme.colors.product.text.strong,
+    fontSize: 12,
+    fontWeight: 'bold',
   },
 });
 

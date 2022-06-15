@@ -3,13 +3,13 @@ import { StylesCreator } from '../../lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   background: {
-    flex: 1,
     alignSelf: 'center',
+    flex: 1,
     zIndex: 10,
   },
   text: {
-    fontSize: scale(theme.fontSize.h1),
     color: theme.colors.product.text.strong,
+    fontSize: scale(theme.fontSize.h1),
   },
 });
 

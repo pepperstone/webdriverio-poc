@@ -2,29 +2,29 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from 'src/lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
-  tabBarLabelStyle: {
-    fontSize: scale(theme.fontSize.h5),
-    textTransform: 'none',
-    fontFamily: theme.font.regular,
-    fontWeight: theme.fontWeight.semibold,
-    color: theme.colors.product.text.strong,
-  },
-  tabBarItemStyle: {
-    width: 80,
-    padding: 0,
-    marginLeft: 0,
-  },
-  tabBarStyle: {
-    padding: 0,
-    paddingTop: 25,
-    backgroundColor: theme.colors.product.background.base,
-    borderRightColor: 'red',
-    zIndex: 0,
-  },
   tabBarIndicatorStyle: {
     backgroundColor: theme.colors.product.brand.primary,
     marginLeft: theme.SCREEN_WIDTH / 25,
     width: '20%',
+  },
+  tabBarItemStyle: {
+    marginLeft: 0,
+    padding: 0,
+    width: 80,
+  },
+  tabBarLabelStyle: {
+    color: theme.colors.product.text.strong,
+    fontFamily: theme.font.regular,
+    fontSize: scale(theme.fontSize.h5),
+    fontWeight: theme.fontWeight.semibold,
+    textTransform: 'none',
+  },
+  tabBarStyle: {
+    backgroundColor: theme.colors.product.background.base,
+    borderRightColor: theme.colors.common.red,
+    padding: 0,
+    paddingTop: 25,
+    zIndex: 0,
   },
 });
 

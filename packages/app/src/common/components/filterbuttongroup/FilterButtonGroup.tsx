@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Text, TouchableOpacity } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 
@@ -7,7 +7,9 @@ import { useTheme } from "src/lib/theme/Theme"
 import { FilterButtonGroupProps, FilterButtonProps } from "./Types"
 
 /**
- * a component used to display a selection of entries in a horizontal axis
+ * a component used to display a group of buttons in a horizontal axis
+ * intended for filtering, 
+ * where a single option can only be selected
  * @param props - `PillSwitchProps`
  * ```
  * component 
@@ -18,45 +20,45 @@ import { FilterButtonGroupProps, FilterButtonProps } from "./Types"
  */
 const FilterButtonGroup = <Type, >(props: FilterButtonGroupProps<Type>) => {
     
-    const [styles, theme] = useTheme(styleCreator)
-    const {onSelectedEntry, selectedEntry, entryStyle, style} = props
+  const [styles, theme] = useTheme(styleCreator)
+  const {onSelectedEntry, selectedEntry, entryStyle, style} = props
     
 
-    return (
-      <ScrollView
-        horizontal={true}
-        automaticallyAdjustContentInsets={true}
-        bounces={false}
-        style={[
-          styles.pillswitch,
-          style
-        ]}
+  return (
+    <ScrollView
+      horizontal={true}
+      automaticallyAdjustContentInsets={true}
+      bounces={false}
+      style={[
+        styles.pillswitch,
+        style
+      ]}
       >
-        {
-          (props.entries || []).map((entry) => {
-            return (
-              <FilterButton 
-                entry={entry}
-                onPress={ (selected) => {
-                  if (selected.id != selectedEntry?.id && onSelectedEntry) {
-                    onSelectedEntry(selected)
-                  }
-                }}
-                style={entryStyle}
-                isSelected={entry.id === selectedEntry?.id}
-              />
-            )
-          })
-        }
-      </ScrollView>
-    )
+      {
+        (props.entries || []).map((entry) => {
+          return (
+            <FilterButton 
+              entry={entry}
+              onPress={ (selected) => {
+                if (selected.id != selectedEntry?.id && onSelectedEntry) {
+                  onSelectedEntry(selected)
+                }
+              }}
+              style={entryStyle}
+              isSelected={entry.id === selectedEntry?.id}
+            />
+          )
+        })
+      }
+    </ScrollView>
+  )
 }
 
 export default FilterButtonGroup
 
 
 /**
- * a component used to display a single entry of an option inside a `PillSwitch`
+ * a component used to display a single entry of an option inside a `FilterButtonGroup`
  * @param props - `PillSwitchEntryProps<Type>`
  * ```
  * component: 
@@ -65,7 +67,7 @@ export default FilterButtonGroup
  * 
  * ```
  */
-const FilterButton = <Type, >(props: FilterButtonProps<Type>) => {
+export const FilterButton = <Type, >(props: FilterButtonProps<Type>) => {
 
   const [styles, theme] = useTheme(styleCreator)
   const {onPress, isSelected, style, entry} = props

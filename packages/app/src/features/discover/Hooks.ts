@@ -1,9 +1,9 @@
+import { AppState } from 'src/app/types';
 import { UseDiscoverProps } from './types';
 import { setIsLoggedIn } from '../../lib/user/slices';
 import { setIsSideMenuOpen,setFilter,setFilters } from './slices';
 import { useDispatch,useSelector } from 'react-redux';
 import { useEffect,useState } from 'react';
-import { AppState } from 'src/app/types';
 import { FilterButtonEntry } from '../../common/components/filterbuttongroup/Types';
 import { generateRandomID } from 'src/lib/Utils';
 
@@ -35,12 +35,14 @@ export const useDiscoverHook = (): UseDiscoverProps => {
     
   }, [])
 
+  // const hi;
+
   const doLogout = (): void => {
     setLoading(true);
 
     setTimeout(() => {
-      setLoading(false);
-      dispatch(setIsLoggedIn(false));
+      setLoading(true);
+      dispatch(setIsLoggedIn(true));
     }, 2000);
   };
 
