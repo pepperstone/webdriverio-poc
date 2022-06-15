@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 // twitter
 export const PEPPERSTONE_TWITTER_LINKS = {
   url: 'https://www.twitter.com/PepperstoneFX',
@@ -7,7 +9,7 @@ export const PEPPERSTONE_TWITTER_LINKS = {
 // facebook
 export const PEPPERSTONE_FACEBOOK_LINKS = {
   url: 'https://www.facebook.com/Pepperstonefx',
-  scheme: 'fb://profile/157604064293524',
+  scheme: Platform.OS === 'ios' ? 'fb://profile/157604064293524' : 'fb://page/157604064293524',
 };
 
 // linkedIn
