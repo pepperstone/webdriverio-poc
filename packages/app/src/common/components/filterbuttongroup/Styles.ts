@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
+import { scale } from "react-native-size-matters";
 import { StylesCreator } from "src/lib/theme/Theme";
 
 const Style: StylesCreator = (theme) => StyleSheet.create({
   pillswitch: {
     width: '100%',
-    paddingVertical: 10,
-    paddingLeft: 10
+    padding: 10
   },
 
   pillSwitchEntry: {
@@ -14,14 +14,16 @@ const Style: StylesCreator = (theme) => StyleSheet.create({
     height: 36,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10,
-    marginHorizontal: 5,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    marginHorizontal: 4,
     borderRadius: 4
   },
 
   pillSwitchEntryText: {
     color: theme.colors.product.text.strong,
-    fontWeight: theme.fontWeight.semibold
+    fontWeight: theme.fontWeight.semibold,
+    fontSize: scale(theme.fontSize.h5)
   },
 
   pillSwitchEntrySelected: {

@@ -6,7 +6,7 @@ import TextButton from 'src/common/components/buttons/textButton/index';
 import stylesCreator from './Styles';
 import { useDiscoverHook } from '../../Hooks';
 import { useTheme } from '../../../../lib/theme/Theme';
-import PillSwitch from 'src/common/components/filterbuttongroup';
+import FilterButtonGroup from 'src/common/components/filterbuttongroup';
 
 const DiscoverFeedScreen = () => {
   const [styles] = useTheme(stylesCreator);
@@ -19,13 +19,11 @@ const DiscoverFeedScreen = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <PillSwitch
+      <FilterButtonGroup
+        style={styles.filter}
         entries={entries}
         selectedEntry={filter}
         onSelectedEntry={setFilter}
-        style={{
-          flexGrow    : 0
-        }}
       />
       <ScrollView
         horizontal
