@@ -13,11 +13,13 @@ export default function TrendingInst({ heading }: { heading: string }) {
   };
 
   const addCategories = (category: string) => {
-    const newCategories = [...categories, category]
+    const newCategories = [...categories, category];
+    const filteredCategories = newCategories
+      .filter((c, i) => newCategories.indexOf(c) === i)
       .filter((c) => c !== "All")
       .sort();
 
-    setCategories(newCategories);
+    setCategories(filteredCategories);
   };
 
   // ----------------------------
