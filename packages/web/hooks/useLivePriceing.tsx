@@ -18,24 +18,27 @@ const useLivePricing = (symbols: string, refreshRate: number) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setLoading(true);
-      setError(null);
+    // Only run if there are symobls
+    if (symbols.length > 0) {
+      const intervalId = setInterval(() => {
+        setLoading(true);
+        setError(null);
 
-      fetch(API_URL + "?symbols=" + symbols)
-        .then((response) => response.json())
-        .then((data) => {
-          setData(data);
-          setLoaded(true);
-          setLoading(false);
-        })
-        .catch((error) => {
-          setError(error);
-          setLoading(false);
-        });
-    }, refreshRate);
+        fetch(API_URL + "?symbols=" + symbols)
+          .then((response) => response.json())
+          .then((data) => {
+            setData(data);
+            setLoaded(true);
+            setLoading(false);
+          })
+          .catch((error) => {
+            setError(error);
+            setLoading(false);
+          });
+      }, refreshRate);
 
-    return () => clearInterval(intervalId);
+      return () => clearInterval(intervalId);
+    }
   }, [symbols]);
 
   return {
