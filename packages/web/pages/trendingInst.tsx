@@ -5,7 +5,7 @@ import Layout, { siteTitle } from "../components/layout";
 import { useState } from "react";
 import useTrendingInstrBids from "../hooks/useTrendingInstrBids";
 
-export default function hookstest({ heading }: { heading: string }) {
+export default function TrendingInst({ heading }: { heading: string }) {
   const [categories, setCategories] = useState(["All"]);
 
   const updateCategories = (category: string) => {
