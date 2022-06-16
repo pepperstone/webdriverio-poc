@@ -91,13 +91,6 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
       // Get the Symbols meta data.
       const symbolInfo = await getSymbolInfo(ticker);
 
-      console.log(
-        index,
-        trendingSymbol,
-        trendingInstruments.top_instruments_tickers[index],
-        symbolInfo
-      );
-
       return {
         symbol: trendingSymbol,
         ticker: ticker,
