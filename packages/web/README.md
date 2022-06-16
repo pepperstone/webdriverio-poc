@@ -15,24 +15,52 @@
 
 ## Docker
 
-`docker build -t public-website-x2 .`
+```shell
+docker build -t x2-trade-web .
 
-`docker run -p 3000:3000 public-website-x2`
+docker run -p 3000:3000 x2-trade-web
+```
 
 ## Copilot
 
-### Setup the App (x2-trade-web)
+First, set AWS environment variables or add a profile to your AWS credentials file.
 
-`copilot app init x2-trade-web --domain pretrade.pepperstone.com`
+Currently, Copilot is running under the "Pretrade (NonProduction)" account.
 
-### Setup the service (Our NextJS App)
+#### Setup
 
-`copilot svc init --app x2-trade-web --name frontend --svc-type "Load Balanced Web Service" --dockerfile ./Dockerfile`
+1. Install AWS Copilot:
+   https://aws.github.io/copilot-cli/docs/getting-started/install/
+2. Install Docker:
+   https://www.docker.com/get-started/
 
-### Setup the Prod environment
+```shell
+# Setup the App (x2-trade-web)
+copilot app init x2-trade-web \
+  --domain pretrade.pepperstone.com
 
-`copilot env init --app x2-trade-web --name prod --default-config --region ap-southeast-2 --container-insights`
+# Setup the service (Our NextJS App)
+copilot svc init \
+  --app x2-trade-web \
+  --name frontend \
+  --svc-type "Load Balanced Web Service" \
+  --dockerfile ./Dockerfile
 
-### Deploy!!
+# Setup the Prod environment
+copilot env init \
+  --app x2-trade-web \
+  --name prod \
+  --default-config \
+  --region ap-southeast-2 \
+  --container-insights
 
-`copilot deploy`
+# Deploy!!
+copilot deploy
+```
+
+#### Update
+
+```shell
+# Deploy!!
+copilot deploy
+```
