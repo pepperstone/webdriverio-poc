@@ -16,6 +16,7 @@ export default function TrendingInst({ heading }: { heading: string }) {
     const newCategories = [...categories, category]
       .filter((c) => c !== "All")
       .sort();
+
     setCategories(newCategories);
   };
 
@@ -98,7 +99,7 @@ export default function TrendingInst({ heading }: { heading: string }) {
             return (
               <div
                 className="card"
-                key={instr.ticker}
+                key={instr.symbol + instr.ticker}
                 style={{ width: "10rem" }}
               >
                 <div className="card-body">
