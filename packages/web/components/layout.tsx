@@ -11,7 +11,7 @@ export default function Layout({
   home?: boolean;
 }) {
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <meta name="description" content="Pepperstone" />
       </Head>

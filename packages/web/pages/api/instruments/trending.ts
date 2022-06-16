@@ -13,7 +13,7 @@ const fake_data = {
   timestamp: "2022-06-09T04:42:20",
   top_instruments_symbols: [
     "US2000.a",
-    "USDCAD_SB",
+    "AUDCAD",
     "XAUGBP",
     "LINKUSD",
     "US30_SB",
@@ -23,13 +23,13 @@ const fake_data = {
     "EURCAD.r",
     "EURJPY",
     "AUDNZD.p",
-    "EURCAD.a",
+    "Bitcoin",
     "SpotCrude",
     "GBPJPY.r",
   ],
   top_instruments_tickers: [
     "US2000",
-    "USDCAD",
+    "AUDCAD",
     "XAUGBP",
     "LINKUSD",
     "US30",
@@ -39,7 +39,7 @@ const fake_data = {
     "EURCAD",
     "EURJPY",
     "AUDNZD",
-    "EURCAD",
+    "Bitcoin",
     "SpotCrude",
     "GBPJPY",
   ],
@@ -90,13 +90,6 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
 
       // Get the Symbols meta data.
       const symbolInfo = await getSymbolInfo(ticker);
-
-      console.log(
-        index,
-        trendingSymbol,
-        trendingInstruments.top_instruments_tickers[index],
-        symbolInfo
-      );
 
       return {
         symbol: trendingSymbol,

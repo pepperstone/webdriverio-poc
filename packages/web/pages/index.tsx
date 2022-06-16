@@ -11,11 +11,18 @@ export default function home({ heading }: { heading: string }) {
       </Head>
       <section>
         <h1>{heading}</h1>
-
         <hr />
 
-        <h2>API</h2>
+        <h2>Pages</h2>
+        <ul>
+          <li>
+            <Link href="/trendingInst">
+              <a>Trending Instruments</a>
+            </Link>
+          </li>
+        </ul>
 
+        <h2>API</h2>
         <ul>
           <li>
             <Link href="/api/instruments/trending?categories=All">
