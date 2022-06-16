@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { StylesCreator } from '../../../../lib/theme/Theme';
+import { StylesCreator } from "src/lib/theme/Theme";
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   mainContainer: {
@@ -12,8 +12,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
     fontSize: scale(theme.fontSize.h1),
   },
   filter: {
-    flex: 0,
-    maxHeight: 50
+    flex: 0
   },
   scrollView: {
     paddingRight: 12
