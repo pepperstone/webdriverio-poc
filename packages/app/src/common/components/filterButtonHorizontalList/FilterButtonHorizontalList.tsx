@@ -38,10 +38,7 @@ const FilterButtonHorizontalList = <Type,>({
     );
   };
 
-  /*
-   * wrapping flatlist inside a view fixes the flex of the flatlist
-   * causes it to expand expanding without setting the maxHeight
-   */
+  //wrapping flatlist inside a view fixes the flex issue of the flatlist
   return (
     <View style={[styles.mainContainer, containerStyle]}>
       <FlatList
