@@ -1,25 +1,28 @@
 import { useState } from "react"
-import { FilterButtonItem } from "src/common/components/filterButtonHorizontalList/types"
+import { FilterButtonItem } from "src/common/components/filterButtonHorizontalList/types";
 import { generateRandomID } from "src/lib/Utils"
 import { UseDiscoverFeedProps } from "./types"
 
-const filterList: FilterButtonItem<string>[] = ["All", "Forex", "Shares", "Crypto", "Indices"].map((entry) => {
-  return {
-    id: generateRandomID(),
-    title: entry,
-    value: entry
-  }
-})
-
 const useDiscoverFeedHook = () : UseDiscoverFeedProps => {
 
-  const [selectedItem, setSelectedItem] = useState(filterList[0])
+  const filterList : string[] = ["All", "Forex", "Shares", "Crypto", "Indices"];
+
+  const [filters] = useState(
+    filterList.map((item) : FilterButtonItem => {
+      return {
+        id: generateRandomID(),
+        title: item
+      }
+    })
+  );
+
+  const [selectedItemID, setSelectedItemID] = useState(filters[0].id);
 
   return {
-    filters: filterList,
-    selectedItem,
-    setSelectedItem
-  }
+    filters,
+    selectedItemID,
+    setSelectedItemID
+  };
 }
 
 export default useDiscoverFeedHook

@@ -17,7 +17,7 @@ const stylesCreator: StylesCreator = (theme, scale, moderateScale, props: Filter
   },
 
   text: {
-    color:  props.isSelected ? theme.colors.product.button.text.strong : theme.colors.product.text.strong,
+    color:  props.isSelected ? theme.colors.product.button.text.strong : theme.colors.product.button.text.subdued,
     fontWeight: theme.fontWeight.semibold,
     fontSize: scale(theme.fontSize.h5)
   },

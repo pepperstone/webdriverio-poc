@@ -1,55 +1,68 @@
 import React, { useState } from 'react';
-import { FlatList } from 'react-native-gesture-handler';
 import styleCreator from './Styles';
 import { useTheme } from 'src/lib/theme/Theme';
-import { FilterButtonGroupProps, FilterButtonItem } from './types';
+import {
+  FilterButtonHorizontalListProps as FilterButtonHorizontalListProps,
+  FilterButtonItem,
+} from './types';
 import { FilterButton } from './filterButton/FilterButton';
-import { View } from 'react-native';
+import {
+  ListRenderItem,
+  FlatList,
+  View,
+  ListRenderItemInfo,
+} from 'react-native';
 
-const FilterButtonHorizontalList = <Type,>({
+const FilterButtonHorizontalList = ({
   data,
-  selectedItem,
-  onSelectedItem,
+  selectedItemID,
+  onSelectedItemID,
   containerStyle,
   listStyle,
   itemStyle,
-}: FilterButtonGroupProps<Type>) => {
+}: FilterButtonHorizontalListProps) => {
   const [styles, theme] = useTheme(styleCreator);
 
-  const [_selectedItem, setSelectedItem] = useState(selectedItem);
+  const [_selectedItemID, setSelectedItemID] = useState(selectedItemID);
 
-  const onSelect = (id: string, item: FilterButtonItem<Type>) => {
-    if (id !== _selectedItem.id) {
-      onSelectedItem(item);
-      setSelectedItem(item);
+  const onSelect = (id: string) => {
+    if (id !== _selectedItemID) {
+      onSelectedItemID(id);
+      setSelectedItemID(id);
     }
   };
 
-  const renderList = (item: FilterButtonItem<Type>) => {
-    const isSelected = item.id === _selectedItem?.id;
+  const renderItem: ListRenderItem<FilterButtonItem> = ({
+    item,
+  }: ListRenderItemInfo<FilterButtonItem>) => {
+    const isSelected = item.id === _selectedItemID;
     return (
       <FilterButton
         id={item.id}
         title={item.title}
-        onPress={(id: string) => onSelect(id, item)}
+        onPress={onSelect}
         style={itemStyle}
         isSelected={isSelected}
       />
     );
   };
 
+  const extractItemID = ({ id }: FilterButtonItem): string => {
+    return id;
+  };
+
   //wrapping flatlist inside a view fixes the flex issue of the flatlist
   return (
     <View style={[styles.mainContainer, containerStyle]}>
       <FlatList
-        horizontal={true}
+        horizontal
         style={[styles.list, listStyle]}
         contentContainerStyle={[styles.content]}
         data={data}
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item, index }) => renderList(item)}
-      ></FlatList>
+        keyExtractor={extractItemID}
+        renderItem={renderItem}
+      />
     </View>
   );
 };

@@ -13,10 +13,14 @@ export const FilterButton = ({
 }: FilterButtonProps) => {
   const [styles, theme] = useTheme(styleCreator, { isSelected });
 
+  const _onPress = () => {
+    onPress(id);
+  };
+
   return (
     <TouchableOpacity
       key={id}
-      onPress={() => onPress(id)}
+      onPress={_onPress}
       style={[styles.container, style]}
     >
       <Text style={[styles.text]}>{title}</Text>

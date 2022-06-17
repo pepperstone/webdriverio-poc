@@ -5,8 +5,6 @@ import { setIsSideMenuOpen } from './slices';
 import { useDispatch,useSelector } from 'react-redux';
 import { useState } from 'react';
 
-
-
 export const useDiscoverHook = (): UseDiscoverProps => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState < boolean > (false);

@@ -13,14 +13,14 @@ const DiscoverFeedScreen = () => {
   const [styles] = useTheme(stylesCreator);
 
   const { loading, doLogout } = useDiscoverHook();
-  const { filters, selectedItem, setSelectedItem } = useDiscoverFeedHook();
+  const { filters, selectedItemID, setSelectedItemID } = useDiscoverFeedHook();
 
   return (
     <View style={styles.mainContainer}>
       <FilterButtonHorizontalList
         data={filters}
-        selectedItem={selectedItem}
-        onSelectedItem={setSelectedItem}
+        selectedItemID={selectedItemID}
+        onSelectedItemID={setSelectedItemID}
         containerStyle={styles.filter}
       />
       <ScrollView
