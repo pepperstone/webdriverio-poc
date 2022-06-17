@@ -12,7 +12,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
     fontSize: scale(theme.fontSize.h1),
   },
   filter: {
-    flex: 0
+    //flex: 0
   },
   scrollView: {
     paddingRight: 12

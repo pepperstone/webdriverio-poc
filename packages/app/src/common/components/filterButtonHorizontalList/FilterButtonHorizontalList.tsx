@@ -4,14 +4,15 @@ import styleCreator from './Styles';
 import { useTheme } from 'src/lib/theme/Theme';
 import { FilterButtonGroupProps, FilterButtonItem } from './types';
 import { FilterButton } from './filterButton/FilterButton';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 const FilterButtonHorizontalList = <Type,>({
   data,
   selectedItem,
   onSelectedItem,
-  itemStyle: entryStyle,
   containerStyle,
+  listStyle,
+  itemStyle,
 }: FilterButtonGroupProps<Type>) => {
   const [styles, theme] = useTheme(styleCreator);
 
@@ -31,17 +32,22 @@ const FilterButtonHorizontalList = <Type,>({
         id={item.id}
         title={item.title}
         onPress={(id: string) => onSelect(id, item)}
-        style={entryStyle}
+        style={itemStyle}
         isSelected={isSelected}
       />
     );
   };
 
+  /*
+   * wrapping flatlist inside a view fixes the flex of the flatlist
+   * causes it to expand expanding without setting the maxHeight
+   */
   return (
-    <View style={[containerStyle]}>
+    <View style={[styles.mainContainer, containerStyle]}>
       <FlatList
         horizontal={true}
-        style={[styles.container]}
+        style={[styles.list, listStyle]}
+        contentContainerStyle={[styles.content]}
         data={data}
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.id}

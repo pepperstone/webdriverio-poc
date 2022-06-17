@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { FilterButtonItem } from 'src/common/components/filterButtonHorizontalList/types';
 
 interface DiscoverState {
   isSideMenuOpen: boolean;

@@ -7,6 +7,7 @@ export interface FilterButtonGroupProps<Type> {
   selectedItem: FilterButtonItem<Type>;
   onSelectedItem: (arg: FilterButtonItem<Type>) => void;
   containerStyle?: VStyle
+  listStyle?: VStyle
   itemStyle?: VStyle;
 }
 
