@@ -1,13 +1,10 @@
-import React from 'react';
+import { SvgType } from 'src/lib/types/SvgTypes';
 import { VStyle } from '../../../../lib/types/StyleTypes';
-import { SvgProps } from 'react-native-svg';
 
 interface SvgButtonProps {
   onPress: () => void;
   buttonStyles?: VStyle;
-  Svg: React.ComponentType<SvgProps & {
-    fillSecondary?: string;
-  }>;
+  Icon: SvgType;
   fill: string;
   fillSecondary?: string;
 }

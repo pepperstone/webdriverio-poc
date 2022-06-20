@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
-
+import { SvgType } from 'src/lib/types/SvgTypes';
 interface TabProps {
   name: string;
-  textColor: string;
-  tabIcon: ReactNode;
+  activeColor: string;
+  Icon: SvgType;
+  fill: string;
   onTabPress: (name: string) => void;
 }
 

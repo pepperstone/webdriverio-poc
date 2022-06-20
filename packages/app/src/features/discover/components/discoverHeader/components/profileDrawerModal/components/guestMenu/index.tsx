@@ -1,23 +1,22 @@
 import { FacebookSVG, LinkedInSVG, TwitterSVG, YoutubeSVG } from 'assets/logos';
+import React from 'react';
+import { Text, View } from 'react-native';
+import SvgButton from 'src/common/components/buttons/svgButton';
+import TextButton from 'src/common/components/buttons/textButton';
+import TextTouchable from 'src/common/components/buttons/textTouchable';
+import useStrings from 'src/common/hooks/useStrings';
+import { useDiscoverHook } from 'src/features/discover/Hooks';
 import {
   PEPPERSTONE_FACEBOOK_LINKS,
   PEPPERSTONE_LINKEDIN_LINKS,
   PEPPERSTONE_TWITTER_LINKS,
   PEPPERSTONE_YOUTUBE_LINKS,
 } from 'src/lib/constants/Links';
-import { Text, View } from 'react-native';
-
-import { GuestMenuProps } from './types';
-import React from 'react';
-import SvgButton from 'src/common/components/buttons/svgButton';
-import TextButton from 'src/common/components/buttons/textButton';
-import TextTouchable from 'src/common/components/buttons/textTouchable';
-import { UseGuestMenuHook } from './Hooks';
-import { openSocialLink } from 'src/lib/Utils';
-import stylesCreator from './Styles';
-import { useDiscoverHook } from 'src/features/discover/Hooks';
-import useStrings from 'src/common/hooks/useStrings';
 import { useTheme } from 'src/lib/theme/Theme';
+import { openSocialLink } from 'src/lib/Utils';
+import { UseGuestMenuHook } from './Hooks';
+import stylesCreator from './Styles';
+import { GuestMenuProps } from './types';
 
 const GuestMenu = ({ handleLogin, handleSignup }: GuestMenuProps) => {
   const [styles, theme] = useTheme(stylesCreator);
@@ -93,22 +92,22 @@ const GuestMenu = ({ handleLogin, handleSignup }: GuestMenuProps) => {
         <SvgButton
           onPress={() => openSocialLink(PEPPERSTONE_TWITTER_LINKS)}
           fill={theme.colors.common.white}
-          Svg={TwitterSVG}
+          Icon={TwitterSVG}
         />
         <SvgButton
           onPress={() => openSocialLink(PEPPERSTONE_FACEBOOK_LINKS)}
           fill={theme.colors.common.white}
-          Svg={FacebookSVG}
+          Icon={FacebookSVG}
         />
         <SvgButton
           onPress={() => openSocialLink(PEPPERSTONE_LINKEDIN_LINKS)}
           fill={theme.colors.common.white}
-          Svg={LinkedInSVG}
+          Icon={LinkedInSVG}
         />
         <SvgButton
           onPress={() => openSocialLink(PEPPERSTONE_YOUTUBE_LINKS)}
           fill={theme.colors.common.white}
-          Svg={YoutubeSVG}
+          Icon={YoutubeSVG}
         />
       </View>
       <Text style={styles.copyWrite}>{Legal.CopyWrite}</Text>
