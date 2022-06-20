@@ -1,16 +1,16 @@
 import React from 'react';
-import { SvgButtonProps } from './types';
 import { TouchableOpacity } from 'react-native';
+import { SvgButtonProps } from './types';
 
 const SvgButton = ({
   onPress,
   buttonStyles,
-  Svg,
+  Icon,
   fill,
   fillSecondary,
 }: SvgButtonProps) => (
   <TouchableOpacity style={buttonStyles} onPress={onPress}>
-    <Svg fill={fill} fillSecondary={fillSecondary} />
+    <Icon fill={fill} fillSecondary={fillSecondary} />
   </TouchableOpacity>
 );
 
