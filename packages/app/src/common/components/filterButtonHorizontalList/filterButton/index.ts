@@ -1,3 +1,3 @@
-import { FilterButton } from "./FilterButton";
+import { FilterButton } from './FilterButton';
 
-export default FilterButton
+export default FilterButton;

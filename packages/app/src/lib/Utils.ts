@@ -17,9 +17,4 @@ export const openSocialLink = (link: socialLinkProps ) => {
     .catch(() => {});
 };
 
-/** generate random id
- * @param: prefix - string value added before the random id
- */
-export const generateRandomID = (prefix: string = "") : string => {
-  return  prefix + '_' + Math.random().toString(36);
-};
+

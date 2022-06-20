@@ -1,4 +1,4 @@
-import { VStyle } from "src/lib/types/StyleTypes";
+import { VStyle } from 'src/lib/types/StyleTypes';
 
 export interface FilterButtonHorizontalListProps {
   data: FilterButtonItem[];

@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView, View } from 'react-native';
-
-import InstrumentTile from '../../../../common/components/tiles/instrumentTile';
 import TextButton from 'src/common/components/buttons/textButton/index';
 import stylesCreator from './Styles';
 import { useDiscoverHook } from '../../Hooks';
-import { useTheme } from '../../../../lib/theme/Theme';
 import FilterButtonHorizontalList from 'src/common/components/filterButtonHorizontalList';
 import useDiscoverFeedHook from './Hooks';
+import { useTheme } from 'src/lib/theme/Theme';
+import InstrumentTile from 'src/common/components/tiles/instrumentTile';
 
 const DiscoverFeedScreen = () => {
   const [styles] = useTheme(stylesCreator);
@@ -32,7 +31,7 @@ const DiscoverFeedScreen = () => {
         <InstrumentTile id="GOLD" />
         <InstrumentTile id="GER40" />
       </ScrollView>
-      <View style={styles.content}></View>
+      <View style={styles.content} />
       <View style={styles.form}>
         <TextButton onPress={doLogout} text="Logout" loading={loading} />
       </View>

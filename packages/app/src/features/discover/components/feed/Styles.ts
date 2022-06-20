@@ -1,34 +1,30 @@
 import { StyleSheet } from 'react-native';
-import { StylesCreator } from "src/lib/theme/Theme";
+import { StylesCreator } from 'src/lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
+  content: {
+    flex: 1,
+  },
+
+  form: {
+    alignSelf: 'center',
+    marginBottom: 15,
+    width: '90%',
+  },
+
   mainContainer: {
     alignItems: 'stretch',
     flex: 1,
     justifyContent: 'center',
   },
 
+  scrollView: {
+    paddingRight: 12,
+  },
+
   text: {
     color: theme.colors.product.text.strong,
     fontSize: scale(theme.fontSize.h1),
-  },
-  
-  filter: {
-    
-  },
-  
-  scrollView: {
-    paddingRight: 12
-  },
-
-  content: {
-    flex: 1,
-  },
-
-  form: {
-    marginBottom: 15,
-    width: '90%',
-    alignSelf: 'center'
   },
 });
 

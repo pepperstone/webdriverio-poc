@@ -1,3 +1,3 @@
-import FilterButtonHorizontalList from "./FilterButtonHorizontalList";
+import FilterButtonHorizontalList from './FilterButtonHorizontalList';
 
-export default FilterButtonHorizontalList
+export default FilterButtonHorizontalList;

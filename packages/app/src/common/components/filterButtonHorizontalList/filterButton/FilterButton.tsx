@@ -11,19 +11,19 @@ export const FilterButton = ({
   isSelected,
   style,
 }: FilterButtonProps) => {
-  const [styles, theme] = useTheme(styleCreator, { isSelected });
+  const [styles] = useTheme(styleCreator, { isSelected });
 
-  const _onPress = () => {
+  const onPressButton = () => {
     onPress(id);
   };
 
   return (
     <TouchableOpacity
       key={id}
-      onPress={_onPress}
+      onPress={onPressButton}
       style={[styles.container, style]}
     >
-      <Text style={[styles.text]}>{title}</Text>
+      <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
 };

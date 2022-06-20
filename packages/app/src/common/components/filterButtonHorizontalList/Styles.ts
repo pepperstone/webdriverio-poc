@@ -1,21 +1,14 @@
-import { StyleSheet } from "react-native";
-import { scale } from "react-native-size-matters";
-import { StylesCreator } from "src/lib/theme/Theme";
+import { StyleSheet } from 'react-native';
+import { StylesCreator } from 'src/lib/theme/Theme';
 
-const stylesCreator: StylesCreator = (theme) => StyleSheet.create({
-
-  mainContainer: {
-
-  },
-
+const stylesCreator: StylesCreator = () => StyleSheet.create({
   list: {
+    paddingVertical: 10,
     width: '100%',
-    paddingVertical: 10
   },
+  listContent: {
+    paddingHorizontal: 10,
+  },
+});
 
-  content: {
-    paddingHorizontal: 10
-  }
-})
-
-export default stylesCreator
+export default stylesCreator;

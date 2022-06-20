@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export const useDiscoverHook = (): UseDiscoverProps => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState < boolean > (false);
+  const [loading, setLoading] = useState(false);
   const { isSideMenuOpen } = useSelector((state: AppState) => state.discover);
 
   const doLogout = (): void => {

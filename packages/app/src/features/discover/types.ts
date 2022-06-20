@@ -1,6 +1,3 @@
-import { FilterButtonItem } from "src/common/components/filterButtonHorizontalList/types";
-
-
 interface UseDiscoverProps {
   doLogout: () => void;
   handleLogin: () => void,
