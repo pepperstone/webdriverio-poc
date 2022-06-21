@@ -2,7 +2,7 @@ import { AppState } from 'src/app/types';
 import { UseDiscoverProps } from './types';
 import { setIsLoggedIn } from '../../lib/user/slices';
 import { setIsSideMenuOpen } from './slices';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 export const useDiscoverHook = (): UseDiscoverProps => {

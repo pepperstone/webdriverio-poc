@@ -31,7 +31,6 @@ const DiscoverFeedScreen = () => {
         <InstrumentTile id="GOLD" />
         <InstrumentTile id="GER40" />
       </ScrollView>
-      <View style={styles.content} />
       <View style={styles.form}>
         <TextButton onPress={doLogout} text="Logout" loading={loading} />
       </View>

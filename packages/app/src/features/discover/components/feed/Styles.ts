@@ -2,10 +2,6 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from 'src/lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
-  content: {
-    flex: 1,
-  },
-
   form: {
     alignSelf: 'center',
     marginBottom: 15,
