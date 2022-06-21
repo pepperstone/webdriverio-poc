@@ -37,6 +37,23 @@ export default {
   },
   DiscoverScreen: {
     Name: 'Discover',
+    ProfileDrawerMenu: {
+      AuthComplete: {
+        Buttons: {
+          ViewProfile: 'View Profile',
+          TradingAccounts: 'Trading Accounts',
+          FinancialStatements: 'Financial Statements',
+          Deposit: 'Deposit',
+          Withdraw: 'Withdraw',
+          Transfer: 'Transfer',
+          Settings: 'Settings',
+          OneClickTrading: 'One Click Trading',
+          ApplyForPepperstonePro: 'Apply for Pepperstone Pro',
+          ReferAFriend: 'Refer a Friend',
+          Logout: 'Log out',
+        },
+      },
+    },
     Tabs: {
       Feed: {
         Name: 'Feed',

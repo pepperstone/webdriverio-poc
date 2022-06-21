@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 
 import { AppState } from 'src/app/types';
@@ -10,6 +10,8 @@ import stylesCreator from './Styles';
 import { useDiscoverHook } from 'src/features/discover/Hooks';
 import { useSelector } from 'react-redux';
 import { useTheme } from 'src/lib/theme/Theme';
+import AuthCompleteMenu from './components/authCompleteMenu';
+import { useProfileDrawerModalHooks } from './Hooks';
 
 const ProfileDrawerModal = ({
   handleLogin,
@@ -17,8 +19,10 @@ const ProfileDrawerModal = ({
 }: ProfileDrawerModalProps) => {
   const [styles, theme] = useTheme(stylesCreator);
   const { isSideMenuOpen } = useSelector((state: AppState) => state.discover);
-  const [isGuestUser] = useState(true);
+  const { isLoggedIn } = useSelector((state: AppState) => state.user);
+  //const [isGuestUser] = useState(true);
   const { toggleSideMenu } = useDiscoverHook();
+  const { handleLogout } = useProfileDrawerModalHooks();
 
   return (
     <Modal
@@ -40,7 +44,9 @@ const ProfileDrawerModal = ({
             fillSecondary={theme.colors.common.white}
           />
         </TouchableOpacity>
-        {isGuestUser && (
+        {isLoggedIn ? (
+          <AuthCompleteMenu handleLogout={handleLogout} />
+        ) : (
           <GuestMenu handleLogin={handleLogin} handleSignup={handleSignup} />
         )}
       </SafeAreaView>

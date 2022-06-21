@@ -15,10 +15,9 @@ export const useDiscoverHook = (): UseDiscoverProps => {
 
   const doLogout = (): void => {
     setLoading(true);
-
     setTimeout(() => {
-      setLoading(true);
-      dispatch(setIsLoggedIn(true));
+      setLoading(false);
+      dispatch(setIsLoggedIn(false));
     }, 2000);
   };
 
