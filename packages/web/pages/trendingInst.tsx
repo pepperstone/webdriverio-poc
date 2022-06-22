@@ -119,9 +119,16 @@ export default function TrendingInst({ heading }: { heading: string }) {
                     <td>{instr.bid}</td>
 
                     {instr.history.map((bid, index) => {
+                      let color = "black";
+                      if (bid > instr.history[index - 1]) {
+                        color = "lime";
+                      }
+                      if (bid < instr.history[index - 1]) {
+                        color = "red";
+                      }
                       return (
                         <td key={bid + instr.symbol + instr.ticker + index}>
-                          {bid}
+                          <small style={{ color: color }}>{bid}</small>
                         </td>
                       );
                     })}
