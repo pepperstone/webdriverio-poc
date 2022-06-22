@@ -154,9 +154,11 @@ async function getSymbolMapping() {
 
   Object.keys(symbolInfo_json).forEach((value) => {
     // Only include CFD's & tickers with a value.
+    // Also, ignore any Symbols that end in '.US'
     if (
       symbolInfo_json[value]?.assetClass === "CFD" &&
-      symbolInfo_json[value]?.ticker !== ""
+      symbolInfo_json[value]?.ticker !== "" &&
+      value.substring(value.length - 3) !== ".US"
     ) {
       symbolMap.set(
         symbolInfo_json[value].ticker,
