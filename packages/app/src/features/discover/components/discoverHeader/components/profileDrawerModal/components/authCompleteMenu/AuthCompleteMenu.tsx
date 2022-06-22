@@ -15,7 +15,7 @@ const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
 
   return (
     <>
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <ScrollView bounces={false} contentContainerStyle={styles.scrollView}>
         <TextTouchable
           onPress={() => {}} //TODO: ViewProfile
           text={AuthComplete.Buttons.ViewProfile}
