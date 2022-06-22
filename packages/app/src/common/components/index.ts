@@ -1,4 +1,4 @@
-import BottomTabNavigationBar from './bottomTabNavigationBar';
+import BottomTabNavigationBar from './bars/bottomTabNavigationBar';
 
 export {
   BottomTabNavigationBar,

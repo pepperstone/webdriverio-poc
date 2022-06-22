@@ -1,10 +1,11 @@
+import { setDarkMode, setUserDarkModeOveride } from 'src/lib/theme/slices';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { AppState } from 'src/app/types';
 import React from 'react';
 import { Switch } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../../app/types';
-import { setDarkMode, setUserDarkModeOveride } from '../../../lib/theme/slices';
-import { useTheme } from '../../../lib/theme/Theme';
 import stylesCreator from './Styles';
+import { useTheme } from 'src/lib/theme/Theme';
 
 const DarkModeSwitch = () => {
   const [styles] = useTheme(stylesCreator);

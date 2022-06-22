@@ -4,7 +4,7 @@ import { StylesCreator } from '../../../../lib/theme/Theme';
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   button: {
     backgroundColor: theme.colors.common.blue,
-    borderRadius: 12,
+    borderRadius: 4,
     marginTop: 12,
     minHeight: 56,
     padding: 16,
