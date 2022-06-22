@@ -1,4 +1,3 @@
-import { ListRenderItem } from 'react-native';
 import { VStyle } from 'src/lib/types/StyleTypes';
 
 export interface FilterButtonHorizontalListProps {
@@ -17,7 +16,7 @@ export interface FilterButtonItem  {
 
 export interface FilterButtonHorizontalListHooks {
   extractItemID: (item: FilterButtonItem) =>  string
-  renderItem: ListRenderItem<FilterButtonItem>
+  onSelect: (id: string) => void
 }
 
 export interface FilterButtonHorizontalListHooksProp {
