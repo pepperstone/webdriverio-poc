@@ -12,7 +12,10 @@ const discoverSlice = createSlice({
   name: 'discover',
   initialState,
   reducers: {
-    setIsSideMenuOpen: (state: DiscoverState, action: PayloadAction<boolean>) => ({
+    setIsSideMenuOpen: (
+      state: DiscoverState,
+      action: PayloadAction<boolean>,
+    ) => ({
       ...state,
       isSideMenuOpen: action.payload,
     }),

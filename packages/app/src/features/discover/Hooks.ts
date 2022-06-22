@@ -1,17 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
-
 import { AppState } from 'src/app/types';
 import { UseDiscoverProps } from './types';
 import { setIsLoggedIn } from '../../lib/user/slices';
 import { setIsSideMenuOpen } from './slices';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 export const useDiscoverHook = (): UseDiscoverProps => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
   const { isSideMenuOpen } = useSelector((state: AppState) => state.discover);
-
-  // const hi;
 
   const doLogout = (): void => {
     setLoading(true);
