@@ -1,58 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import cacheData from "memory-cache";
 
-/* FAKE DATA */
-const fake_data = {
-  asset_classes: ["All"],
-  rank_by: "volume_change",
-  period: "from_market_open",
-  level: "symbol",
-  num_instruments: 14,
-  version: "1.0.0",
-  uid: "1a26f870-ce8a-46ac-8637-d8ad698e33fa",
-  timestamp: "2022-06-09T04:42:20",
-  top_instruments_symbols: [
-    "US2000.a",
-    "AUDCAD",
-    "XAUGBP",
-    "LINKUSD",
-    "US30_SB",
-    "CADCHF.a",
-    "USDCAD",
-    "GBPCHF.r",
-    "EURCAD.r",
-    "EURJPY",
-    "AUDNZD.p",
-    "Bitcoin",
-    "SpotCrude",
-    "GBPJPY.r",
-  ],
-  top_instruments_tickers: [
-    "US2000",
-    "AUDCAD",
-    "XAUGBP",
-    "LINKUSD",
-    "US30",
-    "CADCHF",
-    "USDCAD",
-    "GBPCHF",
-    "EURCAD",
-    "EURJPY",
-    "AUDNZD",
-    "Bitcoin",
-    "SpotCrude",
-    "GBPJPY",
-  ],
-  top_instruments_values: [
-    4357.1054, 613.8333, 593.586, 498.5863, 454.5162, 399.4866, 397.6424,
-    366.9019, 311.9639, 309.3079, 293.5196, 286.5202, 278.3744, 270.9389,
-  ],
-  top_instruments_scores: [
-    0.46, 0.07, 0.06, 0.05, 0.05, 0.04, 0.04, 0.04, 0.03, 0.03, 0.03, 0.03,
-    0.03, 0.03,
-  ],
-};
-
 type Instrument = {
   symbol: string;
   ticker: string;
