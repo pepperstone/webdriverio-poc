@@ -16,3 +16,5 @@ export const openSocialLink = (link: socialLinkProps ) => {
     .then((supported) => Linking.openURL(supported ? link.scheme : link.url))
     .catch(() => {});
 };
+
+
