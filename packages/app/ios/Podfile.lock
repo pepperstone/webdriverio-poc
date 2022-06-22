@@ -300,7 +300,7 @@ PODS:
     - ReactCommon/turbomodule/core
   - react-native-splash-screen (3.3.0):
     - React-Core
-  - react-native-webview (11.22.0):
+  - react-native-webview (11.22.3):
     - React-Core
   - React-perflogger (0.68.0)
   - React-RCTActionSheet (0.68.0):
@@ -616,7 +616,7 @@ SPEC CHECKSUMS:
   react-native-pager-view: 95d0418c3c74279840abec6926653d32447bafb6
   react-native-safe-area-context: 6c12e3859b6f27b25de4fee8201cfb858432d8de
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
-  react-native-webview: 49df03ea0ff30d2d27b2d0cdd4ea930308e39b86
+  react-native-webview: ea6fc965e74d6a8335026c913343fafc0463b6ab
   React-perflogger: 15cb741d6c2379f4d3fc8f9e4d4e1110ef3020cb
   React-RCTActionSheet: ea9099db0597bd769430db1e2d011fd5fdb7fc5e
   React-RCTAnimation: 252df4749866f2654f37612f839522cac91c1165
