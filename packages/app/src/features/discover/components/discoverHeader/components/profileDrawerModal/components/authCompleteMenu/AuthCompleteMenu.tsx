@@ -10,8 +10,7 @@ import { useDiscoverHook } from 'src/features/discover/Hooks';
 
 const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
   const [styles] = useTheme(stylesCreator);
-  const { Buttons } =
-    useStrings().DiscoverScreen.ProfileDrawerMenu.AuthComplete;
+  const { AuthComplete } = useStrings().DiscoverScreen.ProfileDrawerMenu;
   const { loading } = useDiscoverHook();
 
   return (
@@ -19,58 +18,58 @@ const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <TextTouchable
           onPress={() => {}} //TODO: ViewProfile
-          text={Buttons.ViewProfile}
+          text={AuthComplete.Buttons.ViewProfile}
           textStyles={styles.linkText}
         />
         <HorizontalBorder style={styles.border} />
         <TextTouchable
           onPress={() => {}} //TODO: TradingAccounts
-          text={Buttons.TradingAccounts}
+          text={AuthComplete.Buttons.TradingAccounts}
           textStyles={styles.linkText}
         />
         <TextTouchable
           onPress={() => {}} //TODO: FinancialStatements
-          text={Buttons.FinancialStatements}
+          text={AuthComplete.Buttons.FinancialStatements}
           textStyles={styles.linkText}
         />
         <HorizontalBorder style={styles.border} />
         <TextTouchable
           onPress={() => {}} //TODO: Deposit
-          text={Buttons.Deposit}
+          text={AuthComplete.Buttons.Deposit}
           textStyles={styles.linkText}
         />
         <TextTouchable
           onPress={() => {}} //TODO: Withdraw
-          text={Buttons.Withdraw}
+          text={AuthComplete.Buttons.Withdraw}
           textStyles={styles.linkText}
         />
         <TextTouchable
           onPress={() => {}} //TODO: Transfer
-          text={Buttons.Transfer}
+          text={AuthComplete.Buttons.Transfer}
           textStyles={styles.linkText}
         />
         <HorizontalBorder style={styles.border} />
         <TextTouchable
           onPress={() => {}} //TODO: Settings
-          text={Buttons.Settings}
+          text={AuthComplete.Buttons.Settings}
           textStyles={styles.linkText}
         />
         <HorizontalBorder style={styles.border} />
         <TextTouchable
           onPress={() => {}} //TODO: OneClickTrading
-          text={Buttons.OneClickTrading}
+          text={AuthComplete.Buttons.OneClickTrading}
           textStyles={styles.linkText}
         />
         <HorizontalBorder style={styles.border} />
         <TextTouchable
           onPress={() => {}} //TODO: ApplyForPepperstonePro
-          text={Buttons.ApplyForPepperstonePro}
+          text={AuthComplete.Buttons.ApplyForPepperstonePro}
           textStyles={styles.linkText}
         />
         <HorizontalBorder style={styles.border} />
         <TextTouchable
           onPress={() => {}} //TODO: ReferAFriend
-          text={Buttons.ReferAFriend}
+          text={AuthComplete.Buttons.ReferAFriend}
           textStyles={styles.linkText}
         />
         <HorizontalBorder style={styles.border} />
@@ -82,7 +81,7 @@ const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
         ) : (
           <TextTouchable
             onPress={handleLogout}
-            text={Buttons.Logout}
+            text={AuthComplete.Buttons.Logout}
             textStyles={styles.linkText}
           />
         )}
