@@ -110,20 +110,32 @@ export default function TrendingInst({ heading }: { heading: string }) {
             </thead>
             <tbody>
               {trendingInstrBids.map((instr) => {
+                let bidColor = "black";
+
+                if (instr.bid) {
+                  if (instr.bid > instr.history[1]) {
+                    bidColor = "lime";
+                  }
+
+                  if (instr.bid < instr.history[1]) {
+                    bidColor = "red";
+                  }
+                }
+
                 return (
                   <tr key={instr.symbol + instr.ticker}>
                     <td>{instr.ticker}</td>
                     <td>{instr.symbol}</td>
                     <td>{instr.description}</td>
                     <td>{instr.display_ticker}</td>
-                    <td>{instr.bid}</td>
+                    <td style={{ color: bidColor }}>{instr.bid}</td>
 
                     {instr.history.map((bid, index) => {
                       let color = "black";
-                      if (bid > instr.history[index - 1]) {
+                      if (bid > instr.history[index + 1]) {
                         color = "lime";
                       }
-                      if (bid < instr.history[index - 1]) {
+                      if (bid < instr.history[index + 1]) {
                         color = "red";
                       }
                       return (
