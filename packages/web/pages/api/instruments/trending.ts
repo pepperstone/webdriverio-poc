@@ -130,7 +130,7 @@ async function getSymbolMapping() {
   };
 
   const API_URI = "https://ems-staging.pepperstone.com/mapping?key=symbol";
-  const CACHE_TIME = 60 * 60 * 1000; // 1 hour.
+  const CACHE_TIME = 24 * 60 * 60 * 1000; // 1 day.
 
   // Chech the cache first.
   const cacheValue = cacheData.get("symbolMap");
@@ -195,7 +195,7 @@ async function getSymbolDesc(symbol: string) {
   };
 
   const API_URI = "https://live-pricing.pepperstone.com/symbols";
-  const CACHE_TIME = 60 * 60 * 1000; // 1 hour.
+  const CACHE_TIME = 24 * 60 * 60 * 1000; // 1 day.
 
   const api_url = API_URI + "?names=" + symbol;
 
