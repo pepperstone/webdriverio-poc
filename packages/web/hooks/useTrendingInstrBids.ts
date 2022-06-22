@@ -6,8 +6,12 @@ type InstrumentBid = {
   symbol: string;
   ticker: string;
   description: string;
+  display_ticker: string;
   bid: string | null;
+  history: string[];
 };
+
+const LIVE_PRICE_INTERVAL = 500;
 
 const useTrendingInstrBids = (categories: string[]) => {
   // Convert categories to a list
@@ -16,22 +20,24 @@ const useTrendingInstrBids = (categories: string[]) => {
   // Get the Trending Instruments
   const trendingInstr = useTrendingInstr(categoriesStr);
 
-  // Convert the Tickers to a list
-  const tickers = trendingInstr.data.map((instr) => instr.ticker).join();
+  // Convert the Symbols to a list
+  const symbolList = trendingInstr.data.map((instr) => instr.symbol).join();
 
   // Get the Live Prices
-  const livePrices = useLivePriceing(tickers, 500);
+  const livePrices = useLivePriceing(symbolList, LIVE_PRICE_INTERVAL);
 
-  // Add the Bid to the Instrument
+  // Add the Bid & History to the Instrument
   const trendingInstrBids: InstrumentBid[] = trendingInstr.data.map((instr) => {
-    let newBidPrice = null;
-    if (livePrices.data[instr.ticker] !== undefined) {
-      newBidPrice = livePrices.data[instr.ticker].bid;
-    }
+    const history = livePrices.history.map((value) => {
+      return value[instr.symbol]?.bid;
+    });
 
-    return { ...instr, bid: newBidPrice };
+    return {
+      ...instr,
+      bid: livePrices.data[instr.symbol]?.bid,
+      history: history,
+    };
   });
-
   return trendingInstrBids;
 };
 

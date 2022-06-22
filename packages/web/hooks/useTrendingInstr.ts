@@ -4,6 +4,7 @@ type Instrument = {
   symbol: string;
   ticker: string;
   description: string;
+  display_ticker: string;
 };
 
 const API_URL = "/api/instruments/trending";
