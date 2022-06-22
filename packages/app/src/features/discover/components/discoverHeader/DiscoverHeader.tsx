@@ -1,6 +1,6 @@
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 
-import DarkModeSwitch from 'src/common/components/darkModeSwitch';
+import DarkModeSwitch from 'src/common/components/switches/darkModeSwitch';
 import ProfileDrawerModal from './components/profileDrawerModal';
 import React from 'react';
 import { UserIconSVG } from 'assets/icons';

@@ -1,16 +1,16 @@
-import React from 'react';
 import { ScrollView, View } from 'react-native';
+
+import FilterButtonHorizontalList from 'src/common/components/filterButtonHorizontalList';
+import InstrumentTile from 'src/common/components/tiles/instrumentTile';
+import React from 'react';
 import TextButton from 'src/common/components/buttons/textButton/index';
 import stylesCreator from './Styles';
-import { useDiscoverHook } from '../../Hooks';
-import FilterButtonHorizontalList from 'src/common/components/filterButtonHorizontalList';
 import useDiscoverFeedHook from './Hooks';
+import { useDiscoverHook } from '../../Hooks';
 import { useTheme } from 'src/lib/theme/Theme';
-import InstrumentTile from 'src/common/components/tiles/instrumentTile';
 
 const DiscoverFeedScreen = () => {
   const [styles] = useTheme(stylesCreator);
-
   const { loading, doLogout } = useDiscoverHook();
   const { filters, selectedItemID, setSelectedItemID } = useDiscoverFeedHook();
 

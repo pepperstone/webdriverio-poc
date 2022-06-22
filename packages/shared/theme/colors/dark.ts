@@ -18,6 +18,10 @@ export default {
 			base: '#000B1C',
 		},
 		button: {
+			bg: {
+				success: '#008500',
+				fail: '#FF6F65',
+			},
 			primary: {
 				default: '#457AFF',
 				hover: '#668EFF',

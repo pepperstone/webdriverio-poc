@@ -1,22 +1,23 @@
 import { FacebookSVG, LinkedInSVG, TwitterSVG, YoutubeSVG } from 'assets/logos';
-import React from 'react';
-import { Text, View } from 'react-native';
-import SvgButton from 'src/common/components/buttons/svgButton';
-import TextButton from 'src/common/components/buttons/textButton';
-import TextTouchable from 'src/common/components/buttons/textTouchable';
-import useStrings from 'src/common/hooks/useStrings';
-import { useDiscoverHook } from 'src/features/discover/Hooks';
 import {
   PEPPERSTONE_FACEBOOK_LINKS,
   PEPPERSTONE_LINKEDIN_LINKS,
   PEPPERSTONE_TWITTER_LINKS,
   PEPPERSTONE_YOUTUBE_LINKS,
 } from 'src/lib/constants/Links';
-import { useTheme } from 'src/lib/theme/Theme';
-import { openSocialLink } from 'src/lib/Utils';
-import { UseGuestMenuHook } from './Hooks';
-import stylesCreator from './Styles';
+import { Text, View } from 'react-native';
+
 import { GuestMenuProps } from './types';
+import React from 'react';
+import SvgButton from 'src/common/components/buttons/svgButton';
+import TextButton from 'src/common/components/buttons/textButton';
+import TextTouchable from 'src/common/components/buttons/textTouchable';
+import { UseGuestMenuHook } from './Hooks';
+import { openSocialLink } from 'src/lib/Utils';
+import stylesCreator from './Styles';
+import { useDiscoverHook } from 'src/features/discover/Hooks';
+import useStrings from 'src/common/hooks/useStrings';
+import { useTheme } from 'src/lib/theme/Theme';
 
 const GuestMenu = ({ handleLogin, handleSignup }: GuestMenuProps) => {
   const [styles, theme] = useTheme(stylesCreator);

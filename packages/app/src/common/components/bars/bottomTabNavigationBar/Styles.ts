@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { StylesCreator } from '../../../lib/theme/Theme';
+import { StylesCreator } from 'src/lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
   tabWrapper: {

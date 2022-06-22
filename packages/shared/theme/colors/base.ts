@@ -9,5 +9,9 @@ export default {
 		secondary: {
 			default: '#FFFFFF1A',
 		},
+		bg: {
+			success: '#008500',
+			fail: '#FF6F65',
+		}
 	},
 };

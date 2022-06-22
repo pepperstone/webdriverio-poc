@@ -1,8 +1,9 @@
-import React from 'react';
 import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
-import { useTheme } from '../../../../lib/theme/Theme';
-import stylesCreator from './Styles';
+
+import React from 'react';
 import { TextButtonProps } from './types';
+import stylesCreator from './Styles';
+import { useTheme } from 'src/lib/theme/Theme';
 
 const TextButton = ({
   onPress,
