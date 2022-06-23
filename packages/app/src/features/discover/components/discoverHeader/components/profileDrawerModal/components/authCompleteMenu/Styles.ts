@@ -5,14 +5,9 @@ const stylesCreator : StylesCreator = (theme, scale) => StyleSheet.create({
 
   container: {
     flex: 1,
-    flexDirection: 'column',
-    height: '100%',
-    justifyConent: 'space-around',
-    maxHeight: 700,
     paddingBottom: 24,
     paddingLeft:24,
     paddingRight: 61,
-    paddingTop: 12,
   },
 
   group: {
