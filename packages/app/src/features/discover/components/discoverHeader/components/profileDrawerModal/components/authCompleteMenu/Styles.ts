@@ -16,6 +16,8 @@ const stylesCreator : StylesCreator = (theme, scale) => StyleSheet.create({
   },
 
   scrollView: {
+    alignItems: 'flex-start',
+    paddingBottom: 154,
     paddingLeft: 24,
     paddingRight: 61,
     paddingTop: 24,
