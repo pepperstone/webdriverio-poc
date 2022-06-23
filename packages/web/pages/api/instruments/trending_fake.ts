@@ -1,5 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
+type Instrument = {
+  symbol: string;
+  ticker: string;
+  description: string;
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -112,5 +118,19 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
     ],
   };
 
-  res.status(200).json(fake_data);
+  res
+    .status(200)
+    .json({ instruments: randomizeFakeData(fake_data.instruments) });
+}
+
+function randomizeFakeData(fake_data: Instrument[]) {
+  // between 0 and 14
+  const randomLength = Math.floor(Math.random() * 15);
+
+  // Randomize the fake data.
+  const randomData = fake_data
+    .sort(() => Math.random() - 0.5)
+    .slice(0, randomLength);
+
+  return randomData;
 }
