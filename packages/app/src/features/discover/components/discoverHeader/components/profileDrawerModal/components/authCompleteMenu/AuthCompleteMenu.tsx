@@ -73,19 +73,13 @@ const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
         />
       </View>
 
-      {loading ? (
-        <View>
-          <ActivityIndicator />
-        </View>
-      ) : (
-        <View style={styles.groupBottom}>
-          <TextTouchable
-            onPress={handleLogout}
-            text={AuthComplete.Buttons.Logout}
-            textStyles={styles.linkButton}
-          />
-        </View>
-      )}
+      <View style={styles.groupBottom}>
+        <TextTouchable
+          onPress={handleLogout}
+          text={AuthComplete.Buttons.Logout}
+          textStyles={styles.linkButton}
+        />
+      </View>
     </View>
   );
 };
