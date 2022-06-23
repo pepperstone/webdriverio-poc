@@ -25,12 +25,14 @@ const ProfileDrawerModal = ({
 
   const getContent = useCallback(() => {
     switch (authStatus) {
-      case AuthStatus.LOGGED_IN:
-        return <AuthCompleteMenu handleLogout={doLogout} />;
-      default:
+      case AuthStatus.GUEST:
         return (
           <GuestMenu handleLogin={handleLogin} handleSignup={handleSignup} />
         );
+      case AuthStatus.LOGGED_IN:
+        return <AuthCompleteMenu handleLogout={doLogout} />;
+      default:
+        return <></>;
     }
   }, [authStatus, handleLogin, handleSignup, doLogout]);
 

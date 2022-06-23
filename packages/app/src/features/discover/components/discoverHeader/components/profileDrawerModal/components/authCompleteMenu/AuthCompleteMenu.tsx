@@ -5,7 +5,6 @@ import { useTheme } from 'src/lib/theme/Theme';
 import stylesCreator from './Styles';
 import { useStrings } from 'src/common/hooks';
 import TextTouchable from 'src/common/components/buttons/textTouchable';
-import HorizontalBorder from 'src/common/components/horizontalBorder';
 import { useDiscoverHook } from 'src/features/discover/Hooks';
 
 const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
@@ -14,92 +13,76 @@ const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
   const { loading } = useDiscoverHook();
 
   return (
-    <View style={styles.main}>
-      <View style={styles.buttonContainer}>
+    <View style={styles.container}>
+      <View style={styles.group}>
         <TextTouchable
           onPress={() => {}} //TODO: ViewProfile
           text={AuthComplete.Buttons.ViewProfile}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
       </View>
-      <HorizontalBorder style={styles.border} />
-      <View style={styles.buttonContainer}>
+      <View style={styles.group}>
         <TextTouchable
           onPress={() => {}} //TODO: TradingAccounts
           text={AuthComplete.Buttons.TradingAccounts}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
-      </View>
-      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: FinancialStatements
           text={AuthComplete.Buttons.FinancialStatements}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
       </View>
-      <HorizontalBorder style={styles.border} />
-      <View style={styles.buttonContainer}>
+      <View style={styles.group}>
         <TextTouchable
           onPress={() => {}} //TODO: Deposit
           text={AuthComplete.Buttons.Deposit}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
-      </View>
-      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: Withdraw
           text={AuthComplete.Buttons.Withdraw}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
-      </View>
-      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: Transfer
           text={AuthComplete.Buttons.Transfer}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
       </View>
-      <HorizontalBorder style={styles.border} />
-      <View style={styles.buttonContainer}>
+      <View style={styles.group}>
         <TextTouchable
           onPress={() => {}} //TODO: Settings
           text={AuthComplete.Buttons.Settings}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
-      </View>
-      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: OneClickTrading
           text={AuthComplete.Buttons.OneClickTrading}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
-      </View>
-      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: ApplyForPepperstonePro
           text={AuthComplete.Buttons.ApplyForPepperstonePro}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
-      </View>
-      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: ReferAFriend
           text={AuthComplete.Buttons.ReferAFriend}
-          textStyles={styles.linkText}
+          textStyles={styles.linkButton}
         />
       </View>
-      <HorizontalBorder style={styles.border} />
 
       {loading ? (
         <View>
           <ActivityIndicator />
         </View>
       ) : (
-        <View style={styles.buttonContainer}>
+        <View style={styles.groupBottom}>
           <TextTouchable
             onPress={handleLogout}
             text={AuthComplete.Buttons.Logout}
-            textStyles={styles.linkText}
+            textStyles={styles.linkButton}
           />
         </View>
       )}
