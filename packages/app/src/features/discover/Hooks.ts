@@ -15,7 +15,7 @@ export const useDiscoverHook = (): UseDiscoverProps => {
   const { isSideMenuOpen } = useSelector((state: AppState) => state.discover);
 
   const doLogout = (): void => {
-    dispatch(setIsSideMenuOpen(false));
+    if (isSideMenuOpen) dispatch(setIsSideMenuOpen(false)); //closes the sidebar to prevent navigation issues
     setLoading(true);
     setTimeout(() => {
       dispatch(setAuthStatus(AuthStatus.NONE));
