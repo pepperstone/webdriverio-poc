@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthCompleteMenuProps } from './types';
-import { ActivityIndicator, ScrollView, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { useTheme } from 'src/lib/theme/Theme';
 import stylesCreator from './Styles';
 import { useStrings } from 'src/common/hooks';
@@ -14,79 +14,96 @@ const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
   const { loading } = useDiscoverHook();
 
   return (
-    <>
-      <ScrollView bounces={false} contentContainerStyle={styles.scrollView}>
+    <View style={styles.main}>
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: ViewProfile
           text={AuthComplete.Buttons.ViewProfile}
           textStyles={styles.linkText}
         />
-        <HorizontalBorder style={styles.border} />
+      </View>
+      <HorizontalBorder style={styles.border} />
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: TradingAccounts
           text={AuthComplete.Buttons.TradingAccounts}
           textStyles={styles.linkText}
         />
+      </View>
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: FinancialStatements
           text={AuthComplete.Buttons.FinancialStatements}
           textStyles={styles.linkText}
         />
-        <HorizontalBorder style={styles.border} />
+      </View>
+      <HorizontalBorder style={styles.border} />
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: Deposit
           text={AuthComplete.Buttons.Deposit}
           textStyles={styles.linkText}
         />
+      </View>
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: Withdraw
           text={AuthComplete.Buttons.Withdraw}
           textStyles={styles.linkText}
         />
+      </View>
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: Transfer
           text={AuthComplete.Buttons.Transfer}
           textStyles={styles.linkText}
         />
-        <HorizontalBorder style={styles.border} />
+      </View>
+      <HorizontalBorder style={styles.border} />
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: Settings
           text={AuthComplete.Buttons.Settings}
           textStyles={styles.linkText}
         />
-        <HorizontalBorder style={styles.border} />
+      </View>
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: OneClickTrading
           text={AuthComplete.Buttons.OneClickTrading}
           textStyles={styles.linkText}
         />
-        <HorizontalBorder style={styles.border} />
+      </View>
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: ApplyForPepperstonePro
           text={AuthComplete.Buttons.ApplyForPepperstonePro}
           textStyles={styles.linkText}
         />
-        <HorizontalBorder style={styles.border} />
+      </View>
+      <View style={styles.buttonContainer}>
         <TextTouchable
           onPress={() => {}} //TODO: ReferAFriend
           text={AuthComplete.Buttons.ReferAFriend}
           textStyles={styles.linkText}
         />
-        <HorizontalBorder style={styles.border} />
+      </View>
+      <HorizontalBorder style={styles.border} />
 
-        {loading ? (
-          <View>
-            <ActivityIndicator />
-          </View>
-        ) : (
+      {loading ? (
+        <View>
+          <ActivityIndicator />
+        </View>
+      ) : (
+        <View style={styles.buttonContainer}>
           <TextTouchable
             onPress={handleLogout}
             text={AuthComplete.Buttons.Logout}
             textStyles={styles.linkText}
           />
-        )}
-      </ScrollView>
-    </>
+        </View>
+      )}
+    </View>
   );
 };
 

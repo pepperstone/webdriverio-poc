@@ -4,7 +4,13 @@ import { StylesCreator } from 'src/lib/theme/Theme';
 const stylesCreator : StylesCreator = (theme, scale) => StyleSheet.create({
 
   border: {
-    marginBottom: 24,
+    marginVertical: 12,
+  },
+
+  buttonContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    flex: 1,
   },
 
   linkText: {
@@ -12,15 +18,16 @@ const stylesCreator : StylesCreator = (theme, scale) => StyleSheet.create({
     fontFamily: theme.font.regular,
     fontSize: scale(theme.fontSize.h5),
     fontWeight: theme.fontWeight.bold,
-    marginBottom: 24,
   },
 
-  scrollView: {
-    alignItems: 'flex-start',
-    paddingBottom: 154,
-    paddingLeft: 24,
+  main: {
+    flex: 1,
+    flexDirection: 'column',
+    height: '100%',
+    justifyConent: 'space-around',
+    maxHeight: 700,
+    padding: 24,
     paddingRight: 61,
-    paddingTop: 24,
   },
 
 
