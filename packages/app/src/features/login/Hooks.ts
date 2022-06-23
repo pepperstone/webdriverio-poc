@@ -1,39 +1,33 @@
-import { DoLoginProps, FormKeys, UseLoginProps } from './types';
-
-import { LoginScreenNavigationProp } from '../../navigation/Types';
 import { isValidEmail } from '@monorepo/shared/helpers/RegexHelpers';
-import { setIsLoggedIn } from '../../lib/user/slices';
-import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AuthStatus } from 'src/lib/user/types';
 import { useStrings } from '../../common/hooks';
+import { setAuthStatus } from '../../lib/user/slices';
+import { LoginScreenNavigationProp } from '../../navigation/Types';
+import { DoLoginProps, FormKeys, UseLoginProps } from './types';
 
 export const useLoginHook = (): UseLoginProps => {
+  const navigation = useNavigation<LoginScreenNavigationProp>();
   const initialValues = { username: '', password: '' };
   const [loading, setLoading] = useState<boolean>(false);
   const [values, setValues] = useState<DoLoginProps>(initialValues);
   const [errors, setErrors] = useState<DoLoginProps>(initialValues);
-  const navigation = useNavigation<LoginScreenNavigationProp>();
   const strings = useStrings();
   const dispatch = useDispatch();
 
   const doLogin = (): void => {
     setErrors({ ...initialValues });
 
-    if (!validate()) {
-      return;
-    }
+    if (!validate()) return;
 
     setLoading(true);
 
     setTimeout(() => {
       setLoading(false);
-      dispatch(setIsLoggedIn(true));
+      dispatch(setAuthStatus(AuthStatus.LOGGED_IN));
     }, 2000);
-  };
-
-  const doRegister = (): void => {
-    navigation.navigate('Register');
   };
 
   const validate = (): boolean => {
@@ -58,6 +52,10 @@ export const useLoginHook = (): UseLoginProps => {
     return true;
   };
 
+  const goToSignup = (): void => {
+    navigation.navigate('Register');
+  };
+
   const onChangeText = (text: string, name: FormKeys): void => {
     setValues({ ...values, [name]: text });
     setErrors({ ...errors, [name]: undefined });
@@ -67,8 +65,8 @@ export const useLoginHook = (): UseLoginProps => {
     errors,
     loading,
     values,
+    goToSignup,
     doLogin,
-    doRegister,
     onChangeText,
   };
 };

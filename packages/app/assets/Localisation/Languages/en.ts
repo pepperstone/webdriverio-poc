@@ -1,4 +1,13 @@
 export default {
+  common: {
+    OR: 'OR',
+  },
+  LandingScreen: {
+    Name: 'Landing',
+    Guest: 'Enter as Guest',
+    Login: 'Login',
+    Signup: 'Sign up',
+  },
   LoginScreen: {
     Name: 'Login',
     Message: 'Enter your details',
@@ -13,7 +22,7 @@ export default {
     },
     Buttons: {
       Login: 'Log In',
-      Register: 'Register',
+      Signup: 'Sign up',
     },
   },
   RegisterScreen: {

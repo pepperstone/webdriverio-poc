@@ -1,28 +1,40 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
-
 import { AppState } from 'src/app/types';
 import { CloseIconSVG } from 'assets/icons';
-import GuestMenu from './components/guestMenu';
 import Modal from 'react-native-modal';
-import { ProfileDrawerModalProps } from './types';
-import stylesCreator from './Styles';
-import { useDiscoverHook } from 'src/features/discover/Hooks';
 import { useSelector } from 'react-redux';
+import { useDiscoverHook } from 'src/features/discover/Hooks';
 import { useTheme } from 'src/lib/theme/Theme';
+import GuestMenu from './components/guestMenu';
+import stylesCreator from './Styles';
+import { ProfileDrawerModalProps } from './types';
 import AuthCompleteMenu from './components/authCompleteMenu';
-import { useProfileDrawerModalHooks } from './Hooks';
-
+//import { useProfileDrawerModalHooks } from './Hooks';
+import { AuthStatus } from 'src/lib/user/types';
 const ProfileDrawerModal = ({
   handleLogin,
   handleSignup,
 }: ProfileDrawerModalProps) => {
   const [styles, theme] = useTheme(stylesCreator);
-  const { isSideMenuOpen } = useSelector((state: AppState) => state.discover);
-  const { isLoggedIn } = useSelector((state: AppState) => state.user);
-  //const [isGuestUser] = useState(true);
-  const { toggleSideMenu } = useDiscoverHook();
-  const { handleLogout } = useProfileDrawerModalHooks();
+  const {
+    user: { authStatus },
+    discover: { isSideMenuOpen },
+  } = useSelector((state: AppState) => state);
+  const { doLogout, toggleSideMenu } = useDiscoverHook();
+
+  const getContent = useCallback(() => {
+    switch (authStatus) {
+      case AuthStatus.GUEST:
+        return (
+          <GuestMenu handleLogin={handleLogin} handleSignup={handleSignup} />
+        );
+      case AuthStatus.LOGGED_IN:
+        return <AuthCompleteMenu handleLogout={doLogout} />;
+      case AuthStatus.NONE:
+        return <></>; //TODO
+    }
+  }, [authStatus, handleLogin, handleSignup, doLogout]);
 
   return (
     <Modal
@@ -44,11 +56,7 @@ const ProfileDrawerModal = ({
             fillSecondary={theme.colors.common.white}
           />
         </TouchableOpacity>
-        {isLoggedIn ? (
-          <AuthCompleteMenu handleLogout={handleLogout} />
-        ) : (
-          <GuestMenu handleLogin={handleLogin} handleSignup={handleSignup} />
-        )}
+        {getContent()}
       </SafeAreaView>
     </Modal>
   );

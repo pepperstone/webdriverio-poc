@@ -5,8 +5,8 @@ interface DoLoginProps {
 
 interface UseLoginProps {
   doLogin: () => void;
-  doRegister: () => void;
   onChangeText: (text: string, name: FormKeys) => void;
+  goToSignup: () => void;
   values: DoLoginProps;
   loading: boolean;
   errors: DoLoginProps;

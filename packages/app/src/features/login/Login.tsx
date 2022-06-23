@@ -1,3 +1,5 @@
+import { PepperstoneSVG } from 'assets/logos';
+import React, { useRef } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -5,20 +7,21 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, { useRef } from 'react';
-
-import FormInput from 'src/common/components/inputs/formInput';
-import { PepperstoneSVG } from 'assets/logos';
+import { useSelector } from 'react-redux';
+import { AppState } from 'src/app/types';
 import TextButton from 'src/common/components/buttons/textButton';
-import stylesCreator from './Styles';
-import { useLoginHook } from './Hooks';
+import FormInput from 'src/common/components/inputs/formInput';
+import { AuthStatus } from 'src/lib/user/types';
 import { useStrings } from '../../common/hooks';
 import { useTheme } from '../../lib/theme/Theme';
+import { useLoginHook } from './Hooks';
+import stylesCreator from './Styles';
 
 const LoginScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);
   const passwordRef = useRef<TextInput>(null);
-  const { loading, errors, values, doLogin, doRegister, onChangeText } =
+  const { authStatus } = useSelector((state: AppState) => state.user);
+  const { loading, errors, values, doLogin, onChangeText, goToSignup } =
     useLoginHook();
   const strings = useStrings();
 
@@ -58,11 +61,15 @@ const LoginScreen = () => {
           loading={loading}
           text={strings.LoginScreen.Buttons.Login}
         />
-        <Text style={styles.centeredText}>OR</Text>
-        <TextButton
-          onPress={doRegister}
-          text={strings.LoginScreen.Buttons.Register}
-        />
+        {authStatus === AuthStatus.NONE && (
+          <>
+            <Text style={styles.centeredText}>{strings.common.OR}</Text>
+            <TextButton
+              onPress={goToSignup}
+              text={strings.LoginScreen.Buttons.Signup}
+            />
+          </>
+        )}
       </View>
     </KeyboardAvoidingView>
   );

@@ -1,18 +1,17 @@
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
-
-import DarkModeSwitch from 'src/common/components/switches/darkModeSwitch';
-import ProfileDrawerModal from './components/profileDrawerModal';
-import React from 'react';
 import { UserIconSVG } from 'assets/icons';
-import stylesCreator from './Styles';
-import { useDiscoverHook } from '../../Hooks';
+import React from 'react';
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import DarkModeSwitch from 'src/common/components/switches/darkModeSwitch';
 import useStrings from 'src/common/hooks/useStrings';
 import { useTheme } from 'src/lib/theme/Theme';
+import { useDiscoverHook } from '../../Hooks';
+import ProfileDrawerModal from './components/profileDrawerModal';
+import stylesCreator from './Styles';
 
 const DiscoverHeader = () => {
   const [styles, theme] = useTheme(stylesCreator);
   const { DiscoverScreen } = useStrings();
-  const { toggleSideMenu, handleLogin } = useDiscoverHook();
+  const { toggleSideMenu, handleLogin, handleSignup } = useDiscoverHook();
 
   return (
     <>
@@ -32,7 +31,7 @@ const DiscoverHeader = () => {
       </SafeAreaView>
       <ProfileDrawerModal
         handleLogin={handleLogin}
-        handleSignup={handleLogin}
+        handleSignup={handleSignup}
       />
     </>
   );

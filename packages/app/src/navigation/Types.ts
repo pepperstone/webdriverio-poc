@@ -1,15 +1,11 @@
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, RouteProp } from '@react-navigation/native';
 import type { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
-
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-
 export type NavigatorParams<P> = { screen?: keyof P; params?: Record<string, undefined> };
 
 export type RootStackParamList = {
   Main: NavigatorParams<MainTabParamList>;
-  Auth: NavigatorParams<AuthStackParamList>;
   NotFound: undefined;
-  WebView: { title: string, url: string };
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
@@ -23,19 +19,12 @@ export type MainTabParamList = {
   Portfolio: undefined;
 };
 
-export type AuthStackParamList = {
-  Login: undefined;
-  Register: undefined;
-};
-
-export type AuthScreenProps<T extends keyof AuthStackParamList> =
-  CompositeScreenProps<
-  BottomTabScreenProps<AuthStackParamList, T>,
-  RootStackScreenProps<keyof RootStackParamList>
-  >;
-
 export type MainStackParamList = {
   MainStackTabs: NavigatorParams<MainTabParamList>;
+  Landing: undefined;
+  Login: undefined;
+  Register: undefined;
+  WebView: { title: string, url: string };
 };
 
 export type MainTabScreenProps<T extends keyof MainTabParamList> =
@@ -68,12 +57,7 @@ export type PortfolioScreen = {
   route: RouteProp<MainTabParamList, 'Portfolio'>;
 };
 
-type RootNavigation = StackNavigationProp<RootStackParamList>;
-
-export type WebViewScreen = {
-  navigation: RootNavigation;
-  route: RouteProp<RootStackParamList, 'WebView'>;
-};
-
-export type LoginScreenNavigationProp = StackNavigationProp<AuthStackParamList, 'Login'>;
-export type RegisterScreenNavigationProp = StackNavigationProp<AuthStackParamList, 'Register'>;
+export type WebViewScreen =  StackNavigationProp<MainStackParamList, 'WebView'>;
+export type LandingScreenNavigationProp = StackNavigationProp<MainStackParamList, 'Landing'>;
+export type LoginScreenNavigationProp = StackNavigationProp<MainStackParamList, 'Login'>;
+export type RegisterScreenNavigationProp = StackNavigationProp<MainStackParamList, 'Register'>;
