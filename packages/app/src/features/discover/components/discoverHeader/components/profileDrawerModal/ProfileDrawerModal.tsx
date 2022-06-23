@@ -10,8 +10,8 @@ import GuestMenu from './components/guestMenu';
 import stylesCreator from './Styles';
 import { ProfileDrawerModalProps } from './types';
 import AuthCompleteMenu from './components/authCompleteMenu';
-//import { useProfileDrawerModalHooks } from './Hooks';
 import { AuthStatus } from 'src/lib/user/types';
+
 const ProfileDrawerModal = ({
   handleLogin,
   handleSignup,
