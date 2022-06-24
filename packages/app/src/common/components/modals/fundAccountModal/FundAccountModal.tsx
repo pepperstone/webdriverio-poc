@@ -4,7 +4,7 @@ import React, { FunctionComponent } from 'react';
 import BaseModal from '../baseModal';
 import { ModalProps } from './types';
 import TextButton from 'src/common/components/buttons/textButton';
-import stylesCreator from './Styles';
+import stylesCreator from './styles';
 import { useTheme } from 'src/lib/theme/Theme';
 
 const FundAccountModal: FunctionComponent<ModalProps> = ({

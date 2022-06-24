@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import theme from '../lib/theme/slices';
-import user from '../lib/user/slices';
-import discover from '../features/discover/slices';
+import discover from 'src/features/discover/slices';
+import theme from 'src/lib/theme/slices';
+import user from 'src/lib/user/slices';
 
 const rootReducer = combineReducers({
   theme,

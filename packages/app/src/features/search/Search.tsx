@@ -1,9 +1,10 @@
-import { SearchSVG } from 'assets/icons';
-import React from 'react';
 import { Text, View } from 'react-native';
+
+import React from 'react';
+import { SearchSVG } from 'assets/icons';
+import stylesCreator from './styles';
 import { useStrings } from '../../common/hooks';
-import { useTheme } from '../../lib/theme/Theme';
-import stylesCreator from './Styles';
+import { useTheme } from 'src/lib/theme/Theme';
 
 const SearchScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);

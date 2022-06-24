@@ -1,12 +1,12 @@
 import { ScrollView, View } from 'react-native';
 
-import FilterButtonHorizontalList from 'src/common/components/filterButtonHorizontalList';
+import FilterButtonHorizontalList from 'src/common/components/lists/filterButtonHorizontalList';
 import InstrumentTile from 'src/common/components/tiles/instrumentTile';
 import React from 'react';
 import TextButton from 'src/common/components/buttons/textButton/index';
-import stylesCreator from './Styles';
-import useDiscoverFeedHook from './Hooks';
-import { useDiscoverHook } from '../../Hooks';
+import stylesCreator from './styles';
+import useDiscoverFeedHook from './hooks';
+import { useDiscoverHook } from '../../hooks';
 import { useTheme } from 'src/lib/theme/Theme';
 
 const DiscoverFeedScreen = () => {

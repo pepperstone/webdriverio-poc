@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from 'src/app/types';
 import React from 'react';
 import { Switch } from 'react-native';
-import stylesCreator from './Styles';
+import stylesCreator from './styles';
 import { useTheme } from 'src/lib/theme/Theme';
 
 const DarkModeSwitch = () => {

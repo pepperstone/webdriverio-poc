@@ -2,7 +2,7 @@ import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 
 import React from 'react';
 import { TextButtonProps } from './types';
-import stylesCreator from './Styles';
+import stylesCreator from './styles';
 import { useTheme } from 'src/lib/theme/Theme';
 
 const TextButton = ({

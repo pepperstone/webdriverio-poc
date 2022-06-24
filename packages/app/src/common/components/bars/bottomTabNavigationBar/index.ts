@@ -1,3 +1,3 @@
-import TabBar from './BottomTabNavigationBar';
+import BottomTabNavigationBar from './BottomTabNavigationBar';
 
-export default TabBar;
+export default BottomTabNavigationBar;

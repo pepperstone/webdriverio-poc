@@ -1,4 +1,4 @@
-import { FilterButtonItem } from 'src/common/components/filterButtonHorizontalList/types';
+import { FilterButtonItem } from 'src/common/components/lists/filterButtonHorizontalList/types';
 
 export interface UseDiscoverFeedProps  {
   filters: FilterButtonItem[];
