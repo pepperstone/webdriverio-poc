@@ -12,14 +12,14 @@ const stylesCreator : StylesCreator = (theme, scale) => StyleSheet.create({
 
   group: {
     alignItems: 'flex-start',
+    borderBottomColor: theme.colors.border,
     borderBottomWidth: 1,
-    borderColor: theme.colors.border,
-    paddingVertical: 12,
+    paddingVertical: 6,
   },
 
-  groupBottom: {
+  groupLast: {
     alignItems: 'flex-start',
-    paddingVertical: 12,
+    paddingTop: 6,
   },
 
   linkButton: {

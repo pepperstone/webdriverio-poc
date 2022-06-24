@@ -71,7 +71,7 @@ const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
         />
       </View>
 
-      <View style={styles.groupBottom}>
+      <View style={styles.groupLast}>
         <TextTouchable
           onPress={handleLogout}
           text={AuthComplete.Buttons.Logout}
