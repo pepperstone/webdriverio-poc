@@ -2,7 +2,7 @@ import { Text, View } from 'react-native';
 
 import { LiveAccountDataProps } from './types';
 import React from 'react';
-import stylesCreator from './Styles';
+import stylesCreator from './styles';
 import { useTheme } from 'src/lib/theme/Theme';
 
 const LiveAccountData = ({

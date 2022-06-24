@@ -1,7 +1,7 @@
-import React from 'react';
 import { Text, View } from 'react-native';
 
-import stylesCreator from './Styles';
+import React from 'react';
+import stylesCreator from './styles';
 import useStrings from 'src/common/hooks/useStrings';
 import { useTheme } from 'src/lib/theme/Theme';
 

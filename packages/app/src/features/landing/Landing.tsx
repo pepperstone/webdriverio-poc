@@ -1,11 +1,12 @@
+import { Text, View } from 'react-native';
+
 import { PepperstoneSVG } from 'assets/logos';
 import React from 'react';
-import { Text, View } from 'react-native';
 import TextButton from 'src/common/components/buttons/textButton';
+import stylesCreator from './styles';
+import { useLandingHook } from './hooks';
 import { useStrings } from 'src/common/hooks';
 import { useTheme } from 'src/lib/theme/Theme';
-import { useLandingHook } from './Hooks';
-import stylesCreator from './Styles';
 
 const LandingScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);

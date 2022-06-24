@@ -2,13 +2,17 @@ import {
   BottomTabBarProps,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  MainStackParamList,
+  MainTabParamList,
+  RootStackParamList,
+} from './types';
 import React, { useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import { AuthStatus } from 'src/lib/user/types';
+
 import { AppState } from '../app/types';
-import { BottomTabNavigationBar } from '../common/components';
-import WebView from '../common/components/webView';
+import { AuthStatus } from 'src/lib/user/types';
+import { BottomTabNavigationBar } from 'src/common/components/bars';
+import { DiscoverStackNavigator } from './stacks';
 import LandingScreen from '../features/landing';
 import LoginScreen from '../features/login';
 import MarketsScreen from '../features/markets';
@@ -16,14 +20,11 @@ import PortfolioScreen from '../features/portfolio';
 import RegisterScreen from '../features/register';
 import SearchScreen from '../features/search';
 import WatchlistsScreen from '../features/watchlists';
-import { useTheme } from '../lib/theme/Theme';
-import DiscoverStackNavigator from './stacks/discover';
-import stylesCreator from './Styles';
-import {
-  MainStackParamList,
-  MainTabParamList,
-  RootStackParamList,
-} from './Types';
+import { WebView } from 'src/common/components/views';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import stylesCreator from './styles';
+import { useSelector } from 'react-redux';
+import { useTheme } from 'src/lib/theme/Theme';
 
 const MainTabStack = createBottomTabNavigator<MainTabParamList>();
 const bottomTabNavigation = (props: BottomTabBarProps) => (

@@ -1,13 +1,15 @@
+import {
+  DiscoverAnalysisScreen,
+  DiscoverEventScreen,
+  DiscoverFeedScreen,
+} from 'src/features/discover/components';
 import { DiscoverParamList, DiscoverTabStackParamList } from './types';
 
-import DiscoverAnalysisScreen from 'src/features/discover/components/analysis';
-import DiscoverEventScreen from 'src/features/discover/components/events';
-import DiscoverFeedScreen from 'src/features/discover/components/feed';
-import DiscoverHeader from 'src/features/discover/components/discoverHeader/DiscoverHeader';
+import { DiscoverHeader } from 'src/common/components/headers';
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import stylesCreator from './Styles';
+import stylesCreator from './styles';
 import { useTheme } from 'src/lib/theme/Theme';
 
 const DiscoverTabsStack =

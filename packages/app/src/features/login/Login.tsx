@@ -1,5 +1,3 @@
-import { PepperstoneSVG } from 'assets/logos';
-import React, { useRef } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -7,15 +5,18 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import React, { useRef } from 'react';
+
 import { AppState } from 'src/app/types';
-import TextButton from 'src/common/components/buttons/textButton';
-import FormInput from 'src/common/components/inputs/formInput';
 import { AuthStatus } from 'src/lib/user/types';
+import FormInput from 'src/common/components/inputs/formInput';
+import { PepperstoneSVG } from 'assets/logos';
+import TextButton from 'src/common/components/buttons/textButton';
+import stylesCreator from './styles';
+import { useLoginHook } from './hooks';
+import { useSelector } from 'react-redux';
 import { useStrings } from '../../common/hooks';
-import { useTheme } from '../../lib/theme/Theme';
-import { useLoginHook } from './Hooks';
-import stylesCreator from './Styles';
+import { useTheme } from 'src/lib/theme/Theme';
 
 const LoginScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);

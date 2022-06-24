@@ -1,9 +1,10 @@
+import { Text, View } from 'react-native';
+
 import { MarketsSVG } from 'assets/icons';
 import React from 'react';
-import { Text, View } from 'react-native';
+import stylesCreator from './styles';
 import useStrings from '../../common/hooks/useStrings';
-import { useTheme } from '../../lib/theme/Theme';
-import stylesCreator from './Styles';
+import { useTheme } from 'src/lib/theme/Theme';
 
 const MarketsScreen = () => {
   const [styles, theme] = useTheme(stylesCreator);

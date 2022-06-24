@@ -1,12 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
-import React, { useEffect } from 'react';
 import { Appearance, StatusBar } from 'react-native';
+import React, { useEffect } from 'react';
+import { setDarkMode, setUserDarkModeOveride } from 'src/lib/theme/slices';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDarkMode, setUserDarkModeOveride } from '../lib/theme/slices';
-import { getTheme } from '../lib/theme/Theme';
-import RootNavigator from '../navigation';
-import { navigationRef } from '../navigation/NavigationUtils';
+
 import { AppState } from './types';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigator from '../navigation';
+import { getTheme } from 'src/lib/theme/Theme';
+import { navigationRef } from '../navigation/NavigationUtils';
 
 const NavigatorContainer = () => {
   const dispatch = useDispatch();

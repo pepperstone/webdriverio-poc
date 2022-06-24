@@ -1,4 +1,4 @@
-import { NavigatorParams } from '../../Types';
+import { NavigatorParams } from '../../types';
 
 export type DiscoverTabStackParamList = {
   Event: undefined;

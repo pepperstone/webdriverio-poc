@@ -2,9 +2,9 @@ import { Modal, Pressable, View } from 'react-native';
 import React, { FunctionComponent } from 'react';
 
 import { CloseIconSVG } from 'assets/icons';
-import ModalHeader from './components/header';
+import ModalHeader from '../../headers/modalHeader';
 import { ModalProps } from './types';
-import stylesCreator from './Styles';
+import stylesCreator from './styles';
 import { useTheme } from 'src/lib/theme/Theme';
 
 const BaseModal: FunctionComponent<ModalProps> = ({

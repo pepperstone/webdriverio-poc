@@ -9,9 +9,9 @@ import React, { useCallback, useMemo } from 'react';
 
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import LiveAccountBar from 'src/common/components/bars/liveAccountBar';
-import Tab from './tab';
+import Tab from './components/tab';
 import { View } from 'react-native';
-import stylesCreator from './Styles';
+import stylesCreator from './styles';
 import { useTheme } from 'src/lib/theme/Theme';
 
 const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {

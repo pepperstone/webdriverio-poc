@@ -1,8 +1,8 @@
 import React from 'react';
 import { WebView } from 'react-native-webview';
-import stylesCreator from './Styles';
+import stylesCreator from './styles';
 import useStrings from '../../common/hooks/useStrings';
-import { useTheme } from '../../lib/theme/Theme';
+import { useTheme } from 'src/lib/theme/Theme';
 
 const RegisterScreen = () => {
   const [styles] = useTheme(stylesCreator);
