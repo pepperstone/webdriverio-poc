@@ -6,11 +6,12 @@ import { CloseIconSVG } from 'assets/icons';
 import { GuestMenu } from './components';
 import Modal from 'react-native-modal';
 import { ProfileDrawerModalProps } from './types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import stylesCreator from './styles';
 import { useDiscoverHook } from 'src/features/discover/hooks';
 import { useSelector } from 'react-redux';
 import { useTheme } from 'src/lib/theme/Theme';
+import AuthCompleteMenu from './components/authCompleteMenu';
 
 const ProfileDrawerModal = ({
   handleLogin,
@@ -21,7 +22,18 @@ const ProfileDrawerModal = ({
     user: { authStatus },
     discover: { isSideMenuOpen },
   } = useSelector((state: AppState) => state);
-  const { toggleSideMenu } = useDiscoverHook();
+  const { doLogout, toggleSideMenu } = useDiscoverHook();
+
+  const getContent = useCallback(() => {
+    switch (authStatus) {
+      case AuthStatus.LOGGED_IN:
+        return <AuthCompleteMenu handleLogout={doLogout} />;
+      default:
+        return (
+          <GuestMenu handleLogin={handleLogin} handleSignup={handleSignup} />
+        );
+    }
+  }, [authStatus, handleLogin, handleSignup, doLogout]);
 
   return (
     <Modal
@@ -43,9 +55,7 @@ const ProfileDrawerModal = ({
             fillSecondary={theme.colors.common.white}
           />
         </TouchableOpacity>
-        {authStatus === AuthStatus.GUEST && (
-          <GuestMenu handleLogin={handleLogin} handleSignup={handleSignup} />
-        )}
+        {getContent()}
       </SafeAreaView>
     </Modal>
   );
