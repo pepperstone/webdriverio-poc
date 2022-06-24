@@ -133,6 +133,12 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
     ],
   };
 
+  // Do not cache the fake data anywhere ever never at all.
+  res.setHeader(
+    "Cache-Control",
+    "no-cache, no-store, max-age=0, must-revalidate"
+  );
+
   res
     .status(200)
     .json({ instruments: randomizeFakeData(fake_data.instruments) });
