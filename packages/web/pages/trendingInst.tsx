@@ -104,6 +104,7 @@ export default function TrendingInst({ heading }: { heading: string }) {
                 <th>Symbol</th>
                 <th>Description</th>
                 <th>display_ticker</th>
+                <th>Vol. Change</th>
                 <th>Bid</th>
                 <th>History</th>
               </tr>
@@ -128,6 +129,7 @@ export default function TrendingInst({ heading }: { heading: string }) {
                     <td>{instr.symbol}</td>
                     <td>{instr.description}</td>
                     <td>{instr.display_ticker}</td>
+                    <td>{instr.volume_change}</td>
                     <td style={{ color: bidColor }}>{instr.bid}</td>
 
                     {instr.history.map((bid, index) => {

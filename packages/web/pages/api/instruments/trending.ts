@@ -6,6 +6,7 @@ type Instrument = {
   ticker: string;
   description: string;
   display_ticker: string;
+  volume_change: number;
 };
 
 export default async function handler(
@@ -35,7 +36,7 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
 
   // Add more infomation to each Instrument.
   const instruments = trendingInstruments.top_instruments.map(
-    async (ticker: string) => {
+    async (ticker: string, index: number) => {
       // Get the Symbol. (MT5 Symbol for getting the quotes/bids)
       const symbol = await getSymbol(ticker);
 
@@ -50,6 +51,7 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
         ticker: ticker,
         description: symbolDesc,
         display_ticker: display_ticker,
+        volume_change: trendingInstruments.top_instruments_scores[index],
       };
     }
   );
@@ -86,7 +88,7 @@ async function getTrendingInstruments(asset_classes: string) {
     asset_classes: asset_classes,
     period: "from_market_open",
     level: "symbol",
-    num_instruments: "1000",
+    num_instruments: "14",
   };
   const searchParams = new URLSearchParams(paramsObj);
 
