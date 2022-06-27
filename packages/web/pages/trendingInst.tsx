@@ -96,24 +96,61 @@ export default function TrendingInst({ heading }: { heading: string }) {
 
         <hr />
 
-        <div className="d-flex flex-wrap">
-          {trendingInstrBids.map((instr) => {
-            return (
-              <div
-                className="card"
-                key={instr.symbol + instr.ticker}
-                style={{ width: "10rem" }}
-              >
-                <div className="card-body">
-                  <h5 className="card-title">{instr.ticker}</h5>
-                  <h6 className="card-subtitle mb-2 text-muted text-truncate">
-                    {instr.description}
-                  </h6>
-                  <p className="card-text">{instr.bid}</p>
-                </div>
-              </div>
-            );
-          })}
+        <div className="table-responsive">
+          <table className="table table-striped  table-sm">
+            <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Symbol</th>
+                <th>Description</th>
+                <th>display_ticker</th>
+                <th>Vol. Change</th>
+                <th>Bid</th>
+                <th>History</th>
+              </tr>
+            </thead>
+            <tbody>
+              {trendingInstrBids.map((instr) => {
+                let bidColor = "black";
+
+                if (instr.bid) {
+                  if (instr.bid > instr.history[1]) {
+                    bidColor = "lime";
+                  }
+
+                  if (instr.bid < instr.history[1]) {
+                    bidColor = "red";
+                  }
+                }
+
+                return (
+                  <tr key={instr.symbol + instr.ticker}>
+                    <td>{instr.ticker}</td>
+                    <td>{instr.symbol}</td>
+                    <td>{instr.description}</td>
+                    <td>{instr.display_ticker}</td>
+                    <td>{instr.volume_change}</td>
+                    <td style={{ color: bidColor }}>{instr.bid}</td>
+
+                    {instr.history.map((bid, index) => {
+                      let color = "black";
+                      if (bid > instr.history[index + 1]) {
+                        color = "lime";
+                      }
+                      if (bid < instr.history[index + 1]) {
+                        color = "red";
+                      }
+                      return (
+                        <td key={bid + instr.symbol + instr.ticker + index}>
+                          <small style={{ color: color }}>{bid}</small>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </section>
     </Layout>

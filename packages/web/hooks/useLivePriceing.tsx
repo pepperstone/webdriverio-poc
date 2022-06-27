@@ -10,12 +10,14 @@ type Quote = {
 };
 
 const API_URL = "https://live-pricing.pepperstone.com/quotes";
+const HISTORY_LEN = 10;
 
 const useLivePricing = (symbols: string, refreshRate: number) => {
   const [data, setData] = useState<Quote>({});
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
+  const [history, setHistory] = useState<Quote[]>([]);
 
   useEffect(() => {
     // Only run if there are symobls
@@ -28,6 +30,17 @@ const useLivePricing = (symbols: string, refreshRate: number) => {
           .then((response) => response.json())
           .then((data) => {
             setData(data);
+
+            setHistory((prevBids) => {
+              const newBids = [data, ...prevBids];
+
+              if (newBids.length > HISTORY_LEN) {
+                newBids.pop();
+              }
+
+              return newBids;
+            });
+
             setLoaded(true);
             setLoading(false);
           })
@@ -43,6 +56,7 @@ const useLivePricing = (symbols: string, refreshRate: number) => {
 
   return {
     data,
+    history,
     loading,
     loaded,
     error,

@@ -1,62 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import cacheData from "memory-cache";
 
-/* FAKE DATA */
-const fake_data = {
-  asset_classes: ["All"],
-  rank_by: "volume_change",
-  period: "from_market_open",
-  level: "symbol",
-  num_instruments: 14,
-  version: "1.0.0",
-  uid: "1a26f870-ce8a-46ac-8637-d8ad698e33fa",
-  timestamp: "2022-06-09T04:42:20",
-  top_instruments_symbols: [
-    "US2000.a",
-    "AUDCAD",
-    "XAUGBP",
-    "LINKUSD",
-    "US30_SB",
-    "CADCHF.a",
-    "USDCAD",
-    "GBPCHF.r",
-    "EURCAD.r",
-    "EURJPY",
-    "AUDNZD.p",
-    "Bitcoin",
-    "SpotCrude",
-    "GBPJPY.r",
-  ],
-  top_instruments_tickers: [
-    "US2000",
-    "AUDCAD",
-    "XAUGBP",
-    "LINKUSD",
-    "US30",
-    "CADCHF",
-    "USDCAD",
-    "GBPCHF",
-    "EURCAD",
-    "EURJPY",
-    "AUDNZD",
-    "Bitcoin",
-    "SpotCrude",
-    "GBPJPY",
-  ],
-  top_instruments_values: [
-    4357.1054, 613.8333, 593.586, 498.5863, 454.5162, 399.4866, 397.6424,
-    366.9019, 311.9639, 309.3079, 293.5196, 286.5202, 278.3744, 270.9389,
-  ],
-  top_instruments_scores: [
-    0.46, 0.07, 0.06, 0.05, 0.05, 0.04, 0.04, 0.04, 0.03, 0.03, 0.03, 0.03,
-    0.03, 0.03,
-  ],
-};
-
 type Instrument = {
   symbol: string;
   ticker: string;
   description: string;
+  display_ticker: string;
+  volume_change: number;
 };
 
 export default async function handler(
@@ -76,7 +26,7 @@ export default async function handler(
 
 async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
   // Set the default category search to "all".
-  const categories: string = (req.query.categories as string) || "All";
+  const categories: string = (req.query.categories as string) ?? "All";
 
   // The Trending Instruments API requiers a '+' delimited list.
   const asset_classes = categories.split(",").join("+");
@@ -84,31 +34,50 @@ async function handler_GET(req: NextApiRequest, res: NextApiResponse) {
   // Get the Trending instruments.
   const trendingInstruments = await getTrendingInstruments(asset_classes);
 
-  const instruments = trendingInstruments.top_instruments_symbols.map(
-    async (trendingSymbol: string, index: number) => {
-      const ticker = trendingInstruments.top_instruments_tickers[index];
+  // Add more infomation to each Instrument.
+  const instruments = trendingInstruments.top_instruments.map(
+    async (ticker: string, index: number) => {
+      // Get the Symbol. (MT5 Symbol for getting the quotes/bids)
+      const symbol = await getSymbol(ticker);
 
-      // Get the Symbols meta data.
-      const symbolInfo = await getSymbolInfo(ticker);
+      // Get the nice description.
+      const symbolDesc = await getSymbolDesc(symbol);
+
+      // Make sure the Ticker looks nice.
+      const display_ticker = getDisplayTicker(ticker);
 
       return {
-        symbol: trendingSymbol,
+        symbol: symbol,
         ticker: ticker,
-        description: symbolInfo[ticker].Description,
+        description: symbolDesc,
+        display_ticker: display_ticker,
+        volume_change: trendingInstruments.top_instruments_scores[index],
       };
     }
   );
 
   const returnInstruments: Instrument[] = await Promise.all(instruments);
 
-  // Cache the response for 10 sec.
-  res.setHeader("Cache-Control", "max-age=10, stale-while-revalidate=10");
+  // Cache the response.
+  res.setHeader("Cache-Control", "max-age=1, stale-while-revalidate=1");
 
-  res.status(200).json({ instruments: randomizeFakeData(returnInstruments) });
+  res.status(200).json({ instruments: returnInstruments });
 }
 
 async function getTrendingInstruments(asset_classes: string) {
-  return fake_data;
+  type APIResponse = {
+    asset_classes: string[];
+    rank_by: string;
+    period: string;
+    level: string;
+    num_instruments: number;
+    version: string;
+    uid: string;
+    timestamp: string;
+    top_instruments: string[];
+    top_instruments_values: number[];
+    top_instruments_scores: number[];
+  };
 
   const API_URI =
     "https://trending-instruments.dev.ai.pepperstone.com/trending";
@@ -123,8 +92,6 @@ async function getTrendingInstruments(asset_classes: string) {
   };
   const searchParams = new URLSearchParams(paramsObj);
 
-  console.log(API_URI + "?" + searchParams.toString());
-
   // Get the Treding Instruments data.
   const trendingData_res = await fetch(API_URI + "?" + searchParams.toString());
 
@@ -134,12 +101,105 @@ async function getTrendingInstruments(asset_classes: string) {
     throw Error(trendingData_res.statusText);
   }
 
-  return await trendingData_res.json();
+  return (await trendingData_res.json()) as APIResponse;
 }
 
-async function getSymbolInfo(symbol: string) {
+async function getSymbol(ticker: string) {
+  const symbolMap = await getSymbolMapping();
+
+  if (!symbolMap.has(ticker)) {
+    return "UNKNOWN";
+  }
+
+  return symbolMap.get(ticker);
+}
+
+async function getSymbolMapping() {
+  type symbolMap = {
+    symbol: string;
+    coreSymbol: string;
+    aliases: string;
+    ticker: string;
+    assetClass: string;
+    symbolType: string;
+    symbolSubType: string;
+    rebateCategory: string;
+    volumeCategory: string;
+  };
+
+  type SymbolMappingResp = {
+    [key: string]: symbolMap;
+  };
+
+  const API_URI = "https://ems-staging.pepperstone.com/mapping?key=symbol";
+  const CACHE_TIME = 24 * 60 * 60 * 1000; // 1 day.
+
+  // Chech the cache first.
+  const cacheValue = cacheData.get("symbolMap");
+  if (cacheValue) {
+    return cacheValue;
+  }
+
+  // Get the data.
+  const symbolInfo_res = await fetch(API_URI);
+
+  // Is it ok?
+  if (!symbolInfo_res.ok) {
+    console.log(symbolInfo_res);
+    throw Error(symbolInfo_res.statusText);
+  }
+
+  const symbolInfo_json = (await symbolInfo_res.json()) as SymbolMappingResp;
+
+  // Clean the data
+  const symbolMap = new Map<string, string>();
+
+  Object.keys(symbolInfo_json).forEach((value) => {
+    // Only include CFD's & tickers with a value.
+    // Also, ignore any Symbols that end in '.US'
+    if (
+      symbolInfo_json[value]?.assetClass === "CFD" &&
+      symbolInfo_json[value]?.ticker !== "" &&
+      value.substring(value.length - 3) !== ".US"
+    ) {
+      symbolMap.set(
+        symbolInfo_json[value].ticker,
+        symbolInfo_json[value].symbol
+      );
+    }
+  });
+
+  // Cache the results.
+  cacheData.put("symbolMap", symbolMap, CACHE_TIME);
+
+  return symbolMap;
+}
+
+async function getSymbolDesc(symbol: string) {
+  if (symbol === "UNKNOWN" || symbol === "") {
+    return "UNKNOWN";
+  }
+
+  type symbolDesc = {
+    Description: string;
+    ISIN: string;
+    Category: string;
+    Path: string;
+    CurrencyBase: string;
+    CurrencyProfit: string;
+    CurrencyMargin: string;
+    Digits: number;
+    Point: number;
+    Multiply: number;
+    ContractSize: number;
+  };
+
+  type symbolDescResp = {
+    [key: string]: symbolDesc;
+  };
+
   const API_URI = "https://live-pricing.pepperstone.com/symbols";
-  const CACHE_TIME = 60 * 1000; // 1 minute.
+  const CACHE_TIME = 24 * 60 * 60 * 1000; // 1 day.
 
   const api_url = API_URI + "?names=" + symbol;
 
@@ -150,35 +210,24 @@ async function getSymbolInfo(symbol: string) {
   }
 
   // Get the data.
-  const symbolInfo_res = await fetch(api_url);
+  const symbolDesc_res = await fetch(api_url);
 
   // Is it ok?
-  if (!symbolInfo_res.ok) {
-    console.log(symbolInfo_res);
-    throw Error(symbolInfo_res.statusText);
+  if (!symbolDesc_res.ok) {
+    console.log(symbolDesc_res);
+    throw Error(symbolDesc_res.statusText);
   }
 
-  const symbolInfo_json = await symbolInfo_res.json();
-
-  if (symbolInfo_json.s === "error") {
-    console.log(symbolInfo_json);
-    throw Error(symbolInfo_json.errmsg);
-  }
+  const symbolDesc_json = (await symbolDesc_res.json()) as symbolDescResp;
 
   // Cache the results.
-  cacheData.put(api_url, symbolInfo_json, CACHE_TIME);
+  cacheData.put(api_url, symbolDesc_json[symbol]?.Description, CACHE_TIME);
 
-  return symbolInfo_json;
+  return symbolDesc_json[symbol]?.Description;
 }
 
-function randomizeFakeData(fake_data: Instrument[]) {
-  // between 0 and 14
-  const randomLength = Math.floor(Math.random() * 15);
+function getDisplayTicker(ticker: string) {
+  const newTicker = ticker.split(".")[0];
 
-  // Randomize the fake data.
-  const randomData = fake_data
-    .sort(() => Math.random() - 0.5)
-    .slice(0, randomLength);
-
-  return randomData;
+  return newTicker;
 }
