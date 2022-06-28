@@ -1,7 +1,7 @@
 import FundAccountModal from 'src/common/components/modals/fundAccountModal';
 import LiveAccountData from './components/liveAccountData';
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import stylesCreator from './styles';
 import { useLiveAccountBar } from './hooks';
 import useModal from 'src/common/hooks/useModal';

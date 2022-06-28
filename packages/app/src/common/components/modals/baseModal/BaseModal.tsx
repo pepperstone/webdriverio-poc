@@ -1,7 +1,8 @@
-import { Modal, Pressable, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import React, { FunctionComponent } from 'react';
 
 import { CloseIconSVG } from 'assets/icons';
+import Modal from 'react-native-modal';
 import ModalHeader from '../../headers/modalHeader';
 import { ModalProps } from './types';
 import stylesCreator from './styles';
@@ -17,12 +18,10 @@ const BaseModal: FunctionComponent<ModalProps> = ({
 
   return (
     <Modal
-      visible={isShowing}
-      onRequestClose={toggle}
-      animationType="slide"
+      isVisible={isShowing}
       style={styles.modal}
-      onMagicTap={toggle}
-      transparent
+      useNativeDriver
+      useNativeDriverForBackdrop
     >
       <Pressable style={styles.children} onPress={toggle}>
         <View style={styles.contents}>
