@@ -1,15 +1,15 @@
-import type { Options } from "@wdio/types";
+import type { Options } from '@wdio/types';
 
 export const config: Options.Testrunner = {
   autoCompileOpts: {
     autoCompile: true,
     tsNodeOpts: {
       transpileOnly: true,
-      project: "test/tsconfig.json",
+      project: './test/tsconfig.json',
     },
   },
   port: 4723,
-  specs: ["./test/specs/**/*.ts"],
+  specs: ['./test/specs/**/web-*.ts'],
   exclude: [
     // 'path/to/excluded/files'
   ],
@@ -17,22 +17,26 @@ export const config: Options.Testrunner = {
   capabilities: [
     {
       maxInstances: 5,
-      browserName: "chrome",
+      browserName: 'chrome',
       acceptInsecureCerts: true,
     },
   ],
-  logLevel: "info",
+  logLevel: 'info',
   bail: 0,
-  baseUrl: "http://localhost",
+  baseUrl: 'https://pepperstone.com/en-au/',
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
   connectionRetryCount: 3,
-  services: ["chromedriver", "browserstack", "appium"],
-  framework: "mocha",
-  reporters: ["spec"],
+  services: ['chromedriver'],
+  framework: 'mocha',
+  reporters: [['allure', { outputDir: 'allure-results' }], 'spec'],
 
   mochaOpts: {
-    ui: "bdd",
+    ui: 'bdd',
     timeout: 60000,
+  },
+
+  beforeTest: function (test: any, context: any) {
+    browser.maximizeWindow();
   },
 };

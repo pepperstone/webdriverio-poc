@@ -1,6 +1,6 @@
-import LandingScreen from '../pageobjects/mobile/landing-screen';
-import LoginScreen from '../pageobjects/mobile/login-screen';
-import DiscoverScreen from '../pageobjects/mobile/discover-screen';
+import LandingScreen from '../pageobjects/app/landing-screen';
+import LoginScreen from '../pageobjects/app/login-screen';
+import DiscoverScreen from '../pageobjects/app/discover-screen';
 
 describe('I should be able to go to in Login Page', () => {
   before('go first to Landing Screen', async () => {

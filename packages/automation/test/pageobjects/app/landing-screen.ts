@@ -10,7 +10,7 @@ class LandingScreen {
   public async clickLogin() {
     await this.loginButton.click();
 
-    const actualText = await LoginScreen.loginScreenTitle.getText();
+    const actualText: string = await LoginScreen.loginScreenTitle.getText();
     const expectedText = 'Login';
 
     await assert.equal(actualText, expectedText);

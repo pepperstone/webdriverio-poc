@@ -1,25 +1,26 @@
-import Page from "./page";
-
-class HomePage extends Page {
-  public get dropdownLogin() {
-    return $(
-      '//body/div[@id="root"]/div[1]/section[1]/div[1]/div[3]/div[1]/div[1]'
-    );
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const assert = require('assert');
+class HomePage {
+  public get shortCopyUnit() {
+    return $('.shortCopyUnit__email');
   }
 
-  public get linkCustomer() {
-    return $(
-      "body > div.jss328.jss326.jss83.popper.hasAnimation > ul > li:nth-child(1)"
-    );
+  private get emailInputText() {
+    return $('//div[2]/div[1]/input[@class="ant-input ant-input-lg"]');
   }
 
-  public async clickLoginCustomer() {
-    await this.dropdownLogin.click();
-    await this.linkCustomer.click();
+  private get emailJoinButton() {
+    return $('//div/a[contains(text(),"Join Now")]');
   }
 
-  public open() {
-    return super.open("");
+  public async getSignUp(email: string) {
+    await this.emailInputText.setValue(email);
+    await this.emailJoinButton.click();
+    const actualUrl: string = await browser.getUrl();
+    const expectedUrl =
+      'https://secure.pepperstone.com/register/form?legalEntity=individual&locale=en&username=testEmail%40myEmail.com';
+
+    await assert.equal(actualUrl, expectedUrl);
   }
 }
 
