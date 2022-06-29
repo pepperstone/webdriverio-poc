@@ -1,35 +1,23 @@
-import ILogin from "../ILogin";
-import SplashScreen from "./splash-screen";
-
-class LoginScreen implements ILogin {
-  public get loginLogo() {
-    return $(
-      "//android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ImageView"
-    );
+class LoginScreen {
+  public get loginScreenTitle() {
+    return $("//android.widget.TextView[@text='Login']");
   }
 
-  private get inputUserName() {
-    return $(
-      "//android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.EditText"
-    );
+  private get emailInputTxt() {
+    return $("//android.widget.EditText[1][@text='Email']");
   }
 
-  private get inputPassword() {
-    return $(
-      "//android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.EditText"
-    );
+  private get passwordInputTxt() {
+    return $("//android.widget.EditText[2][@text='Password']");
   }
 
   private get btnLogin() {
-    return $("//android.widget.TextView[@text='Log in']");
+    return $("//android.widget.TextView[@text='Log In']");
   }
 
-  public async login(username: string, password: string) {
-    await SplashScreen.clickbtnSkip();
-    await expect(this.loginLogo).toBeDisplayed();
-
-    await this.inputUserName.setValue(username);
-    await this.inputPassword.setValue(password);
+  public async getLogin(username: string, password: string) {
+    await this.emailInputTxt.setValue(username);
+    await this.passwordInputTxt.setValue(password);
     await this.btnLogin.click();
   }
 }
