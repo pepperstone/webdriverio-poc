@@ -1,9 +1,8 @@
-import { Text, TouchableOpacity } from 'react-native';
-
-import { FilterButtonProps } from './types';
 import React from 'react';
-import styleCreator from './styles';
+import { Text, TouchableOpacity } from 'react-native';
 import { useTheme } from 'src/lib/theme/Theme';
+import styleCreator from './styles';
+import { FilterButtonProps } from './types';
 
 export const FilterButton = ({
   id,

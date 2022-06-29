@@ -2,9 +2,12 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from 'src/lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme) => StyleSheet.create({
-  closeButton: {
-    marginLeft: 30,
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 30,
     marginTop: 10,
+    width: '90%',
   },
   modal: {
     margin: 0,

@@ -1,3 +1,4 @@
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import {
   DiscoverSVG,
   MarketsSVG,
@@ -6,16 +7,18 @@ import {
   WatchlistsSVG,
 } from 'assets/icons';
 import React, { useCallback, useMemo } from 'react';
-
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import LiveAccountBar from 'src/common/components/bars/liveAccountBar';
-import Tab from './components/tab';
 import { View } from 'react-native';
-import stylesCreator from './styles';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import LiveAccountBar from 'src/common/components/bars/liveAccountBar';
 import { useTheme } from 'src/lib/theme/Theme';
+import Tab from './components/tab';
+import stylesCreator from './styles';
 
 const BottomTabNavigationBar = ({ navigation, state }: BottomTabBarProps) => {
-  const [styles, theme] = useTheme(stylesCreator);
+  const insets = useSafeAreaInsets();
+  const [styles, theme] = useTheme(stylesCreator, {
+    safeAreaBottom: insets.bottom,
+  });
   const handleTabPress = useCallback(
     (name: string) => {
       navigation.navigate(name);

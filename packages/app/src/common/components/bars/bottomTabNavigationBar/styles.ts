@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { StylesCreator } from 'src/lib/theme/Theme';
 
-const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
+const stylesCreator: StylesCreator = (theme, scale, _, props) => StyleSheet.create({
   tabWrapper: {
     alignItems: 'center',
     backgroundColor: theme.colors.product.background.base,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 30,
+    paddingBottom: props.safeAreaBottom,
     paddingHorizontal: scale(10),
     paddingTop: 5,
   },

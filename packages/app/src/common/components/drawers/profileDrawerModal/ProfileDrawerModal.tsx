@@ -1,17 +1,18 @@
-import { SafeAreaView, TouchableOpacity } from 'react-native';
-
-import { AppState } from 'src/app/types';
-import { AuthStatus } from 'src/lib/user/types';
 import { CloseIconSVG } from 'assets/icons';
-import { GuestMenu } from './components';
-import Modal from 'react-native-modal';
-import { ProfileDrawerModalProps } from './types';
 import React, { useCallback } from 'react';
-import stylesCreator from './styles';
-import { useDiscoverHook } from 'src/features/discover/hooks';
+import { SafeAreaView, View } from 'react-native';
+import Modal from 'react-native-modal';
 import { useSelector } from 'react-redux';
+import { AppState } from 'src/app/types';
+import DarkModeSwitch from 'src/common/components/switches/darkModeSwitch';
+import { useDiscoverHook } from 'src/features/discover/hooks';
 import { useTheme } from 'src/lib/theme/Theme';
+import { AuthStatus } from 'src/lib/user/types';
+import { SvgButton } from '../../buttons';
+import { GuestMenu } from './components';
 import AuthCompleteMenu from './components/authCompleteMenu';
+import stylesCreator from './styles';
+import { ProfileDrawerModalProps } from './types';
 
 const ProfileDrawerModal = ({
   handleLogin,
@@ -49,12 +50,15 @@ const ProfileDrawerModal = ({
       style={styles.modal}
     >
       <SafeAreaView style={styles.safeAreaView}>
-        <TouchableOpacity style={styles.closeButton} onPress={toggleSideMenu}>
-          <CloseIconSVG
+        <View style={styles.header}>
+          <SvgButton
+            Icon={CloseIconSVG}
+            onPress={toggleSideMenu}
             fill={theme.colors.common.darkGrey}
             fillSecondary={theme.colors.common.white}
           />
-        </TouchableOpacity>
+          <DarkModeSwitch />
+        </View>
         {getContent()}
       </SafeAreaView>
     </Modal>

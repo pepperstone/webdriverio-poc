@@ -13,7 +13,7 @@ const stylesCreator: StylesCreator = (theme, scale, _, props: TabProps ) => Styl
     fontFamily: theme.font.regular,
     fontSize: scale(theme.fontSize.s1),
     fontWeight: theme.fontWeight.semibold,
-    marginTop: scale(5),
+    paddingVertical: scale(5),
   },
 });
 
