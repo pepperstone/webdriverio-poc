@@ -1,4 +1,4 @@
-name: Android - Google Play ## name of the workflow
+name: Android - Google Play
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install dependencies ## install project deps with --frozen-lockfile to make sure we will have the same packages version ( very recommended  on running yarn install on ci)
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       ## configure cash for gradle : will help to reduce build time
       - name: Cache Gradle Wrapper
@@ -69,12 +69,6 @@ jobs:
           alias: ${{ secrets.ANDROID_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-
-      ## upload artifact to action
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
       ## upload AAB to Google Play
       - name: Upload App to Google Play

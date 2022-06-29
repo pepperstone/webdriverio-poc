@@ -1,4 +1,4 @@
-name: Android - APK ## name of the workflow
+name: Android - APK file
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install dependencies ## install project deps with --frozen-lockfile to make sure we will have the same packages version ( very recommended  on running yarn install on ci)
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       ## configure cash for gradle : will help to reduce build time
       - name: Cache Gradle Wrapper
@@ -67,7 +67,7 @@ jobs:
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
       ## upload artifact to action
-      - name: Upload Artifact
+      - name: Upload APK to Github Actions artifacts
         uses: actions/upload-artifact@v2
         with:
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
