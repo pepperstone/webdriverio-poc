@@ -7,3 +7,10 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+
+packages/automation/node_modules
+packages/automation/allure-results
+packages/automation/yarn-error.log
+
+*/**/*.apk
+*/**/*.ipa
