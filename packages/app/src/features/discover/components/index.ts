@@ -1,9 +1,3 @@
-import DiscoverAnalysisScreen from './analysis';
-import DiscoverEventScreen from './events';
-import DiscoverFeedScreen from './feed';
+import HeaderTabsNavigator from './headerTabsNavigator';
 
-export {
-  DiscoverAnalysisScreen,
-  DiscoverEventScreen,
-  DiscoverFeedScreen,
-};
+export { HeaderTabsNavigator };

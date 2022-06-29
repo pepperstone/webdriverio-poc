@@ -2,10 +2,18 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from 'src/lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
-  background: {
-    alignItems: 'center',
+  form: {
+    alignSelf: 'center',
+    marginBottom: 20,
+    width: '90%',
+  },
+  mainContainer: {
+    alignItems: 'stretch',
     flex: 1,
     justifyContent: 'center',
+  },
+  scrollView: {
+    paddingRight: 12,
   },
   text: {
     color: theme.colors.product.text.strong,

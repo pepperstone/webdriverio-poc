@@ -1,3 +1,7 @@
-import DiscoverHeader from './discoverHeader';
+import MainHeader from './mainHeader';
+import ModalHeader from './modalHeader';
 
-export { DiscoverHeader };
+export {
+  MainHeader,
+  ModalHeader,
+};

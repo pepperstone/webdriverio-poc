@@ -1,10 +1,10 @@
 import React from 'react';
-import { AuthCompleteMenuProps } from './types';
 import { View } from 'react-native';
-import { useTheme } from 'src/lib/theme/Theme';
-import stylesCreator from './Styles';
-import { useStrings } from 'src/common/hooks';
 import TextTouchable from 'src/common/components/buttons/textTouchable';
+import { useStrings } from 'src/common/hooks';
+import { useTheme } from 'src/lib/theme/Theme';
+import stylesCreator from './styles';
+import { AuthCompleteMenuProps } from './types';
 
 const AuthCompleteMenu = ({ handleLogout }: AuthCompleteMenuProps) => {
   const [styles] = useTheme(stylesCreator);

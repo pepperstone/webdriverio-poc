@@ -1,13 +1,12 @@
+import React from 'react';
 import { ScrollView, View } from 'react-native';
-
+import TextButton from 'src/common/components/buttons/textButton/index';
 import FilterButtonHorizontalList from 'src/common/components/lists/filterButtonHorizontalList';
 import InstrumentTile from 'src/common/components/tiles/instrumentTile';
-import React from 'react';
-import TextButton from 'src/common/components/buttons/textButton/index';
-import stylesCreator from './styles';
-import useDiscoverFeedHook from './hooks';
-import { useDiscoverHook } from '../../hooks';
 import { useTheme } from 'src/lib/theme/Theme';
+import { useDiscoverHook } from '../../hooks';
+import useDiscoverFeedHook from './hooks';
+import stylesCreator from './styles';
 
 const DiscoverFeedScreen = () => {
   const [styles] = useTheme(stylesCreator);
@@ -20,7 +19,6 @@ const DiscoverFeedScreen = () => {
         data={filters}
         selectedItemID={selectedItemID}
         onSelectedItemID={setSelectedItemID}
-        containerStyle={styles.filter}
       />
       <ScrollView
         horizontal

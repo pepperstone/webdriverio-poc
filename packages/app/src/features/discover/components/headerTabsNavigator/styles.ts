@@ -2,12 +2,16 @@ import { StyleSheet } from 'react-native';
 import { StylesCreator } from 'src/lib/theme/Theme';
 
 const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
+  tabBarContentContainerStyle: {
+    flex: 1,
+  },
   tabBarIndicatorStyle: {
     backgroundColor: theme.colors.product.brand.primary,
     marginLeft: theme.SCREEN_WIDTH / 25,
     width: '20%',
   },
   tabBarItemStyle: {
+    flex: 1,
     marginLeft: 0,
     padding: 0,
     width: 80,
@@ -23,7 +27,7 @@ const stylesCreator: StylesCreator = (theme, scale) => StyleSheet.create({
     backgroundColor: theme.colors.product.background.base,
     borderRightColor: theme.colors.common.red,
     padding: 0,
-    paddingTop: 25,
+    paddingTop: 24,
     zIndex: 0,
   },
 });

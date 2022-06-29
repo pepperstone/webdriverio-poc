@@ -1,4 +1,5 @@
-interface UseDiscoverProps {
+import { NavigatorParams } from 'src/navigation/types';
+export interface UseDiscoverProps {
   doLogout: () => void;
   handleLogin: () => void,
   handleSignup: () => void;
@@ -6,6 +7,12 @@ interface UseDiscoverProps {
   loading: boolean;
 }
 
-export type {
-  UseDiscoverProps,
+export type DiscoverTabStackParamList = {
+  Event: undefined;
+  Analysis: undefined;
+  Feed: undefined;
+};
+
+export type DiscoverParamList = {
+  DiscoverScreen: NavigatorParams<DiscoverTabStackParamList>;
 };
