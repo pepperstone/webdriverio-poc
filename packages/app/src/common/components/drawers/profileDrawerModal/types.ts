@@ -3,6 +3,8 @@ interface ProfileDrawerModalProps {
   handleSignup: () => void;
 }
 
-export type {
-  ProfileDrawerModalProps,
-};
+export type { ProfileDrawerModalProps };
+export interface ProfileDrawerModalHooks {
+  setAuthKYCIncomplete: () => void;
+  setAuthComplete: () => void;
+}

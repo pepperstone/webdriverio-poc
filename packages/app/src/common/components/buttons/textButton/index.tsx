@@ -10,15 +10,21 @@ const TextButton = ({
   text,
   loading = false,
   buttonStyles,
+  textStyles,
+  disabled,
 }: TextButtonProps) => {
   const [styles, theme] = useTheme(stylesCreator);
 
   return (
-    <TouchableOpacity style={[styles.button, buttonStyles]} onPress={onPress}>
+    <TouchableOpacity
+      disabled={disabled}
+      style={[styles.button, buttonStyles]}
+      onPress={onPress}
+    >
       {loading ? (
         <ActivityIndicator color={theme.colors.common.white} />
       ) : (
-        <Text style={styles.buttonText}>{text}</Text>
+        <Text style={[styles.buttonText, textStyles]}>{text}</Text>
       )}
     </TouchableOpacity>
   );

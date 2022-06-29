@@ -11,6 +11,7 @@ import { AuthStatus } from 'src/lib/user/types';
 import { SvgButton } from '../../buttons';
 import { GuestMenu } from './components';
 import AuthCompleteMenu from './components/authCompleteMenu';
+import AuthIncompleteMenu from './components/authIncompleteMenu';
 import stylesCreator from './styles';
 import { ProfileDrawerModalProps } from './types';
 
@@ -29,6 +30,8 @@ const ProfileDrawerModal = ({
     switch (authStatus) {
       case AuthStatus.LOGGED_IN:
         return <AuthCompleteMenu handleLogout={doLogout} />;
+      case AuthStatus.KYC_INCOMPLETE:
+        return <AuthIncompleteMenu handleLogout={doLogout} />;
       default:
         return (
           <GuestMenu handleLogin={handleLogin} handleSignup={handleSignup} />

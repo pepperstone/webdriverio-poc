@@ -47,19 +47,29 @@ export default {
   DiscoverScreen: {
     Name: 'Discover',
     ProfileDrawerMenu: {
-      AuthComplete: {
-        Buttons: {
-          ViewProfile: 'View Profile',
-          TradingAccounts: 'Trading Accounts',
-          FinancialStatements: 'Financial Statements',
-          Deposit: 'Deposit',
-          Withdraw: 'Withdraw',
-          Transfer: 'Transfer',
-          Settings: 'Settings',
-          OneClickTrading: 'One Click Trading',
-          ApplyForPepperstonePro: 'Apply for Pepperstone Pro',
-          ReferAFriend: 'Refer a Friend',
-          Logout: 'Log out',
+      Authenticated: {
+        Incomplete: {
+          IncompleteMessage: 'Your account is nearly complete. Finalise the remaining tasks to trade live.',
+          Buttons: {
+            CompleteSuitabilityTest: 'Complete suitability test',
+            FundYourTradingAccount: 'Fund your trading account',
+            VerifyYourProfile: 'Verify your profile',
+          },
+        },
+        Complete: {
+          Buttons: {
+            ViewProfile: 'View Profile',
+            TradingAccounts: 'Trading Accounts',
+            FinancialStatements: 'Financial Statements',
+            Deposit: 'Deposit',
+            Withdraw: 'Withdraw',
+            Transfer: 'Transfer',
+            Settings: 'Settings',
+            OneClickTrading: 'One Click Trading',
+            ApplyForPepperstonePro: 'Apply for Pepperstone Pro',
+            ReferAFriend: 'Refer a Friend',
+            Logout: 'Log out',
+          },
         },
       },
     },
