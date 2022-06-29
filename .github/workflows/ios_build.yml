@@ -1,0 +1,103 @@
+name: IOS - TestFlight
+
+on:
+  push:
+    branches:
+      - mobile-release
+
+defaults:
+  run:
+    working-directory: ./packages/app
+
+jobs:
+  ios-build:
+    name: IOS Build
+    runs-on: macOS-latest
+
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: 'yarn'
+
+      - name: Install dependencies ## install project deps with --frozen-lockfile to make sure we will have the same packages version ( very recommended  on running yarn install on ci)
+        run: yarn install --frozen-lockfile
+
+      - name: Restore buildcache
+        uses: mikehardy/buildcache-action@v1
+        continue-on-error: true
+
+      - name: Setup Ruby (bundle)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+          bundler-cache: true
+
+      # run lint tests
+      - name: Run lint command
+        run: yarn lint
+
+      - name: Restore Pods cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ios/Pods
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods
+          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install Pods
+        run: cd ios && pod install
+
+      # run Jest tests
+      - name: Run test command
+        run: yarn test
+
+      - name: Build IOS App
+        uses: yukiarrr/ios-build-action@v1.4.0
+        with:
+          project-path: ./packages/app/ios/LiteTrader.xcodeproj
+          p12-base64: ${{ secrets.P12_BASE64 }}
+          mobileprovision-base64: ${{ secrets.IOS_MOBILE_PROVISION_BASE64 }}
+          code-signing-identity: 'iPhone Distribution'
+          team-id: ${{ secrets.IOS_TEAM_ID }}
+          certificate-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+          workspace-path: ./packages/app/ios/LiteTrader.xcworkspace
+          output-path: ./packages/app/ios/output.ipa
+
+      # Setup an "App-specific password" for an account that has access to upload TestFlight builds here: https://appleid.apple.com/account/manage
+      # Use that accounts username and App-specific password here to automate uploading to TestFlight
+      - name: Upload app to TestFlight
+        env:
+          USERNAME: ${{ secrets.APPSTORE_USERNAME }}
+          PASSWORD: ${{ secrets.APPSTORE_PASSWORD }}
+        run: xcrun altool --upload-app --type ios --file "/Users/runner/work/x2-trade/x2-trade/packages/app/ios/output.ipa" --username $USERNAME --password $PASSWORD
+
+  slack-notification:
+    needs: ios-build
+    name: Slack Notification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: t-boo
+          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/apple.png?size=48
+          SLACK_ICON_EMOJI: ':green_apple:'
+          SLACK_MESSAGE: 'uploaded to TestFlight :green_apple:'
+          SLACK_TITLE: New iOS build
+          SLACK_USERNAME: Github Actions CI/CD
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
